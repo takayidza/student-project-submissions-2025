@@ -36,4 +36,6 @@ To stop the server:
   
 ## Summary 
 
+This is the api service the Trazo application uses in background to interact with the model to classify and analyse the documents submitted.
+
 The service converts PDFs to text-searchable PDFs using [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) and [ocrmypdf](https://ocrmypdf.readthedocs.io/en/latest/index.html).

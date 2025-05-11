@@ -4,7 +4,12 @@ The application's admin dashboard was developed using Laravel and uses a model w
 
 ## Getting started
 
-To get started, you need to set up the environment variables inside the admin folder to get the application running. 
+To get started, you need to set up the environment variables inside the admin folder to get the application running. The following are the extra env variables to set:
+
+```sh
+AI_API_URL=<link_to_model_api_running_instance>
+AI_SERVICE_TOKEN=<token_to_access_model_api> 
+```
 
 Navigate into admin folder and install the neccessary dependencies:
 
