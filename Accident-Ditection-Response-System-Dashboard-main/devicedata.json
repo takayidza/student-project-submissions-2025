@@ -1,0 +1,5 @@
+{
+    "vehicle_id":1,
+    "device_id":"ESP32_GPS_MPU",
+    "is_active":true
+}
