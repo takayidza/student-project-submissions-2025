@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Monitoring Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 shadow-md">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Speed Monitoring Dashboard</h1>
+        <div class="flex items-center space-x-4">
+          <label class="font-semibold">Speed Limit Type:</label>
+          <select id="speed-limit-selector" class="bg-white text-blue-800 px-3 py-1 rounded-lg">
+            <option value="urban">Urban (50 km/h)</option>
+            <option value="rural">Rural (90 km/h)</option>
+            <option value="highway">Highway (120 km/h)</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+      <!-- Speed Summary -->
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold mb-4">Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Total Vehicles</h3>
+            <p class="text-3xl font-bold text-blue-600" id="total-vehicles">0</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Average Speed</h3>
+            <p class="text-3xl font-bold text-green-600" id="average-speed">0 km/h</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Maximum Speed</h3>
+            <p class="text-3xl font-bold text-red-600" id="maximum-speed">0 km/h</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Speed Violations</h3>
+            <p class="text-3xl font-bold text-yellow-600" id="speed-violations">0</p>
+            <p class="text-sm text-gray-600" id="speed-limit-info">Based on 50 km/h limit</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Speed Chart -->
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold mb-4">Speed Distribution</h2>
+        <div class="bg-white shadow-md rounded-lg p-4" style="height: 300px;">
+          <canvas id="speed-chart"></canvas>
+        </div>
+      </section>
+
+      <!-- Speed Violations Breakdown -->
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold mb-4">Violations Breakdown</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Mild Violations</h3>
+            <p class="text-sm text-gray-600">Up to 10% over limit</p>
+            <p class="text-3xl font-bold text-yellow-500" id="mild-violations">0</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Moderate Violations</h3>
+            <p class="text-sm text-gray-600">10-25% over limit</p>
+            <p class="text-3xl font-bold text-orange-500" id="moderate-violations">0</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold">Severe Violations</h3>
+            <p class="text-sm text-gray-600">Over 25% above limit</p>
+            <p class="text-3xl font-bold text-red-500" id="severe-violations">0</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Speed Violations Table -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Recent Speed Violations</h2>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+          <table class="min-w-full table-auto">
+            <thead class="bg-gray-200">
+              <tr>
+                <th class="px-4 py-2 text-left">ID</th>
+                <th class="px-4 py-2 text-left">Vehicle</th>
+                <th class="px-4 py-2 text-left">Number Plate</th>
+                <th class="px-4 py-2 text-left">Speed</th>
+                <th class="px-4 py-2 text-left">Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="violations-table">
+              <!-- Rows will be dynamically added here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2025 Speed Monitoring System</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{url_for('static', filename='js/dashboard.js')}}"></script>
+</body>
+
+</html>
+
+
+<!-- fix -->
+<!-- vehicles = self.database.get_vehicles(limit=100) if self.database else []
+~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+File "C:\Users\MG\OneDrive\Desktop\PROJECT\TRACKING\main\modules\database.py", line 329, in get_vehicles
+self.logger.error(f"Error getting vehicles: {e}") -->
