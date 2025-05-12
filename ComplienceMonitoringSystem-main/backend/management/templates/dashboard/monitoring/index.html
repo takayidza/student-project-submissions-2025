@@ -1,0 +1,601 @@
+{% extends 'base.html' %}
+
+{% block title %}Live Monitoring - Device Compliance Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    .terminal {
+        background-color: #000;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        padding: 10px;
+        border-radius: 5px;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 15px;
+    }
+
+    .terminal-header {
+        background-color: #333;
+        color: #fff;
+        padding: 8px 15px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .terminal-header .controls span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+
+    .terminal-header .controls .close {
+        background-color: #ff5f56;
+    }
+
+    .terminal-header .controls .minimize {
+        background-color: #ffbd2e;
+    }
+
+    .terminal-header .controls .maximize {
+        background-color: #27c93f;
+    }
+
+    .log-entry {
+        margin: 3px 0;
+        line-height: 1.4;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .log-timestamp {
+        color: #999;
+        margin-right: 10px;
+    }
+
+    .log-warning {
+        color: #ffcc00;
+    }
+
+    .log-error {
+        color: #ff5555;
+    }
+
+    .log-success {
+        color: #27c93f;
+    }
+
+    .command-input {
+        background-color: #000;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #333;
+        border-radius: 5px;
+    }
+
+    .command-input::placeholder {
+        color: #666;
+    }
+
+    .dashboard-cards .card {
+        transition: transform 0.2s ease;
+    }
+
+    .dashboard-cards .card:hover {
+        transform: translateY(-5px);
+    }
+
+    #device-select {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3">Live Device Monitoring</h1>
+        <p class="text-muted">Real-time system monitoring and diagnostics</p>
+    </div>
+    <div>
+        <button id="clear-terminal" class="btn btn-outline-secondary me-2">
+            <i class="bi bi-trash"></i> Clear Console
+        </button>
+        <div class="dropdown d-inline-block">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="actionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-tools"></i> Actions
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                <li><a class="dropdown-item" href="#" id="run-scan"><i class="bi bi-search"></i> Run Device Scan</a></li>
+                <li><a class="dropdown-item" href="#" id="check-compliance"><i class="bi bi-shield-check"></i> Check Compliance</a></li>
+                <li><a class="dropdown-item" href="#" id="system-diagnostics"><i class="bi bi-activity"></i> System Diagnostics</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="download-logs"><i class="bi bi-download"></i> Download Logs</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Dashboard Cards -->
+<div class="row dashboard-cards mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-pc-display"></i> Total Devices</h5>
+                <h2 class="display-4" id="total-devices">{{ devices_count }}</h2>
+                <p class="mb-0">Monitored devices</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-check-circle"></i> Online</h5>
+                <h2 class="display-4" id="online-count">{{ online_count }}</h2>
+                <p class="mb-0">Active devices</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-dark">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-exclamation-triangle"></i> Warnings</h5>
+                <h2 class="display-4" id="warning-count">{{ warning_count }}</h2>
+                <p class="mb-0">Need attention</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-x-circle"></i> Critical</h5>
+                <h2 class="display-4" id="critical-count">{{ critical_count }}</h2>
+                <p class="mb-0">Urgent issues</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terminal Card -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+        <div>
+            <i class="bi bi-terminal"></i> Live Monitoring Console
+        </div>
+        <div>
+            <select id="device-select" class="form-select form-select-sm" style="width: auto; display: inline-block;">
+                <option value="all">All Devices</option>
+                {% for device in devices %}
+                <option value="{{ device.id }}">{{ device }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="terminal-header">
+            <span>device-monitoring@dcm-system:~</span>
+            <div class="controls">
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+                <span class="close"></span>
+            </div>
+        </div>
+        <div id="terminal" class="terminal">
+            <div class="log-entry">
+                <span class="log-timestamp">[{{ current_time|date:"H:i:s" }}]</span>
+                <span class="log-success">▶ Device monitoring system initialized</span>
+            </div>
+            <div class="log-entry">
+                <span class="log-timestamp">[{{ current_time|date:"H:i:s" }}]</span>
+                <span>▶ Connected to monitoring server at {{ server_address }}</span>
+            </div>
+            <div class="log-entry">
+                <span class="log-timestamp">[{{ current_time|date:"H:i:s" }}]</span>
+                <span>▶ Monitoring {{ devices_count }} devices...</span>
+            </div>
+            <div class="log-entry">
+                <span class="log-timestamp">[{{ current_time|date:"H:i:s" }}]</span>
+                <span>▶ Type 'help' for available commands</span>
+            </div>
+        </div>
+        <div class="px-3 pb-3">
+            <div class="input-group">
+                <span class="input-group-text bg-dark text-light">$</span>
+                <input type="text" id="command-input" class="command-input" placeholder="Enter command (e.g., 'scan device', 'status all')" autocomplete="off">
+                <button class="btn btn-success" type="button" id="send-command">Execute</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Alerts Card -->
+<div class="card shadow-sm">
+    <div class="card-header bg-danger text-white">
+        <i class="bi bi-bell"></i> Active Alerts
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th>Device</th>
+                        <th>Alert Type</th>
+                        <th>Message</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="alerts-table">
+                    {% for alert in active_alerts %}
+                    <tr>
+                        <td>
+                            {% if alert.severity == 'critical' %}
+                            <span class="badge bg-danger">Critical</span>
+                            {% elif alert.severity == 'high' %}
+                            <span class="badge bg-warning text-dark">High</span>
+                            {% elif alert.severity == 'medium' %}
+                            <span class="badge bg-info">Medium</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Low</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ alert.device }}</td>
+                        <td>{{ alert.alert_type }}</td>
+                        <td>{{ alert.message|truncatechars:50 }}</td>
+                        <td>{{ alert.timestamp|date:"M d, Y H:i" }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-sm btn-outline-primary view-alert" data-alert-id="{{ alert.id }}">View</button>
+                                <button class="btn btn-sm btn-outline-success acknowledge-alert" data-alert-id="{{ alert.id }}">Acknowledge</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr id="no-alerts-row">
+                        <td colspan="6" class="text-center">No active alerts</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const terminal = document.getElementById('terminal');
+        const commandInput = document.getElementById('command-input');
+        const sendCommandBtn = document.getElementById('send-command');
+        const clearTerminalBtn = document.getElementById('clear-terminal');
+        const deviceSelect = document.getElementById('device-select');
+
+        // Connect to WebSocket
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        const monitoringSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/monitoring/'
+        );
+
+        // Add log entry to terminal
+        function addLogEntry(message, type = '') {
+            const now = new Date();
+            const timestamp = now.getHours().toString().padStart(2, '0') + ':' +
+                            now.getMinutes().toString().padStart(2, '0') + ':' +
+                            now.getSeconds().toString().padStart(2, '0');
+
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+
+            const timestampSpan = document.createElement('span');
+            timestampSpan.className = 'log-timestamp';
+            timestampSpan.textContent = '[' + timestamp + ']';
+
+            const messageSpan = document.createElement('span');
+            if (type) {
+                messageSpan.className = 'log-' + type;
+            }
+            messageSpan.textContent = '▶ ' + message;
+
+            logEntry.appendChild(timestampSpan);
+            logEntry.appendChild(messageSpan);
+
+            terminal.appendChild(logEntry);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // WebSocket event handlers
+        monitoringSocket.onopen = function(e) {
+            addLogEntry('WebSocket connection established', 'success');
+
+            // Send initial request for device status
+            sendCommand('status all');
+        };
+
+        monitoringSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+
+            // Handle different message types
+            if (data.type === 'log') {
+                addLogEntry(data.message, data.log_type || '');
+            }
+            else if (data.type === 'status_update') {
+                // Update dashboard counts
+                document.getElementById('online-count').textContent = data.counts.online;
+                document.getElementById('warning-count').textContent = data.counts.warning;
+                document.getElementById('critical-count').textContent = data.counts.critical;
+
+                // Add log entry
+                addLogEntry('Status update received: ' +
+                           data.counts.online + ' online, ' +
+                           data.counts.warning + ' warnings, ' +
+                           data.counts.critical + ' critical');
+            }
+            else if (data.type === 'alert') {
+                // Add to active alerts table
+                updateAlertsTable(data.alert);
+
+                // Add log entry
+                addLogEntry('New alert: ' + data.alert.message, 'error');
+            }
+            else if (data.type === 'scan_result') {
+                // Handle scan results
+                for (const result of data.results) {
+                    let logType = '';
+                    if (result.status === 'warning') logType = 'warning';
+                    if (result.status === 'critical') logType = 'error';
+                    if (result.status === 'compliant') logType = 'success';
+
+                    addLogEntry(`Device ${result.device}: ${result.message}`, logType);
+                }
+            }
+        };
+
+        monitoringSocket.onclose = function(e) {
+            addLogEntry('WebSocket connection closed', 'error');
+
+            // Try to reconnect after 5 seconds
+            setTimeout(function() {
+                addLogEntry('Attempting to reconnect...', 'warning');
+                window.location.reload();
+            }, 5000);
+        };
+
+        monitoringSocket.onerror = function(e) {
+            addLogEntry('WebSocket error: ' + e.message, 'error');
+        };
+
+        // Send command to server
+        function sendCommand(command) {
+            if (command.trim() === '') return;
+
+            // Get selected device
+            const selectedDevice = deviceSelect.value;
+
+            monitoringSocket.send(JSON.stringify({
+                'command': command,
+                'device_id': selectedDevice
+            }));
+
+            addLogEntry('$ ' + command);
+
+            // Special command handling
+            if (command === 'clear') {
+                clearTerminal();
+            }
+            else if (command === 'help') {
+                showHelpCommands();
+            }
+        }
+
+        // Handle command input
+        sendCommandBtn.onclick = function() {
+            const command = commandInput.value;
+            sendCommand(command);
+            commandInput.value = '';
+        };
+
+        commandInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                sendCommandBtn.click();
+            }
+        });
+
+        // Clear terminal
+        clearTerminalBtn.onclick = clearTerminal;
+
+        function clearTerminal() {
+            terminal.innerHTML = '';
+            addLogEntry('Terminal cleared', 'success');
+        }
+
+        // Show help commands
+        function showHelpCommands() {
+            const commands = [
+                'help - Show available commands',
+                'clear - Clear terminal',
+                'status [device_id|all] - Show status of device(s)',
+                'scan [device_id|all] - Run scan on device(s)',
+                'compliance [device_id|all] - Check compliance of device(s)',
+                'usage [device_id|all] - Show resource usage',
+                'alerts - Show active alerts'
+            ];
+
+            addLogEntry('Available commands:', 'success');
+            for (const cmd of commands) {
+                addLogEntry('  ' + cmd);
+            }
+        }
+
+        // Update alerts table
+        function updateAlertsTable(alert) {
+            const noAlertsRow = document.getElementById('no-alerts-row');
+            if (noAlertsRow) {
+                noAlertsRow.remove();
+            }
+
+            const alertsTable = document.getElementById('alerts-table');
+
+            const row = document.createElement('tr');
+            row.setAttribute('data-alert-id', alert.id);
+
+            // Severity badge
+            const severityCell = document.createElement('td');
+            const severityBadge = document.createElement('span');
+            severityBadge.className = 'badge ';
+
+            if (alert.severity === 'critical') {
+                severityBadge.className += 'bg-danger';
+                severityBadge.textContent = 'Critical';
+            } else if (alert.severity === 'high') {
+                severityBadge.className += 'bg-warning text-dark';
+                severityBadge.textContent = 'High';
+            } else if (alert.severity === 'medium') {
+                severityBadge.className += 'bg-info';
+                severityBadge.textContent = 'Medium';
+            } else {
+                severityBadge.className += 'bg-secondary';
+                severityBadge.textContent = 'Low';
+            }
+
+            severityCell.appendChild(severityBadge);
+            row.appendChild(severityCell);
+
+            // Device cell
+            const deviceCell = document.createElement('td');
+            deviceCell.textContent = alert.device;
+            row.appendChild(deviceCell);
+
+            // Alert type cell
+            const typeCell = document.createElement('td');
+            typeCell.textContent = alert.alert_type;
+            row.appendChild(typeCell);
+
+            // Message cell
+            const messageCell = document.createElement('td');
+            messageCell.textContent = alert.message.length > 50 ?
+                alert.message.substring(0, 50) + '...' : alert.message;
+            row.appendChild(messageCell);
+
+            // Time cell
+            const timeCell = document.createElement('td');
+            timeCell.textContent = alert.timestamp;
+            row.appendChild(timeCell);
+
+            // Actions cell
+            const actionsCell = document.createElement('td');
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+            btnGroup.setAttribute('role', 'group');
+
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'btn btn-sm btn-outline-primary view-alert';
+            viewBtn.setAttribute('data-alert-id', alert.id);
+            viewBtn.textContent = 'View';
+
+            const ackBtn = document.createElement('button');
+            ackBtn.className = 'btn btn-sm btn-outline-success acknowledge-alert';
+            ackBtn.setAttribute('data-alert-id', alert.id);
+            ackBtn.textContent = 'Acknowledge';
+
+            btnGroup.appendChild(viewBtn);
+            btnGroup.appendChild(ackBtn);
+            actionsCell.appendChild(btnGroup);
+            row.appendChild(actionsCell);
+
+            alertsTable.appendChild(row);
+        }
+
+        // Action buttons
+        document.getElementById('run-scan').addEventListener('click', function() {
+            const selectedDevice = deviceSelect.value;
+            sendCommand('scan ' + selectedDevice);
+        });
+
+        document.getElementById('check-compliance').addEventListener('click', function() {
+            const selectedDevice = deviceSelect.value;
+            sendCommand('compliance ' + selectedDevice);
+        });
+
+        document.getElementById('system-diagnostics').addEventListener('click', function() {
+            const selectedDevice = deviceSelect.value;
+            sendCommand('diagnostics ' + selectedDevice);
+        });
+
+        document.getElementById('download-logs').addEventListener('click', function() {
+            // Create text content from terminal
+            const logContent = Array.from(terminal.querySelectorAll('.log-entry'))
+                .map(entry => entry.textContent.trim())
+                .join('\n');
+
+            // Create blob and download
+            const blob = new Blob([logContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'monitoring_logs_' + new Date().toISOString().slice(0, 10) + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            addLogEntry('Logs downloaded successfully', 'success');
+        });
+
+        // Handle alert actions
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('view-alert')) {
+                const alertId = e.target.getAttribute('data-alert-id');
+                window.location.href = '/monitoring/alerts/' + alertId + '/';
+            }
+            else if (e.target.classList.contains('acknowledge-alert')) {
+                const alertId = e.target.getAttribute('data-alert-id');
+
+                // Send acknowledgment via WebSocket
+                monitoringSocket.send(JSON.stringify({
+                    'command': 'acknowledge_alert',
+                    'alert_id': alertId
+                }));
+
+                // Remove from table
+                const row = document.querySelector(`tr[data-alert-id="${alertId}"]`);
+                if (row) {
+                    row.remove();
+                }
+
+                // Add log entry
+                addLogEntry('Alert #' + alertId + ' acknowledged', 'success');
+
+                // Check if table is empty
+                if (document.getElementById('alerts-table').children.length === 0) {
+                    const noAlertsRow = document.createElement('tr');
+                    noAlertsRow.id = 'no-alerts-row';
+                    const cell = document.createElement('td');
+                    cell.colSpan = 6;
+                    cell.className = 'text-center';
+                    cell.textContent = 'No active alerts';
+                    noAlertsRow.appendChild(cell);
+                    document.getElementById('alerts-table').appendChild(noAlertsRow);
+                }
+            }
+        });
+
+        // Focus on command input
+        commandInput.focus();
+    });
+</script>
+{% endblock %}

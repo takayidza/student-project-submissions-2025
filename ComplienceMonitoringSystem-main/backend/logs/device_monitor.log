@@ -1,0 +1,1544 @@
+Using selector: SelectSelector
+Initializing Compliance Scanner at 2025-05-08 07:31:22.496494+00:00
+Starting compliance scan for 2 devices
+Starting compliance scan for ABCZWHREMPFM07
+Initial ML assessment: warning
+Checking blocked software for ABCZWHREMPFM07
+Checking 0 policies for ABCZWHREMPFM07
+ML validation: Incorrect (Predicted: warning, Actual: True)
+Device ABCZWHREMPFM07 is compliant
+Initializing Compliance Scanner at 2025-05-08 07:31:22.690320+00:00
+Using existing Blocked Software Policy: Blocked Software Policy (ID: 1)
+Training remediation suggestion model...
+Remediation model trained successfully.
+Starting compliance scan for device ABCZWHREMPFM07 (ID: 1)
+Resetting scan state for ABCZWHREMPFM07
+Checking for blocked software on ABCZWHREMPFM07
+Checking blocked software for device ABCZWHREMPFM07
+Checking if '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 (Publisher: 'Igor Pavlov', OS: 'Windows') is blocked: False
+Software '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'BlueStacks' on ABCZWHREMPFM07 (Publisher: 'now.gg, Inc.', OS: 'Windows') is blocked: False
+Software 'BlueStacks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apidog 2.5.20' on ABCZWHREMPFM07 (Publisher: 'Apidog Team', OS: 'Windows') is blocked: False
+Software 'Apidog 2.5.20' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Git' on ABCZWHREMPFM07 (Publisher: 'The Git Development Community', OS: 'Windows') is blocked: False
+Software 'Git' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Maintenance Service' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Maintenance Service' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 (Publisher: 'Apache NetBeans', OS: 'Windows') is blocked: False
+Software 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 is not blocked.
+Checking if 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PgBouncer 1.24.0' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'PgBouncer 1.24.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PostgreSQL 17' on ABCZWHREMPFM07 (Publisher: 'PostgreSQL Global Development Group', OS: 'Windows') is blocked: False
+Software 'PostgreSQL 17' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Psiphon 3.167' on ABCZWHREMPFM07 (Publisher: 'LRepacks', OS: 'Windows') is blocked: False
+Software 'Psiphon 3.167' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Serviio' on ABCZWHREMPFM07 (Publisher: 'Six Lines Ltd', OS: 'Windows') is blocked: False
+Software 'Serviio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Sublime Text 3' on ABCZWHREMPFM07 (Publisher: 'Sublime HQ Pty Ltd', OS: 'Windows') is blocked: False
+Software 'Sublime Text 3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Universal Media Server' on ABCZWHREMPFM07 (Publisher: 'Universal Media Server', OS: 'Windows') is blocked: False
+Software 'Universal Media Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'VLC media player' on ABCZWHREMPFM07 (Publisher: 'VideoLAN', OS: 'Windows') is blocked: False
+Software 'VLC media player' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'win.rar GmbH', OS: 'Windows') is blocked: False
+Software 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Router 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Router 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Redis on Windows' on ABCZWHREMPFM07 (Publisher: 'Poradowski.com', OS: 'Windows') is blocked: False
+Software 'Redis on Windows' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Velociraptor' on ABCZWHREMPFM07 (Publisher: 'Velocidex', OS: 'Windows') is blocked: False
+Software 'Velociraptor' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Shell' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Shell' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Windows Subsystem for Linux' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Windows Subsystem for Linux' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Chrome' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Chrome' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 DMF' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 DMF' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'iCloud Outlook' on ABCZWHREMPFM07 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'iCloud Outlook' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Node.js' on ABCZWHREMPFM07 (Publisher: 'Node.js Foundation', OS: 'Windows') is blocked: False
+Software 'Node.js' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Server 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Server 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 (Publisher: 'VS Revo Group, Ltd.', OS: 'Windows') is blocked: False
+Software 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS 10.0 Express' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'IIS 10.0 Express' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 (Publisher: 'Microsoft', OS: 'Windows') is blocked: False
+Software 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Update Health Tools' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Update Health Tools' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiClient VPN' on ABCZWHREMPFM07 (Publisher: 'Fortinet Technologies Inc', OS: 'Windows') is blocked: False
+Software 'FortiClient VPN' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 (Publisher: 'MongoDB Inc.', OS: 'Windows') is blocked: False
+Software 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 (Publisher: 'Eclipse Adoptium', OS: 'Windows') is blocked: False
+Software 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PowerShell 7-x64' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'PowerShell 7-x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FolderSizes 9' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'FolderSizes 9' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Permissions Reporter' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'Permissions Reporter' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiDLP Agent' on ABCZWHREMPFM07 (Publisher: 'Fortinet Inc.', OS: 'Windows') is blocked: False
+Software 'FortiDLP Agent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 (Publisher: 'SmartBear Software', OS: 'Windows') is blocked: False
+Software 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 (Publisher: 'Ericsson AB', OS: 'Windows') is blocked: False
+Software 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GTK2-Runtime' on ABCZWHREMPFM07 (Publisher: 'Alexander Shaduri', OS: 'Windows') is blocked: False
+Software 'GTK2-Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Internet Download Manager' on ABCZWHREMPFM07 (Publisher: 'Tonec Inc.', OS: 'Windows') is blocked: False
+Software 'Internet Download Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Npgsql 3.2.6' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'Npgsql 3.2.6' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 (Publisher: 'VMware, Inc.', OS: 'Windows') is blocked: False
+Software 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Subsonic' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'Subsonic' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinSCP 6.5' on ABCZWHREMPFM07 (Publisher: 'Martin Prikryl', OS: 'Windows') is blocked: False
+Software 'WinSCP 6.5' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_CoreEditorFonts' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_CoreEditorFonts' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SSMS Post Install Tasks' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SSMS Post Install Tasks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Update Helper' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Update Helper' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Installer' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MobaXterm' on ABCZWHREMPFM07 (Publisher: 'Mobatek', OS: 'Windows') is blocked: False
+Software 'MobaXterm' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Refresh Manager' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Refresh Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Acrobat Reader' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Acrobat Reader' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Integration Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Integration Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python Launcher' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python Launcher' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Browser for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Browser for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Blocked software check completed for ABCZWHREMPFM07. Found blocked software: False
+No blocked software found, proceeding to check policy compliance for ABCZWHREMPFM07
+Checking 0 active policies for device ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant.
+Updating device status for ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant
+Device status updated for ABCZWHREMPFM07. Status: compliant, Last Scan: 2025-05-08 07:31:22.836842+00:00
+Creating activity report for ABCZWHREMPFM07
+Activity report created for device ABCZWHREMPFM07
+Creating notifications for ABCZWHREMPFM07
+No violations found, no notifications to create for device ABCZWHREMPFM07
+Completed compliance scan for device ABCZWHREMPFM07. Compliant: True, Violations: 0
+Scan already in progress for device 1, skipping
+Failed to create activity report: ActivityReport() got unexpected keyword arguments: 'ml_insights', 'ml_confidence', 'ml_status'
+No violations found, skipping notifications
+Completed scan for ABCZWHREMPFM07. Compliant: True
+Starting compliance scan for DESKTOP-0OJ41K6
+Initial ML assessment: warning
+Checking blocked software for DESKTOP-0OJ41K6
+Checking 0 policies for DESKTOP-0OJ41K6
+ML validation: Incorrect (Predicted: warning, Actual: True)
+Device DESKTOP-0OJ41K6 is compliant
+Initializing Compliance Scanner at 2025-05-08 07:31:22.910600+00:00
+Using existing Blocked Software Policy: Blocked Software Policy (ID: 1)
+Training remediation suggestion model...
+Remediation model trained successfully.
+Starting compliance scan for device DESKTOP-0OJ41K6 (ID: 2)
+Resetting scan state for DESKTOP-0OJ41K6
+Checking for blocked software on DESKTOP-0OJ41K6
+Checking blocked software for device DESKTOP-0OJ41K6
+Checking if '7-Zip 19.00 (x64)' on DESKTOP-0OJ41K6 (Publisher: 'Igor Pavlov', OS: 'Windows') is blocked: False
+Software '7-Zip 19.00 (x64)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Anaconda3 2024.10-1 (Python 3.12.7 64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Anaconda, Inc.', OS: 'Windows') is blocked: False
+Software 'Anaconda3 2024.10-1 (Python 3.12.7 64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Mozilla Firefox (x64 en-US)' on DESKTOP-0OJ41K6 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Firefox (x64 en-US)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Mozilla Maintenance Service' on DESKTOP-0OJ41K6 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Maintenance Service' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft 365 Apps for enterprise - en-us' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft 365 Apps for enterprise - en-us' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PostgreSQL 17' on DESKTOP-0OJ41K6 (Publisher: 'PostgreSQL Global Development Group', OS: 'Windows') is blocked: False
+Software 'PostgreSQL 17' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'WinRAR 5.90 (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'win.rar GmbH', OS: 'Windows') is blocked: False
+Software 'WinRAR 5.90 (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'XAMPP' on DESKTOP-0OJ41K6 (Publisher: 'Apache Friends', OS: 'Windows') is blocked: False
+Software 'XAMPP' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Zotero' on DESKTOP-0OJ41K6 (Publisher: 'Corporation for Digital Scholarship', OS: 'Windows') is blocked: False
+Software 'Zotero' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Redis on Windows' on DESKTOP-0OJ41K6 (Publisher: 'Poradowski.com', OS: 'Windows') is blocked: False
+Software 'Redis on Windows' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Free Download Manager' on DESKTOP-0OJ41K6 (Publisher: 'Softdeluxe', OS: 'Windows') is blocked: False
+Software 'Free Download Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Development Libraries (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Development Libraries (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Core Interpreter (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Core Interpreter (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Windows Subsystem for Linux' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Windows Subsystem for Linux' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Documentation (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Documentation (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Shell' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Shell' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Standard Library (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Standard Library (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Tcl/Tk Support (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Tcl/Tk Support (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 pip Bootstrap (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 pip Bootstrap (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'iTunes' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'iTunes' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'VMware Workstation' on DESKTOP-0OJ41K6 (Publisher: 'VMware, Inc.', OS: 'Windows') is blocked: False
+Software 'VMware Workstation' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Google Chrome' on DESKTOP-0OJ41K6 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Chrome' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bonjour' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Bonjour' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Add to Path (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Add to Path (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Test Suite (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Test Suite (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Update for Windows 10 for x64-based Systems (KB5001716)' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Update for Windows 10 for x64-based Systems (KB5001716)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Executables (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Executables (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Licensing Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Licensing Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Extensibility Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Extensibility Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Localization Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Localization Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Server 8.0' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Server 8.0' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Router 8.0' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Router 8.0' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Teams Meeting Add-in for Microsoft Office' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft', OS: 'Windows') is blocked: False
+Software 'Microsoft Teams Meeting Add-in for Microsoft Office' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Node.js' on DESKTOP-0OJ41K6 (Publisher: 'Node.js Foundation', OS: 'Windows') is blocked: False
+Software 'Node.js' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Apple Mobile Device Support' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Apple Mobile Device Support' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Update Health Tools' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Update Health Tools' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Workbench 8.0 CE' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Workbench 8.0 CE' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PuTTY release 0.83 (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Simon Tatham', OS: 'Windows') is blocked: False
+Software 'PuTTY release 0.83 (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'FortiClient VPN' on DESKTOP-0OJ41K6 (Publisher: 'Fortinet Technologies Inc', OS: 'Windows') is blocked: False
+Software 'FortiClient VPN' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bandicam' on DESKTOP-0OJ41K6 (Publisher: 'Bandicam.com', OS: 'Windows') is blocked: False
+Software 'Bandicam' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bandicam MPEG-1 Decoder' on DESKTOP-0OJ41K6 (Publisher: 'Bandicam.com', OS: 'Windows') is blocked: False
+Software 'Bandicam MPEG-1 Decoder' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'BusinessObjects 5.1.8' on DESKTOP-0OJ41K6 (Publisher: 'Business Objects', OS: 'Windows') is blocked: False
+Software 'BusinessObjects 5.1.8' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Internet Download Manager' on DESKTOP-0OJ41K6 (Publisher: 'Tonec Inc.', OS: 'Windows') is blocked: False
+Software 'Internet Download Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Edge' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Edge WebView2 Runtime' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge WebView2 Runtime' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Nmap 7.95' on DESKTOP-0OJ41K6 (Publisher: 'Nmap Project', OS: 'Windows') is blocked: False
+Software 'Nmap 7.95' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Npcap' on DESKTOP-0OJ41K6 (Publisher: 'Nmap Project', OS: 'Windows') is blocked: False
+Software 'Npcap' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PyCharm 2024.3' on DESKTOP-0OJ41K6 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'PyCharm 2024.3' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Thonny 4.1.6' on DESKTOP-0OJ41K6 (Publisher: 'Aivar Annamaa', OS: 'Windows') is blocked: False
+Software 'Thonny 4.1.6' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'VLC media player' on DESKTOP-0OJ41K6 (Publisher: 'VideoLAN', OS: 'Windows') is blocked: False
+Software 'VLC media player' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'SHAREit' on DESKTOP-0OJ41K6 (Publisher: 'SmartMedia4U Technology Pte.Ltd', OS: 'Windows') is blocked: False
+Software 'SHAREit' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Examples and Samples' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Examples and Samples' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Installer' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Installer' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Google Update Helper' on DESKTOP-0OJ41K6 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Update Helper' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Teams Machine-Wide Installer' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Teams Machine-Wide Installer' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Documents' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Documents' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Adobe Refresh Manager' on DESKTOP-0OJ41K6 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Refresh Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Adobe Acrobat Reader' on DESKTOP-0OJ41K6 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Acrobat Reader' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Apple Software Update' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Apple Software Update' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python Launcher' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python Launcher' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Blocked software check completed for DESKTOP-0OJ41K6. Found blocked software: False
+No blocked software found, proceeding to check policy compliance for DESKTOP-0OJ41K6
+Checking 0 active policies for device DESKTOP-0OJ41K6
+Device DESKTOP-0OJ41K6 is compliant.
+Updating device status for DESKTOP-0OJ41K6
+Device DESKTOP-0OJ41K6 is compliant
+Device status updated for DESKTOP-0OJ41K6. Status: compliant, Last Scan: 2025-05-08 07:31:22.965152+00:00
+Creating activity report for DESKTOP-0OJ41K6
+Activity report created for device DESKTOP-0OJ41K6
+Creating notifications for DESKTOP-0OJ41K6
+No violations found, no notifications to create for device DESKTOP-0OJ41K6
+Completed compliance scan for device DESKTOP-0OJ41K6. Compliant: True, Violations: 0
+Scan already in progress for device 2, skipping
+Failed to create activity report: ActivityReport() got unexpected keyword arguments: 'ml_insights', 'ml_confidence', 'ml_status'
+No violations found, skipping notifications
+Completed scan for DESKTOP-0OJ41K6. Compliant: True
+Completed scanning all devices
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+
+def backend_cleanup():
+    return 1
+
+
+def chain(*args, **kwargs):
+    return 1
+
+
+def xstarmap(task, it):
+    return 1
+
+
+def debug_task(self):
+    return 1
+
+
+def accumulate(self, *args, **kwargs):
+    return 1
+
+
+def add(x, y):
+    return 1
+
+
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+
+def chunks(task, it, n):
+    return 1
+
+
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+
+def send_email_notification(subject, message, recipient_list):
+    return 1
+
+
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+
+def xmap(task, it):
+    return 1
+
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+
+def backend_cleanup():
+    return 1
+
+
+def chain(*args, **kwargs):
+    return 1
+
+
+def xstarmap(task, it):
+    return 1
+
+
+def debug_task(self):
+    return 1
+
+
+def accumulate(self, *args, **kwargs):
+    return 1
+
+
+def add(x, y):
+    return 1
+
+
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+
+def chunks(task, it, n):
+    return 1
+
+
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+
+def print_hello():
+    return 1
+
+
+def send_email_notification(subject, message, recipient_list):
+    return 1
+
+
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+
+def xmap(task, it):
+    return 1
+
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Initializing Compliance Scanner at 2025-05-08 10:56:22.631895+00:00
+Starting compliance scan for 2 devices
+Starting compliance scan for DESKTOP-0OJ41K6
+Initial ML assessment: warning
+Checking blocked software for DESKTOP-0OJ41K6
+Checking 0 policies for DESKTOP-0OJ41K6
+ML validation: Incorrect (Predicted: warning, Actual: True)
+Device DESKTOP-0OJ41K6 is compliant
+Initializing Compliance Scanner at 2025-05-08 10:56:22.922420+00:00
+Using existing Blocked Software Policy: Blocked Software Policy (ID: 1)
+Training remediation suggestion model...
+Remediation model trained successfully.
+Starting compliance scan for device DESKTOP-0OJ41K6 (ID: 2)
+Resetting scan state for DESKTOP-0OJ41K6
+Checking for blocked software on DESKTOP-0OJ41K6
+Checking blocked software for device DESKTOP-0OJ41K6
+Checking if '7-Zip 19.00 (x64)' on DESKTOP-0OJ41K6 (Publisher: 'Igor Pavlov', OS: 'Windows') is blocked: False
+Software '7-Zip 19.00 (x64)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Anaconda3 2024.10-1 (Python 3.12.7 64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Anaconda, Inc.', OS: 'Windows') is blocked: False
+Software 'Anaconda3 2024.10-1 (Python 3.12.7 64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Mozilla Firefox (x64 en-US)' on DESKTOP-0OJ41K6 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Firefox (x64 en-US)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Mozilla Maintenance Service' on DESKTOP-0OJ41K6 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Maintenance Service' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft 365 Apps for enterprise - en-us' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft 365 Apps for enterprise - en-us' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PostgreSQL 17' on DESKTOP-0OJ41K6 (Publisher: 'PostgreSQL Global Development Group', OS: 'Windows') is blocked: False
+Software 'PostgreSQL 17' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'WinRAR 5.90 (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'win.rar GmbH', OS: 'Windows') is blocked: False
+Software 'WinRAR 5.90 (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'XAMPP' on DESKTOP-0OJ41K6 (Publisher: 'Apache Friends', OS: 'Windows') is blocked: False
+Software 'XAMPP' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Zotero' on DESKTOP-0OJ41K6 (Publisher: 'Corporation for Digital Scholarship', OS: 'Windows') is blocked: False
+Software 'Zotero' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Redis on Windows' on DESKTOP-0OJ41K6 (Publisher: 'Poradowski.com', OS: 'Windows') is blocked: False
+Software 'Redis on Windows' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Free Download Manager' on DESKTOP-0OJ41K6 (Publisher: 'Softdeluxe', OS: 'Windows') is blocked: False
+Software 'Free Download Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Development Libraries (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Development Libraries (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Core Interpreter (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Core Interpreter (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Windows Subsystem for Linux' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Windows Subsystem for Linux' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Documentation (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Documentation (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Shell' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Shell' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Standard Library (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Standard Library (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Tcl/Tk Support (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Tcl/Tk Support (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 pip Bootstrap (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 pip Bootstrap (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'iTunes' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'iTunes' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'VMware Workstation' on DESKTOP-0OJ41K6 (Publisher: 'VMware, Inc.', OS: 'Windows') is blocked: False
+Software 'VMware Workstation' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Google Chrome' on DESKTOP-0OJ41K6 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Chrome' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bonjour' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Bonjour' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Add to Path (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Add to Path (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Test Suite (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Test Suite (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Update for Windows 10 for x64-based Systems (KB5001716)' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Update for Windows 10 for x64-based Systems (KB5001716)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python 3.12.9 Executables (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.12.9 Executables (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Licensing Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Licensing Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Extensibility Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Extensibility Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Office 16 Click-to-Run Localization Component' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Localization Component' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Server 8.0' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Server 8.0' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Router 8.0' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Router 8.0' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Teams Meeting Add-in for Microsoft Office' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft', OS: 'Windows') is blocked: False
+Software 'Microsoft Teams Meeting Add-in for Microsoft Office' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Node.js' on DESKTOP-0OJ41K6 (Publisher: 'Node.js Foundation', OS: 'Windows') is blocked: False
+Software 'Node.js' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Apple Mobile Device Support' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Apple Mobile Device Support' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Update Health Tools' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Update Health Tools' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Workbench 8.0 CE' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Workbench 8.0 CE' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PuTTY release 0.83 (64-bit)' on DESKTOP-0OJ41K6 (Publisher: 'Simon Tatham', OS: 'Windows') is blocked: False
+Software 'PuTTY release 0.83 (64-bit)' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'FortiClient VPN' on DESKTOP-0OJ41K6 (Publisher: 'Fortinet Technologies Inc', OS: 'Windows') is blocked: False
+Software 'FortiClient VPN' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bandicam' on DESKTOP-0OJ41K6 (Publisher: 'Bandicam.com', OS: 'Windows') is blocked: False
+Software 'Bandicam' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Bandicam MPEG-1 Decoder' on DESKTOP-0OJ41K6 (Publisher: 'Bandicam.com', OS: 'Windows') is blocked: False
+Software 'Bandicam MPEG-1 Decoder' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'BusinessObjects 5.1.8' on DESKTOP-0OJ41K6 (Publisher: 'Business Objects', OS: 'Windows') is blocked: False
+Software 'BusinessObjects 5.1.8' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Internet Download Manager' on DESKTOP-0OJ41K6 (Publisher: 'Tonec Inc.', OS: 'Windows') is blocked: False
+Software 'Internet Download Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Edge' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Edge WebView2 Runtime' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge WebView2 Runtime' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Nmap 7.95' on DESKTOP-0OJ41K6 (Publisher: 'Nmap Project', OS: 'Windows') is blocked: False
+Software 'Nmap 7.95' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Npcap' on DESKTOP-0OJ41K6 (Publisher: 'Nmap Project', OS: 'Windows') is blocked: False
+Software 'Npcap' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'PyCharm 2024.3' on DESKTOP-0OJ41K6 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'PyCharm 2024.3' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Thonny 4.1.6' on DESKTOP-0OJ41K6 (Publisher: 'Aivar Annamaa', OS: 'Windows') is blocked: False
+Software 'Thonny 4.1.6' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'VLC media player' on DESKTOP-0OJ41K6 (Publisher: 'VideoLAN', OS: 'Windows') is blocked: False
+Software 'VLC media player' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'SHAREit' on DESKTOP-0OJ41K6 (Publisher: 'SmartMedia4U Technology Pte.Ltd', OS: 'Windows') is blocked: False
+Software 'SHAREit' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Examples and Samples' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Examples and Samples' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Installer' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Installer' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Google Update Helper' on DESKTOP-0OJ41K6 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Update Helper' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Teams Machine-Wide Installer' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Teams Machine-Wide Installer' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'MySQL Documents' on DESKTOP-0OJ41K6 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Documents' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Adobe Refresh Manager' on DESKTOP-0OJ41K6 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Refresh Manager' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Adobe Acrobat Reader' on DESKTOP-0OJ41K6 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Acrobat Reader' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Apple Software Update' on DESKTOP-0OJ41K6 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'Apple Software Update' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Python Launcher' on DESKTOP-0OJ41K6 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python Launcher' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Checking if 'Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.21005' on DESKTOP-0OJ41K6 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.21005' on DESKTOP-0OJ41K6 is not blocked.
+Blocked software check completed for DESKTOP-0OJ41K6. Found blocked software: False
+No blocked software found, proceeding to check policy compliance for DESKTOP-0OJ41K6
+Checking 0 active policies for device DESKTOP-0OJ41K6
+Device DESKTOP-0OJ41K6 is compliant.
+Updating device status for DESKTOP-0OJ41K6
+Device DESKTOP-0OJ41K6 is compliant
+Device status updated for DESKTOP-0OJ41K6. Status: compliant, Last Scan: 2025-05-08 10:56:23.014431+00:00
+Creating activity report for DESKTOP-0OJ41K6
+Activity report created for device DESKTOP-0OJ41K6
+Creating notifications for DESKTOP-0OJ41K6
+No violations found, no notifications to create for device DESKTOP-0OJ41K6
+Completed compliance scan for device DESKTOP-0OJ41K6. Compliant: True, Violations: 0
+Scan already in progress for device 2, skipping
+Failed to create activity report: ActivityReport() got unexpected keyword arguments: 'ml_insights', 'ml_confidence', 'ml_status'
+No violations found, skipping notifications
+Completed scan for DESKTOP-0OJ41K6. Compliant: True
+Starting compliance scan for ABCZWHREMPFM07
+Initial ML assessment: warning
+Checking blocked software for ABCZWHREMPFM07
+Checking 0 policies for ABCZWHREMPFM07
+ML validation: Incorrect (Predicted: warning, Actual: True)
+Device ABCZWHREMPFM07 is compliant
+Initializing Compliance Scanner at 2025-05-08 10:56:23.217716+00:00
+Using existing Blocked Software Policy: Blocked Software Policy (ID: 1)
+Training remediation suggestion model...
+Remediation model trained successfully.
+Starting compliance scan for device ABCZWHREMPFM07 (ID: 1)
+Resetting scan state for ABCZWHREMPFM07
+Checking for blocked software on ABCZWHREMPFM07
+Checking blocked software for device ABCZWHREMPFM07
+Checking if '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 (Publisher: 'Igor Pavlov', OS: 'Windows') is blocked: False
+Software '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'BlueStacks' on ABCZWHREMPFM07 (Publisher: 'now.gg, Inc.', OS: 'Windows') is blocked: False
+Software 'BlueStacks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apidog 2.5.20' on ABCZWHREMPFM07 (Publisher: 'Apidog Team', OS: 'Windows') is blocked: False
+Software 'Apidog 2.5.20' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Git' on ABCZWHREMPFM07 (Publisher: 'The Git Development Community', OS: 'Windows') is blocked: False
+Software 'Git' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Maintenance Service' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Maintenance Service' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 (Publisher: 'Apache NetBeans', OS: 'Windows') is blocked: False
+Software 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 is not blocked.
+Checking if 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PgBouncer 1.24.0' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'PgBouncer 1.24.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PostgreSQL 17' on ABCZWHREMPFM07 (Publisher: 'PostgreSQL Global Development Group', OS: 'Windows') is blocked: False
+Software 'PostgreSQL 17' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Psiphon 3.167' on ABCZWHREMPFM07 (Publisher: 'LRepacks', OS: 'Windows') is blocked: False
+Software 'Psiphon 3.167' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Serviio' on ABCZWHREMPFM07 (Publisher: 'Six Lines Ltd', OS: 'Windows') is blocked: False
+Software 'Serviio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Sublime Text 3' on ABCZWHREMPFM07 (Publisher: 'Sublime HQ Pty Ltd', OS: 'Windows') is blocked: False
+Software 'Sublime Text 3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Universal Media Server' on ABCZWHREMPFM07 (Publisher: 'Universal Media Server', OS: 'Windows') is blocked: False
+Software 'Universal Media Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'VLC media player' on ABCZWHREMPFM07 (Publisher: 'VideoLAN', OS: 'Windows') is blocked: False
+Software 'VLC media player' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'win.rar GmbH', OS: 'Windows') is blocked: False
+Software 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Router 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Router 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Redis on Windows' on ABCZWHREMPFM07 (Publisher: 'Poradowski.com', OS: 'Windows') is blocked: False
+Software 'Redis on Windows' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Velociraptor' on ABCZWHREMPFM07 (Publisher: 'Velocidex', OS: 'Windows') is blocked: False
+Software 'Velociraptor' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Shell' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Shell' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Windows Subsystem for Linux' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Windows Subsystem for Linux' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Chrome' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Chrome' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 DMF' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 DMF' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'iCloud Outlook' on ABCZWHREMPFM07 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'iCloud Outlook' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Node.js' on ABCZWHREMPFM07 (Publisher: 'Node.js Foundation', OS: 'Windows') is blocked: False
+Software 'Node.js' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Server 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Server 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 (Publisher: 'VS Revo Group, Ltd.', OS: 'Windows') is blocked: False
+Software 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS 10.0 Express' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'IIS 10.0 Express' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 (Publisher: 'Microsoft', OS: 'Windows') is blocked: False
+Software 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Update Health Tools' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Update Health Tools' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiClient VPN' on ABCZWHREMPFM07 (Publisher: 'Fortinet Technologies Inc', OS: 'Windows') is blocked: False
+Software 'FortiClient VPN' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 (Publisher: 'MongoDB Inc.', OS: 'Windows') is blocked: False
+Software 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 (Publisher: 'Eclipse Adoptium', OS: 'Windows') is blocked: False
+Software 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PowerShell 7-x64' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'PowerShell 7-x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FolderSizes 9' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'FolderSizes 9' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Permissions Reporter' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'Permissions Reporter' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiDLP Agent' on ABCZWHREMPFM07 (Publisher: 'Fortinet Inc.', OS: 'Windows') is blocked: False
+Software 'FortiDLP Agent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 (Publisher: 'SmartBear Software', OS: 'Windows') is blocked: False
+Software 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 (Publisher: 'Ericsson AB', OS: 'Windows') is blocked: False
+Software 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GTK2-Runtime' on ABCZWHREMPFM07 (Publisher: 'Alexander Shaduri', OS: 'Windows') is blocked: False
+Software 'GTK2-Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Internet Download Manager' on ABCZWHREMPFM07 (Publisher: 'Tonec Inc.', OS: 'Windows') is blocked: False
+Software 'Internet Download Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Npgsql 3.2.6' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'Npgsql 3.2.6' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 (Publisher: 'VMware, Inc.', OS: 'Windows') is blocked: False
+Software 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Subsonic' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'Subsonic' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinSCP 6.5' on ABCZWHREMPFM07 (Publisher: 'Martin Prikryl', OS: 'Windows') is blocked: False
+Software 'WinSCP 6.5' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_CoreEditorFonts' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_CoreEditorFonts' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SSMS Post Install Tasks' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SSMS Post Install Tasks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Update Helper' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Update Helper' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Installer' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MobaXterm' on ABCZWHREMPFM07 (Publisher: 'Mobatek', OS: 'Windows') is blocked: False
+Software 'MobaXterm' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Refresh Manager' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Refresh Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Acrobat Reader' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Acrobat Reader' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Integration Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Integration Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python Launcher' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python Launcher' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Browser for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Browser for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Blocked software check completed for ABCZWHREMPFM07. Found blocked software: False
+No blocked software found, proceeding to check policy compliance for ABCZWHREMPFM07
+Checking 0 active policies for device ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant.
+Updating device status for ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant
+Device status updated for ABCZWHREMPFM07. Status: compliant, Last Scan: 2025-05-08 10:56:23.436304+00:00
+Creating activity report for ABCZWHREMPFM07
+Activity report created for device ABCZWHREMPFM07
+Creating notifications for ABCZWHREMPFM07
+No violations found, no notifications to create for device ABCZWHREMPFM07
+Completed compliance scan for device ABCZWHREMPFM07. Compliant: True, Violations: 0
+Scan already in progress for device 1, skipping
+Failed to create activity report: ActivityReport() got unexpected keyword arguments: 'ml_insights', 'ml_confidence', 'ml_status'
+No violations found, skipping notifications
+Completed scan for ABCZWHREMPFM07. Compliant: True
+Completed scanning all devices
+Using selector: SelectSelector
+Initializing Compliance Scanner at 2025-05-08 10:56:35.672716+00:00
+Starting compliance scan for ABCZWHREMPFM07
+Initial ML assessment: warning
+Checking blocked software for ABCZWHREMPFM07
+Checking 0 policies for ABCZWHREMPFM07
+ML validation: Incorrect (Predicted: warning, Actual: True)
+Device ABCZWHREMPFM07 is compliant
+Initializing Compliance Scanner at 2025-05-08 10:56:35.899608+00:00
+Using existing Blocked Software Policy: Blocked Software Policy (ID: 1)
+Training remediation suggestion model...
+Remediation model trained successfully.
+Starting compliance scan for device ABCZWHREMPFM07 (ID: 1)
+Resetting scan state for ABCZWHREMPFM07
+Checking for blocked software on ABCZWHREMPFM07
+Checking blocked software for device ABCZWHREMPFM07
+Checking if '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 (Publisher: 'Igor Pavlov', OS: 'Windows') is blocked: False
+Software '7-Zip 19.00 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'BlueStacks' on ABCZWHREMPFM07 (Publisher: 'now.gg, Inc.', OS: 'Windows') is blocked: False
+Software 'BlueStacks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apidog 2.5.20' on ABCZWHREMPFM07 (Publisher: 'Apidog Team', OS: 'Windows') is blocked: False
+Software 'Apidog 2.5.20' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Git' on ABCZWHREMPFM07 (Publisher: 'The Git Development Community', OS: 'Windows') is blocked: False
+Software 'Git' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'GDR 1135 for SQL Server 2022 (KB5046861) (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio 2010 Tools for Office Runtime (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Firefox (x64 en-US)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Mozilla Maintenance Service' on ABCZWHREMPFM07 (Publisher: 'Mozilla', OS: 'Windows') is blocked: False
+Software 'Mozilla Maintenance Service' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 (Publisher: 'Apache NetBeans', OS: 'Windows') is blocked: False
+Software 'Apache NetBeans IDE 22' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft 365 Apps for business - en-us' on ABCZWHREMPFM07 is not blocked.
+Checking if 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'pgAgent_PG17 4.2.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PgBouncer 1.24.0' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'PgBouncer 1.24.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PostgreSQL 17' on ABCZWHREMPFM07 (Publisher: 'PostgreSQL Global Development Group', OS: 'Windows') is blocked: False
+Software 'PostgreSQL 17' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Psiphon 3.167' on ABCZWHREMPFM07 (Publisher: 'LRepacks', OS: 'Windows') is blocked: False
+Software 'Psiphon 3.167' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Serviio' on ABCZWHREMPFM07 (Publisher: 'Six Lines Ltd', OS: 'Windows') is blocked: False
+Software 'Serviio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Sublime Text 3' on ABCZWHREMPFM07 (Publisher: 'Sublime HQ Pty Ltd', OS: 'Windows') is blocked: False
+Software 'Sublime Text 3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Universal Media Server' on ABCZWHREMPFM07 (Publisher: 'Universal Media Server', OS: 'Windows') is blocked: False
+Software 'Universal Media Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'VLC media player' on ABCZWHREMPFM07 (Publisher: 'VideoLAN', OS: 'Windows') is blocked: False
+Software 'VLC media player' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'win.rar GmbH', OS: 'Windows') is blocked: False
+Software 'WinRAR 7.01 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Router 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Router 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Redis on Windows' on ABCZWHREMPFM07 (Publisher: 'Poradowski.com', OS: 'Windows') is blocked: False
+Software 'Redis on Windows' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 SQL Diagnostics' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Velociraptor' on ABCZWHREMPFM07 (Publisher: 'Velocidex', OS: 'Windows') is blocked: False
+Software 'Velociraptor' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Shared' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.macOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host FX Resolver - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Maui.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Add to Path (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Shared Management Objects Extensions' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET 9.0 Templates 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 Setup (English)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Shell' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Shell' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Windows Subsystem for Linux' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Windows Subsystem for Linux' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Chrome' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Chrome' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 DMF' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 DMF' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Workbench 8.0 CE' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 pip Bootstrap (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Executables (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2022 RsFx Driver' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Database Engine Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Workflow Manager Client 1.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Common Files' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Core Interpreter (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Shared Framework (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.iOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ODBC Driver 18 for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.Android.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'iCloud Outlook' on ABCZWHREMPFM07 (Publisher: 'Apple Inc.', OS: 'Windows') is blocked: False
+Software 'iCloud Outlook' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft OLE DB Driver for SQL Server' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Connection Info' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Node.js' on ABCZWHREMPFM07 (Publisher: 'Node.js Foundation', OS: 'Windows') is blocked: False
+Software 'Node.js' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Documentation (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Development Libraries (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Analysis Services OLE DB Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 Batch Parser' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Web Deploy 4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Server 8.0' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Server 8.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Standard Library (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Runtime - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x64 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Licensing Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Extensibility Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Office 16 Click-to-Run Localization Component' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SQL Server 2022 XEvent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'Java(TM) SE Development Kit 11.0.25 (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Host - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 (Publisher: 'VS Revo Group, Ltd.', OS: 'Windows') is blocked: False
+Software 'Revo Uninstaller 2.5.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS 10.0 Express' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'IIS 10.0 Express' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 (Publisher: 'Microsoft', OS: 'Windows') is blocked: False
+Software 'Microsoft Teams Meeting Add-in for Microsoft Office' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Tcl/Tk Support (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft VSS Writer for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Update Health Tools' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Update Health Tools' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'IIS Express Application Compatibility Database for x86' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiClient VPN' on ABCZWHREMPFM07 (Publisher: 'Fortinet Technologies Inc', OS: 'Windows') is blocked: False
+Software 'FortiClient VPN' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_arm64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 (Publisher: 'MongoDB Inc.', OS: 'Windows') is blocked: False
+Software 'MongoDB 8.0.4 2008R2Plus SSL (64 bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Sdk.tvOS.Manifest-9.0.100 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 (Publisher: 'Eclipse Adoptium', OS: 'Windows') is blocked: False
+Software 'Eclipse Temurin JDK with Hotspot 21.0.6+7 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PowerShell 7-x64' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'PowerShell 7-x64' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET AppHost Pack - 9.0.4 (x64_x86)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X64 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Toolset 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server 2019 LocalDB' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FolderSizes 9' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'FolderSizes 9' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python 3.13.2 Test Suite (64-bit)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft ASP.NET Core 9.0.4 Targeting Pack (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Permissions Reporter' on ABCZWHREMPFM07 (Publisher: 'Key Metric Software', OS: 'Windows') is blocked: False
+Software 'Permissions Reporter' on ABCZWHREMPFM07 is not blocked.
+Checking if 'FortiDLP Agent' on ABCZWHREMPFM07 (Publisher: 'Fortinet Inc.', OS: 'Windows') is blocked: False
+Software 'FortiDLP Agent' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Windows Desktop Targeting Pack - 9.0.4 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft.NET.Workload.Emscripten.net8.Manifest (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 (Publisher: 'SmartBear Software', OS: 'Windows') is blocked: False
+Software 'SoapUI 5.4.0 5.4.0' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 (Publisher: 'Ericsson AB', OS: 'Windows') is blocked: False
+Software 'Erlang OTP 27.3.1 (15.2.4)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio Build Tools 2022' on ABCZWHREMPFM07 is not blocked.
+Checking if 'GTK2-Runtime' on ABCZWHREMPFM07 (Publisher: 'Alexander Shaduri', OS: 'Windows') is blocked: False
+Software 'GTK2-Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA 2024.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'IntelliJ IDEA Community Edition 2024.3.1.1' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Internet Download Manager' on ABCZWHREMPFM07 (Publisher: 'Tonec Inc.', OS: 'Windows') is blocked: False
+Software 'Internet Download Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Edge WebView2 Runtime' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Help Viewer 2.3' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Npgsql 3.2.6' on ABCZWHREMPFM07 (Publisher: 'EnterpriseDB', OS: 'Windows') is blocked: False
+Software 'Npgsql 3.2.6' on ABCZWHREMPFM07 is not blocked.
+Checking if 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 (Publisher: 'JetBrains s.r.o.', OS: 'Windows') is blocked: False
+Software 'PyCharm Community Edition 2024.3.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 (Publisher: 'VMware, Inc.', OS: 'Windows') is blocked: False
+Software 'RabbitMQ Server 4.0.7' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Subsonic' on ABCZWHREMPFM07 (Publisher: '', OS: 'Windows') is blocked: False
+Software 'Subsonic' on ABCZWHREMPFM07 is not blocked.
+Checking if 'WinSCP 6.5' on ABCZWHREMPFM07 (Publisher: 'Martin Prikryl', OS: 'Windows') is blocked: False
+Software 'WinSCP 6.5' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_CoreEditorFonts' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_CoreEditorFonts' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Visual Studio 2017 Isolated Shell for SSMS' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SSMS Post Install Tasks' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'SSMS Post Install Tasks' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Intune Management Extension' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup WMI Provider' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Google Update Helper' on ABCZWHREMPFM07 (Publisher: 'Google LLC', OS: 'Windows') is blocked: False
+Software 'Google Update Helper' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio Language Pack - English' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MySQL Installer' on ABCZWHREMPFM07 (Publisher: 'Oracle Corporation', OS: 'Windows') is blocked: False
+Software 'MySQL Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Teams Machine-Wide Installer' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft .NET SDK 9.0.203 (x64)' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft SQL Server Management Studio - 20.2' on ABCZWHREMPFM07 is not blocked.
+Checking if 'SQL Server Management Studio' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corp.', OS: 'Windows') is blocked: False
+Software 'SQL Server Management Studio' on ABCZWHREMPFM07 is not blocked.
+Checking if 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'vs_FileTracker_Singleton' on ABCZWHREMPFM07 is not blocked.
+Checking if 'MobaXterm' on ABCZWHREMPFM07 (Publisher: 'Mobatek', OS: 'Windows') is blocked: False
+Software 'MobaXterm' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Refresh Manager' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Refresh Manager' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Adobe Acrobat Reader' on ABCZWHREMPFM07 (Publisher: 'Adobe Systems Incorporated', OS: 'Windows') is blocked: False
+Software 'Adobe Acrobat Reader' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Integration Services' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Integration Services' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Python Launcher' on ABCZWHREMPFM07 (Publisher: 'Python Software Foundation', OS: 'Windows') is blocked: False
+Software 'Python Launcher' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Setup Configuration' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34433' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019 x86 Hosting Support' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Microsoft Visual Studio Tools for Applications 2019' on ABCZWHREMPFM07 is not blocked.
+Checking if 'Browser for SQL Server 2022' on ABCZWHREMPFM07 (Publisher: 'Microsoft Corporation', OS: 'Windows') is blocked: False
+Software 'Browser for SQL Server 2022' on ABCZWHREMPFM07 is not blocked.
+Blocked software check completed for ABCZWHREMPFM07. Found blocked software: False
+No blocked software found, proceeding to check policy compliance for ABCZWHREMPFM07
+Checking 0 active policies for device ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant.
+Updating device status for ABCZWHREMPFM07
+Device ABCZWHREMPFM07 is compliant
+Device status updated for ABCZWHREMPFM07. Status: compliant, Last Scan: 2025-05-08 10:56:36.057417+00:00
+Creating activity report for ABCZWHREMPFM07
+Activity report created for device ABCZWHREMPFM07
+Creating notifications for ABCZWHREMPFM07
+No violations found, no notifications to create for device ABCZWHREMPFM07
+Completed compliance scan for device ABCZWHREMPFM07. Compliant: True, Violations: 0
+Scan already in progress for device 1, skipping
+Failed to create activity report: ActivityReport() got unexpected keyword arguments: 'ml_insights', 'ml_confidence', 'ml_status'
+No violations found, skipping notifications
+Completed scan for ABCZWHREMPFM07. Compliant: True
+Using selector: SelectSelector
+Using selector: SelectSelector
+Using selector: SelectSelector
+Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0x0000020077A5BCB0>> raised: ValueError("Unable to configure logger ''")
+Traceback (most recent call last):
+  File "C:\Python313\Lib\logging\config.py", line 895, in add_handlers
+    logger.addHandler(self.config['handlers'][h])
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\logging\config.py", line 341, in __getitem__
+    value = dict.__getitem__(self, key)
+KeyError: 'console'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\logging\config.py", line 658, in configure
+    self.configure_logger(name, loggers[name])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\logging\config.py", line 920, in configure_logger
+    self.common_logger_config(logger, config, incremental)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\logging\config.py", line 912, in common_logger_config
+    self.add_handlers(logger, handlers)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\logging\config.py", line 897, in add_handlers
+    raise ValueError('Unable to add handler %r' % h) from e
+ValueError: Unable to add handler 'console'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\utils\dispatch\signal.py", line 280, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\fixups\django.py", line 101, in on_import_modules
+    self.worker_fixup.validate_models()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\fixups\django.py", line 139, in validate_models
+    self.django_setup()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\fixups\django.py", line 135, in django_setup
+    django.setup()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\django\__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\django\utils\log.py", line 76, in configure_logging
+    logging_config_func(logging_settings)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\logging\config.py", line 935, in dictConfig
+    dictConfigClass(config).configure()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\logging\config.py", line 660, in configure
+    raise ValueError('Unable to configure logger '
+                     '%r' % name) from e
+ValueError: Unable to configure logger ''
+Signal handler <promise@0x20077b1caf0 --> <bound method Celery._autodiscover_tasks of <Celery myproject at 0x20077a5b230>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\utils\dispatch\signal.py", line 280, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\vine\promises.py", line 161, in __call__
+    return self.throw()
+           ~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\vine\promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\app\base.py", line 788, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\app\base.py", line 800, in _autodiscover_tasks_from_fixups
+    for pkg in fixup.autodiscover_tasks()
+               ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\celery\fixups\django.py", line 111, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+                                      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\django\apps\registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\test\ComplienceMonitoringSystem-main\backend\.venv\Lib\site-packages\django\apps\registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.

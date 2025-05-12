@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Device Compliance Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-card {
+        transition: all 0.3s;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .card-compliant {
+        border-left: 5px solid #28a745;
+    }
+    .card-non-compliant {
+        border-left: 5px solid #dc3545;
+    }
+    .card-warning {
+        border-left: 5px solid #ffc107;
+    }
+    .card-total {
+        border-left: 5px solid #17a2b8;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="h3">Dashboard</h1>
+        <p class="text-muted">Overview of your device compliance status</p>
+    </div>
+</div>
+
+<!-- Status Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card card-total shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Total Devices</h5>
+                <h2 class="display-4 fw-bold">{{ total_devices }}</h2>
+                <p class="mb-0"><a href="{% url 'device_list' %}" class="text-decoration-none">View all devices</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card card-compliant shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Compliant</h5>
+                <h2 class="display-4 fw-bold text-success">{{ compliant_devices }}</h2>
+                <p class="mb-0">{{ compliant_devices|default:"0" }} of {{ total_devices }} devices</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card card-warning shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Warning</h5>
+                <h2 class="display-4 fw-bold text-warning">{{ warning_devices }}</h2>
+                <p class="mb-0">{{ warning_devices|default:"0" }} of {{ total_devices }} devices</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card card-non-compliant shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Non-Compliant</h5>
+                <h2 class="display-4 fw-bold text-danger">{{ non_compliant_devices }}</h2>
+                <p class="mb-0">{{ non_compliant_devices|default:"0" }} of {{ total_devices }} devices</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <!-- OS Distribution -->
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">
+                <h5 class="card-title mb-0">OS Distribution</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operating System</th>
+                                <th>Count</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for os in os_distribution %}
+                            <tr>
+                                <td>{{ os.os }}</td>
+                                <td>{{ os.count }}</td>
+                                <td>{{ os.count|floatformat:1 }}%</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center">No data available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Device Type Distribution -->
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Device Types</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Count</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for device_type in device_types %}
+                            <tr>
+                                <td>{{ device_type.device_type|title }}</td>
+                                <td>{{ device_type.count }}</td>
+                                <td>{{ device_type.count|floatformat:1 }}%</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center">No data available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Notifications -->
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Recent Notifications</h5>
+                <a href="{% url 'notification_list' %}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Device</th>
+                                <th>Message</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for notification in recent_notifications %}
+                            <tr>
+                                <td>
+                                    {% if notification.notification_type == 'warning' %}
+                                    <span class="badge bg-warning text-dark">Warning</span>
+                                    {% elif notification.notification_type == 'non-compliant' %}
+                                    <span class="badge bg-danger">Non-Compliant</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Compliant</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ notification.device }}</td>
+                                <td>{{ notification.message|truncatechars:50 }}</td>
+                                <td>{{ notification.timestamp|date:"M d, Y H:i" }}</td>
+                                <td>
+                                    <a href="{% url 'notification_detail' notification.pk %}" class="btn btn-sm btn-outline-primary">View</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No recent notifications</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add any dashboard-specific JavaScript here
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Dashboard loaded');
+    });
+</script>
+{% endblock %}

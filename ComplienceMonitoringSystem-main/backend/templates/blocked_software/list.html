@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }} - Device Compliance Management{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3">{{ page_title }}</h1>
+        <p class="text-muted">Manage software that is blocked across your organization</p>
+    </div>
+    <div>
+        <a href="{% url 'blocked_software_create' %}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Blocked Software
+        </a>
+    </div>
+</div>
+
+<!-- Filter Form -->
+<div class="card mb-4 shadow-sm">
+    <div class="card-header bg-light">
+        <h5 class="mb-0">
+            <button class="btn btn-link text-decoration-none" data-bs-toggle="collapse" data-bs-target="#filterCollapse">
+                <i class="bi bi-funnel-fill"></i> Filter Blocked Software
+            </button>
+        </h5>
+    </div>
+    <div id="filterCollapse" class="collapse {% if os_filter or severity_filter or active_filter %}show{% endif %}">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Operating System</label>
+                    <select name="os" class="form-select">
+                        <option value="">All Operating Systems</option>
+                        {% for value, label in os_choices.items %}
+                        <option value="{{ value }}" {% if os_filter == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Severity</label>
+                    <select name="severity" class="form-select">
+                        <option value="">All Severities</option>
+                        {% for value, label in severity_choices.items %}
+                        <option value="{{ value }}" {% if severity_filter == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Status</label>
+                    <select name="active" class="form-select">
+                        <option value="">All</option>
+                        <option value="1" {% if active_filter == '1' %}selected{% endif %}>Active</option>
+                        <option value="0" {% if active_filter == '0' %}selected{% endif %}>Inactive</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <a href="{% url 'blocked_software_list' %}" class="btn btn-outline-secondary">Clear Filters</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Blocked Software Table -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Publisher</th>
+                        <th>OS</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Installations</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for software in blocked_software %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'blocked_software_detail' software.pk %}">{{ software.name }}</a>
+                        </td>
+                        <td>{{ software.publisher }}</td>
+                        <td>
+                            {% if software.applicable_os == 'all' %}
+                            <span class="badge bg-info">All</span>
+                            {% else %}
+                            {{ software.get_applicable_os_display }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if software.severity == 'critical' %}
+                            <span class="badge bg-danger">Critical</span>
+                            {% elif software.severity == 'high' %}
+                            <span class="badge bg-warning text-dark">High</span>
+                            {% elif software.severity == 'medium' %}
+                            <span class="badge bg-info">Medium</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Low</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if software.active %}
+                            <span class="badge bg-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if software.installations_count > 0 %}
+                            <a href="{% url 'blocked_software_detail' software.pk %}" class="badge bg-danger">
+                                {{ software.installations_count }} device{{ software.installations_count|pluralize }}
+                            </a>
+                            {% else %}
+                            <span class="badge bg-secondary">None</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'blocked_software_update' software.pk %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'blocked_software_toggle_active' software.pk %}?next={{ request.get_full_path|urlencode }}" class="btn btn-sm btn-outline-{% if software.active %}warning{% else %}success{% endif %}">
+                                    {% if software.active %}
+                                    <i class="bi bi-toggle-on"></i>
+                                    {% else %}
+                                    <i class="bi bi-toggle-off"></i>
+                                    {% endif %}
+                                </a>
+                                <a href="{% url 'blocked_software_delete' software.pk %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center">No blocked software found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

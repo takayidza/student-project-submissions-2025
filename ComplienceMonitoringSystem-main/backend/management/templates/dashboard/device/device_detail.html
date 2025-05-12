@@ -1,0 +1,636 @@
+{% extends 'base.html' %}
+
+{% block title %}Device Details - Device Compliance Management{% endblock %}
+
+{% block content %}
+<!-- CSRF Token for AJAX requests -->
+<meta name="csrf-token" content="{{ csrf_token }}">
+
+<div class="container-fluid px-4">
+    <!-- Breadcrumb Navigation -->
+    <div class="mb-4 mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-3 rounded-3 shadow-sm">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_list' %}" class="text-decoration-none"><i class="bi bi-pc-display me-1"></i>Devices</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-info-circle me-1"></i>Device Details</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Device Details</h1>
+            <p class="text-muted mb-0">Detailed information and management for {{ device.hostname }}</p>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{% url 'device_update' device.pk %}" class="btn btn-primary">
+                <i class="bi bi-pencil-square me-1"></i> Edit Device
+            </a>
+            <a href="{% url 'device_delete' device.pk %}" class="btn btn-danger">
+                <i class="bi bi-trash3 me-1"></i> Delete Device
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body bg-light rounded-3">
+        <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-success" id="analyze-btn" data-url="{% url 'analyze_device' device.pk %}">
+                <i class="bi bi-graph-up me-1"></i> Analyze Device
+            </button>
+            <button class="btn btn-warning text-white" id="check-anomalies-btn" data-url="{% url 'check_anomalies' device.pk %}">
+                <i class="bi bi-exclamation-triangle me-1"></i> Check for Anomalies
+            </button>
+            <button class="btn btn-info text-white" id="scan-now-btn" data-url="{% url 'scan-one-device' device.pk %}">
+                <i class="bi bi-search me-1"></i> Scan Now
+            </button>
+            <a href="{% url 'device_monitoring' device.pk %}" class="btn btn-secondary">
+                <i class="bi bi-speedometer2 me-1"></i> Live Monitoring
+            </a>
+            <!-- Add this new button for Device Reports -->
+            <a href="{% url 'device_report' device.pk %}" class="btn btn-outline-primary">
+                <i class="bi bi-file-earmark-text me-1"></i> View Reports
+            </a>
+            {% if request.user.role == 'Admin' %}
+            <a href="{% url 'blocked_software_list' %}?os={{ device.os }}" class="btn btn-outline-dark">
+                <i class="bi bi-shield-lock me-1"></i> View Blocked Software
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+    <!-- Status Alerts -->
+    <div id="action-status" class="alert alert-dismissible fade show d-none mb-4"></div>
+
+    <!-- Device Information -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="card-title mb-0"><i class="bi bi-info-circle me-2"></i>Device Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="w-30 text-muted">User:</th>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ device.user.username }}</div>
+                                                <small class="text-muted">{{ device.user.email }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Hostname:</th>
+                                    <td><i class="bi bi-pc-display-horizontal me-2"></i>{{ device.hostname }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">IP Address:</th>
+                                    <td><i class="bi bi-ethernet me-2"></i>{{ device.ip_address }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Department:</th>
+                                    <td><i class="bi bi-building me-2"></i>{{ device.department }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Operating System:</th>
+                                    <td>
+                                        <i class="bi bi-windows me-2"></i>{{ device.os }}
+                                        {% if device.os_version %}<span class="badge bg-light text-dark ms-2">{{ device.os_version }}</span>{% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Device Type:</th>
+                                    <td><i class="bi bi-pc-display me-2"></i>{{ device.device_type|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Status:</th>
+                                    <td>
+                                        {% if device.status == 'compliant' %}
+                                        <span class="badge bg-success bg-opacity-10 text-success">
+                                            <i class="bi bi-check-circle me-1"></i>Compliant
+                                        </span>
+                                        {% elif device.status == 'warning' %}
+                                        <span class="badge bg-warning bg-opacity-10 text-warning">
+                                            <i class="bi bi-exclamation-triangle me-1"></i>Warning
+                                        </span>
+                                        {% else %}
+                                        <span class="badge bg-danger bg-opacity-10 text-danger">
+                                            <i class="bi bi-x-circle me-1"></i>Non-Compliant
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-muted">Last Scan:</th>
+                                    <td>
+                                        <i class="bi bi-clock-history me-2"></i>
+                                        <span class="text-nowrap">{{ device.last_scan|date:"F d, Y H:i" }}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="card-title mb-0"><i class="bi bi-list-check me-2"></i>Required Actions</h5>
+                </div>
+                <div class="card-body">
+                    {% if device.actions %}
+                    <div class="alert alert-warning bg-opacity-10">
+                        <h6 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Attention Required</h6>
+                        <hr>
+                        <div class="mb-0">{{ device.actions|linebreaks }}</div>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success bg-opacity-10">
+                        <h6 class="alert-heading"><i class="bi bi-check-circle-fill me-2"></i>All Good!</h6>
+                        <hr>
+                        <p class="mb-0">No actions required at this time.</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Compliance Score -->
+                    <div class="mt-4">
+                        <h6 class="fw-semibold mb-3">Compliance Score</h6>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar
+                                {% if device.status == 'compliant' %}bg-success
+                                {% elif device.status == 'warning' %}bg-warning
+                                {% else %}bg-danger{% endif %}"
+                                role="progressbar"
+                                style="width:
+                                {% if device.status == 'compliant' %}100%
+                                {% elif device.status == 'warning' %}65%
+                                {% else %}30%{% endif %};"
+                                aria-valuenow="{% if device.status == 'compliant' %}100
+                                {% elif device.status == 'warning' %}65
+                                {% else %}30{% endif %}"
+                                aria-valuemin="0"
+                                aria-valuemax="100">
+                                {% if device.status == 'compliant' %}100%
+                                {% elif device.status == 'warning' %}65%
+                                {% else %}30%{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4 border-0">
+    <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0"><i class="bi bi-heart-pulse me-2"></i>System Health</h5>
+        <button class="btn btn-sm btn-outline-primary" id="refresh-health-btn">
+            <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="bi bi-cpu fs-1 {% if device.cpu_usage > 60 %}text-warning{% elif device.cpu_usage > 80 %}text-danger{% else %}text-primary{% endif %}"></i>
+                        </div>
+                        <h6 class="mb-1">CPU Usage</h6>
+                        <div class="progress mt-2" style="height: 6px;">
+                            <div class="progress-bar bg-{{ device.get_cpu_usage_color }}" role="progressbar" style="width: {{ device.cpu_usage }}%;" aria-valuenow="{{ device.cpu_usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">{{ device.cpu_usage }}% - {% if device.cpu_usage > 80 %}Critical{% elif device.cpu_usage > 60 %}Warning{% else %}Normal{% endif %}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="bi bi-memory fs-1 {% if device.memory_usage > 70 %}text-warning{% elif device.memory_usage > 85 %}text-danger{% else %}text-info{% endif %}"></i>
+                        </div>
+                        <h6 class="mb-1">Memory Usage</h6>
+                        <div class="progress mt-2" style="height: 6px;">
+                            <div class="progress-bar bg-{{ device.get_memory_usage_color }}" role="progressbar" style="width: {{ device.memory_usage }}%;" aria-valuenow="{{ device.memory_usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">{{ device.memory_usage }}% - {% if device.memory_usage > 85 %}Critical{% elif device.memory_usage > 70 %}Warning{% else %}Normal{% endif %}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="bi bi-hdd fs-1 {% if device.disk_usage > 80 %}text-warning{% elif device.disk_usage > 90 %}text-danger{% else %}text-success{% endif %}"></i>
+                        </div>
+                        <h6 class="mb-1">Disk Space</h6>
+                        <div class="progress mt-2" style="height: 6px;">
+                            <div class="progress-bar bg-{{ device.get_disk_usage_color }}" role="progressbar" style="width: {{ device.disk_usage }}%;" aria-valuenow="{{ device.disk_usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">{{ device.disk_usage }}% - {% if device.disk_usage > 90 %}Critical{% elif device.disk_usage > 80 %}Warning{% else %}Normal{% endif %}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="bi bi-shield-check fs-1 {% if device.security_status > 50 %}text-warning{% elif device.security_status > 70 %}text-danger{% else %}text-success{% endif %}"></i>
+                        </div>
+                        <h6 class="mb-1">Security Status</h6>
+                        <div class="progress mt-2" style="height: 6px;">
+                            <div class="progress-bar bg-{{ device.get_security_status_color }}" role="progressbar" style="width: {{ device.security_status }}%;" aria-valuenow="{{ device.security_status }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">{{ device.security_status }}% - {% if device.security_status > 70 %}Vulnerable{% elif device.security_status > 50 %}Potentially Vulnerable{% else %}Secure{% endif %}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Installed Software -->
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0"><i class="bi bi-box-seam me-2"></i>Installed Software</h5>
+            <div>
+                <button class="btn btn-sm btn-outline-primary me-2" id="refresh-software-btn">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                </button>
+                <button class="btn btn-sm btn-outline-danger" id="scan-software-btn" data-url="{% url 'scan_software' 0 %}">
+                    <i class="bi bi-shield-shaded"></i> Scan for Malware
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Software Name</th>
+                            <th>Version</th>
+                            <th>Publisher</th>
+                            <th>Install Date</th>
+                            <th>Status</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for software in installed_software %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2">
+                                        <i class="bi bi-box text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-medium">{{ software.name }}</div>
+                                        <small class="text-muted">{{ software.category }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ software.version }}</td>
+                            <td>{{ software.publisher|truncatechars:20 }}</td>
+                            <td>{{ software.install_date|date:"M d, Y" }}</td>
+                            <td>
+                                {% if software.status == 'approved' %}
+                                <span class="badge bg-success bg-opacity-10 text-success">Approved</span>
+                                {% elif software.status == 'restricted' %}
+                                <span class="badge bg-warning bg-opacity-10 text-warning">Restricted</span>
+                                {% else %}
+                                <span class="badge bg-danger bg-opacity-10 text-danger">Blocked </span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a class="btn btn-outline-primary" href="{% url 'software_detail' software.pk  %}" data-bs-toggle="tooltip" title="View Details">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <button class="btn btn-outline-secondary" data-bs-toggle="tooltip" title="Check Updates">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger scan-software-btn"
+                                            data-software-id="{{ software.id }}"
+                                            data-software-name="{{ software.name }}"
+                                            data-url="{% url 'scan_software' software.id %}">
+                                        <i class="bi bi-shield-shaded"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                <i class="bi bi-exclamation-circle fs-4"></i>
+                                <p class="mt-2 mb-0">No software information available</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Reports -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0"><i class="bi bi-clock-history me-2"></i>Activity Reports</h5>
+            <div class="btn-group btn-group-sm" role="group">
+                <button class="btn btn-outline-secondary">Last 7 Days</button>
+                <button class="btn btn-outline-secondary">Last 30 Days</button>
+                <button class="btn btn-outline-secondary">All Time</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Scan Time</th>
+                            <th>Scan Type</th>
+                            <th>Status</th>
+                            <th>Compliance</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in activity_reports %}
+                        <tr>
+                            <td>
+                                <div class="fw-medium">{{ report.scan_time|date:"M d, Y" }}</div>
+                                <small class="text-muted">{{ report.scan_time|date:"H:i A" }}</small>
+                            </td>
+                            <td>{{ report.scan_type|title }}</td>
+                            <td>
+                                {% if report.scan_status == 'success' %}
+                                <span class="badge bg-success bg-opacity-10 text-success">Success</span>
+                                {% else %}
+                                <span class="badge bg-danger bg-opacity-10 text-danger">Failed</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if report.compliance_status == 'compliant' %}
+                                <span class="badge bg-success bg-opacity-10 text-success">Compliant</span>
+                                {% elif report.compliance_status == 'warning' %}
+                                <span class="badge bg-warning bg-opacity-10 text-warning">Warning</span>
+                                {% else %}
+                                <span class="badge bg-danger bg-opacity-10 text-danger">Non-Compliant</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reportModal{{ report.id }}">
+                                    <i class="bi bi-file-text"></i> View
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">
+                                <i class="bi bi-exclamation-circle fs-4"></i>
+                                <p class="mt-2 mb-0">No activity reports found</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Report Modals -->
+{% for report in activity_reports %}
+<div class="modal fade" id="reportModal{{ report.id }}" tabindex="-1" aria-labelledby="reportModalLabel{{ report.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel{{ report.id }}">Scan Report Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Scan Time:</strong> {{ report.scan_time|date:"F j, Y H:i" }}</p>
+                        <p><strong>Scan Type:</strong> {{ report.scan_type|title }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Status:</strong>
+                            {% if report.scan_status == 'success' %}
+                            <span class="badge bg-success">Success</span>
+                            {% else %}
+                            <span class="badge bg-danger">Failed</span>
+                            {% endif %}
+                        </p>
+                        <p><strong>Compliance:</strong>
+                            {% if report.compliance_status == 'compliant' %}
+                            <span class="badge bg-success">Compliant</span>
+                            {% elif report.compliance_status == 'warning' %}
+                            <span class="badge bg-warning text-dark">Warning</span>
+                            {% else %}
+                            <span class="badge bg-danger">Non-Compliant</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h6>Actions Taken:</h6>
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            {{ report.actions_taken|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h6>Findings:</h6>
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            {{ report.findings|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Export Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Get CSRF token - try multiple methods
+    let csrfToken;
+    const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
+    const csrfInput = document.querySelector('[name=csrfmiddlewaretoken]');
+
+    if (csrfMetaTag) {
+        csrfToken = csrfMetaTag.content;
+    } else if (csrfInput) {
+        csrfToken = csrfInput.value;
+    } else {
+        console.error('CSRF token not found');
+        return;
+    }
+
+    // Action buttons functionality
+    const actionStatus = document.getElementById('action-status');
+
+    function showStatusAlert(message, type) {
+        if (!actionStatus) {
+            console.error('Action status element not found');
+            return;
+        }
+        actionStatus.className = `alert alert-${type} alert-dismissible fade show`;
+        actionStatus.innerHTML = `
+            <strong><i class="bi ${type === 'success' ? 'bi-check-circle' : type === 'warning' ? 'bi-exclamation-triangle' : 'bi-x-circle'} me-2"></i>${type === 'success' ? 'Success!' : type === 'warning' ? 'Warning!' : 'Error!'}</strong>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        actionStatus.classList.remove('d-none');
+    }
+
+    // Generic function to handle API actions
+    function handleApiAction(button, endpoint, successMessage) {
+        const originalText = button.innerHTML;
+
+        button.disabled = true;
+        button.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Processing...';
+
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not OK');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                showStatusAlert(data.error, 'danger');
+            } else {
+                showStatusAlert(successMessage || data.message || 'Action completed successfully', 'success');
+                // Refresh the page after 2 seconds to show updated data
+                setTimeout(() => window.location.reload(), 2000);
+            }
+        })
+        .catch(error => {
+            showStatusAlert('Network error occurred: ' + error, 'danger');
+        })
+        .finally(() => {
+            button.disabled = false;
+            button.innerHTML = originalText;
+        });
+    }
+
+    // Analyze Device
+    document.getElementById('analyze-btn')?.addEventListener('click', function() {
+        const endpoint = this.dataset.url;
+        handleApiAction(this, endpoint, 'Device analysis completed successfully');
+    });
+
+    // Check for Anomalies
+    document.getElementById('check-anomalies-btn')?.addEventListener('click', function() {
+        const endpoint = this.dataset.url;
+        handleApiAction(this, endpoint, 'Anomaly check completed');
+    });
+
+    // Scan Now
+    document.getElementById('scan-now-btn')?.addEventListener('click', function() {
+        const endpoint = this.dataset.url;
+        handleApiAction(this, endpoint, 'Device scan completed successfully');
+    });
+
+    // Scan Software for Malware (individual)
+    document.querySelectorAll('.scan-software-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const softwareId = this.dataset.softwareId;
+            const softwareName = this.dataset.softwareName;
+            const endpoint = this.dataset.url;
+
+            const originalText = this.innerHTML;
+            this.disabled = true;
+            this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not OK');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    showStatusAlert(data.error, 'danger');
+                } else {
+                    const message = data.is_malicious
+                        ? `WARNING: ${softwareName} detected as malicious (Risk score: ${data.risk_score})`
+                        : `${softwareName} scan completed (Risk score: ${data.risk_score})`;
+
+                    showStatusAlert(message, data.is_malicious ? 'danger' : 'success');
+                }
+            })
+            .catch(error => {
+                showStatusAlert('Error scanning software: ' + error, 'danger');
+            })
+            .finally(() => {
+                this.disabled = false;
+                this.innerHTML = originalText;
+            });
+        });
+    });
+
+    // Scan All Software for Malware
+    document.getElementById('scan-software-btn')?.addEventListener('click', function() {
+        const endpoint = this.dataset.url.replace('0', 'all');
+        handleApiAction(this, endpoint, 'Malware scan completed for all software');
+    });
+
+    // Refresh Software List
+    document.getElementById('refresh-software-btn')?.addEventListener('click', function() {
+        const endpoint = "{% url 'scan-one-device' device.pk %}";
+        handleApiAction(this, endpoint, 'Software list refreshed successfully');
+    });
+
+    // Refresh Health Stats
+    document.getElementById('refresh-health-btn')?.addEventListener('click', function() {
+        const endpoint = "{% url 'scan-one-device' device.pk %}";
+        handleApiAction(this, endpoint, 'Health stats refreshed successfully');
+    });
+});
+</script>
+{% endblock %}
