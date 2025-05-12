@@ -1,0 +1,236 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+{% endblock %}
+{%block content%}
+
+<!-- Header -->
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-6">
+      <div class="user-profile-header-banner">
+        <img
+          src="{% static 'img/project/building6.jpg' %}"
+          alt="Banner image"
+          class="rounded-top"
+        />
+      </div>
+      <div
+        class="user-profile-header d-flex flex-column flex-lg-row text-sm-start text-center mb-8"
+      >
+        <div class="flex-shrink-0 mt-1 mx-sm-0 mx-auto">
+          <img
+            src="{% static 'img/project/building4.jpg' %}"
+            alt="user image"
+            class="d-block h-auto ms-0 ms-sm-6 rounded-3 user-profile-img"
+          />
+        </div>
+        <div class="flex-grow-1 mt-3 mt-lg-5">
+          <div
+            class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-5 flex-md-row flex-column gap-4"
+          >
+            <div class="user-profile-info">
+              <h4 class="mb-2 mt-lg-7">City of Harare</h4>
+              <ul
+                class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 mt-4"
+              >
+                <li class="list-inline-item">
+                  <i class="icon-base bx bx-palette me-2 align-top"></i
+                  ><span class="fw-medium">UX Designer</span>
+                </li>
+                <li class="list-inline-item">
+                  <i class="icon-base bx bx-map me-2 align-top"></i
+                  ><span class="fw-medium">Harare</span>
+                </li>
+                <li class="list-inline-item">
+                  <i class="icon-base bx bx-calendar me-2 align-top"></i
+                  ><span class="fw-medium"> Joined April 2021</span>
+                </li>
+              </ul>
+            </div>
+            <a href="javascript:void(0)" class="btn btn-primary mb-1">
+              <i class="icon-base bx bx-user-check icon-sm me-2"></i>Connected
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Header -->
+
+<div class="row">
+  <!-- Total Revenue -->
+  <div class="col-12 col-md-12 col-xxl-12">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col-md-12">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="card-title mb-0">
+              <h5 class="m-0 me-2">Water Levels for the next 24 hours</h5>
+            </div>
+            <div class="dropdown">
+              <button
+                class="btn p-0"
+                type="button"
+                id="totalRevenue"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="icon-base bx bx-dots-vertical-rounded icon-lg text-body-secondary"></i>
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="totalRevenue"
+              >
+                <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                <a class="dropdown-item" href="javascript:void(0);">Share</a>
+              </div>
+            </div>
+          </div>
+          <div id="hourly_wateruse_chart" style="width: 100%; height: 400px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Total Revenue -->
+
+</div>
+
+<div class="row">
+  
+  <!-- Activity Timeline -->
+  <div class="col-md-12 col-lg-12 mt-6">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between">
+        <h5 class="card-title m-0 me-2">Water Levels for the next 7 days</h5>
+        <div class="dropdown">
+          <button
+            class="btn text-body-secondary p-0"
+            type="button"
+            id="timelineWapper"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="icon-base bx bx-dots-vertical-rounded icon-lg"></i>
+          </button>
+          <div
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="timelineWapper"
+          >
+            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+            <a class="dropdown-item" href="javascript:void(0);">Share</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body col-md-12 col-lg-12">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10 flex-wrap"
+          >
+            <div id="weekly_wateruse_chart" class="px-3" style="width: 100%; height: 400px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  
+  <!-- Activity Timeline -->
+  <div class="col-md-6 col-lg-6 mt-6">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between">
+        <h5 class="card-title m-0 me-2">Weather Forecast for the next 7 days</h5>
+        <div class="dropdown">
+          <button
+            class="btn text-body-secondary p-0"
+            type="button"
+            id="timelineWapper"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="icon-base bx bx-dots-vertical-rounded icon-lg"></i>
+          </button>
+          <div
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="timelineWapper"
+          >
+            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+            <a class="dropdown-item" href="javascript:void(0);">Share</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body col-md-12 col-lg-12">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10 flex-wrap"
+          >
+            <div id="weekly_weatherforecast_chart" class="px-3" style="width: 100%; height: 400px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-6 mt-6">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between">
+        <h5 class="card-title m-0 me-2">Humidity for the next 7 days</h5>
+        <div class="dropdown">
+          <button
+            class="btn text-body-secondary p-0"
+            type="button"
+            id="timelineWapper"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="icon-base bx bx-dots-vertical-rounded icon-lg"></i>
+          </button>
+          <div
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="timelineWapper"
+          >
+            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+            <a class="dropdown-item" href="javascript:void(0);">Share</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body col-md-12 col-lg-12">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10 flex-wrap"
+          >
+            <div id="weekly_humidity_chart" class="px-3" style="width: 100%; height: 400px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %} 
+<script src="{% static 'js/app-user-view-account.js' %}"></script>
+<script src="{% static 'waterdata/wompwaterusagehourly.js' %}"></script>
+<script src="{% static 'waterdata/wompwaterusageweekly.js' %}"></script>
+<script src="{% static 'waterdata/weeklyweatherforecast.js' %}"></script>
+<script src="{% static 'waterdata/weeklyhumidityforecast.js' %}"></script>
+{% endblock %}
