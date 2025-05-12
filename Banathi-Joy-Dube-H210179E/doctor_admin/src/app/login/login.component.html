@@ -1,0 +1,21 @@
+<!-- <div class="logo-container">
+  <p class="text-center text-muted">Please log in to continue.</p>
+</div> -->
+<div class="login-container">
+<img src="assets/logo.jpeg" alt="Logo" class="logo" style="width: 40px; height: 40px; display: inline-block; vertical-align: middle;" />
+<h2 style="display: inline-block; vertical-align: top; margin-left: 50px;">AI Doctor</h2>
+
+<form (ngSubmit)="login()">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required />
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    <button type="submit">Login</button>
+</form>

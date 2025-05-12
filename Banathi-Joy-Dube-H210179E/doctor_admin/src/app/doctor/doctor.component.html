@@ -1,0 +1,63 @@
+<nav class="dashboard-nav">
+    <div class="dashboard-header" style="text-align: center;">
+      <span class="display-4">Doctor Profile</span>
+    <ul class="nav-links " style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; justify-content: center;">
+        <li><a href="/dashboard"  style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Patient Profiles</a></li>
+        <li><a href="/prescriptions" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Prescriptions</a></li>
+        <li><a href="/reports" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Reports</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="doctor-profile-container" style="max-width: 800px; margin: 30px auto; padding: 20px; background: #b2d1d3; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <div *ngIf="feedbackMessage" [ngClass]="{'alert-success': feedbackMessage.includes('success'), 'alert-danger': feedbackMessage.includes('Error')}" class="alert" style="margin-bottom: 16px;">
+    {{ feedbackMessage }}
+  </div>
+    <form (submit)="saveProfile()" class="p-3 border rounded bg-light">
+       
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">Full Name</label>
+        <input type="text" [(ngModel)]="doctorProfile.full_name" name="full_name" placeholder="Full Name" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">Specialization</label>
+        <input type="text" [(ngModel)]="doctorProfile.specialization" name="specialization" placeholder="Specialization" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">License Number</label>
+        <input type="text" [(ngModel)]="doctorProfile.license_number" name="license_number" placeholder="License Number" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">Contact Number</label>
+        <input type="tel" [(ngModel)]="doctorProfile.contact_number" name="contact_number" placeholder="Contact Number" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">Email</label>
+        <input type="email" [(ngModel)]="doctorProfile.email" name="email" placeholder="Email" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+
+      <div style="flex: 1; margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">Years of Experience</label>
+        <input type="number" [(ngModel)]="doctorProfile.years_of_experience" name="years_of_experience" placeholder="Years of Experience" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;">
+      </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #555555;">About</label>
+      <textarea rows="4" [(ngModel)]="doctorProfile.about" name="about" placeholder="About" style="width: 100%; padding: 8px; border: 1px solid #cccccc; border-radius: 4px;"></textarea>
+    </div>
+
+    <button type="submit" style="width: 100%; padding: 10px; background: #007bff; color: #ffffff; border: none; border-radius: 4px; cursor: pointer;">
+      Save Profile
+    </button>
+  </form>
+</div>

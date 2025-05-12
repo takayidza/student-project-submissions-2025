@@ -1,0 +1,57 @@
+<nav class="dashboard-nav">
+    <div class="dashboard-header" style="text-align: center;">
+      <span class="display-4">Appointments</span>
+    <ul class="nav-links " style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; justify-content: center;">
+        <li><a href="/dashboard"  style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Patient Profiles</a></li>
+        <li><a href="/prescriptions" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Prescriptions</a></li>
+        <li><a href="/reports" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Reports</a></li>
+        <li><a href="/doctor" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Doctor Profile</a></li>
+
+      </ul>
+  </div>
+</nav>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Reason</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Accept</th>
+        <!-- <th>Created</th>
+        <th>Last Updated</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{appointment.id}}</td>
+        <td>{{appointment.reason}}</td>
+        <td>{{appointment.appointment_date }}</td>
+        <td>{{appointment.appointment_time }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-warning p-1': appointment.status === 'pending',
+            'badge bg-success': appointment.status === 'confirmed',
+            'badge bg-danger': appointment.status === 'cancelled',
+            'badge bg-info': appointment.status === 'completed'
+          }">
+            {{appointment.status | titlecase}}
+          </span>
+        </td>
+        <td>
+          <button 
+            *ngIf="appointment.status === 'pending'"
+            class="btn btn-sm btn-success"
+            (click)="acceptAppointment(appointment.id)">
+            Accept
+          </button>
+        </td>
+        <!-- <td>{{appointment.created_at | date:'short'}}</td>
+        <td>{{appointment.updated_at | date:'short'}}</td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

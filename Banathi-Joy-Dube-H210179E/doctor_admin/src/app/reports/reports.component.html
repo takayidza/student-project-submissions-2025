@@ -1,0 +1,73 @@
+<nav class="dashboard-nav">
+    <div class="dashboard-header" style="text-align: center;">
+      <span class="display-4">Doctor Profile</span>
+    <ul class="nav-links " style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; justify-content: center;">
+        <li><a href="/dashboard"  style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Patient Profiles</a></li>
+        <li><a href="/prescriptions" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Prescriptions</a></li>
+        <li><a href="/doctor" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Doctor Profile</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="row mx-3" style="margin-top: 40px;">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-warning">
+        <h3 class="card-title text-white">Total Patients</h3>
+        <div class="card-tools">
+          <span class="badge badge-light">Patients</span>
+        </div>
+      </div>
+      <div class="card-body bg-warning text-white" style="text-align:center; font-size:2.5rem; font-weight:bold;">
+        {{ totalPatients }}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-success">
+        <h3 class="card-title text-white">Total Appointments</h3>
+        <div class="card-tools">
+          <span class="badge badge-light">Appointments</span>
+        </div>
+      </div>
+      <div class="card-body bg-success text-white" style="text-align:center; font-size:2.5rem; font-weight:bold;">
+        {{ totalAppointments }}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        <h3 class="card-title text-white">Total Prescriptions</h3>
+        <div class="card-tools">
+          <span class="badge badge-light">Prescriptions</span>
+        </div>
+      </div>
+      <div class="card-body bg-info text-white" style="text-align:center; font-size:2.5rem; font-weight:bold;">
+        {{ totalPrescriptions }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4 mx-4">
+  <div class="card-header text-white" style="background-color: rgb(69, 79, 134);">
+    <h3 class="card-title text-center">Booked Dates Calendar</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">{{ day }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of getCalendar()">
+          <td *ngFor="let date of week" [ngClass]="{'bg-info text-white': isBookedDate(date)}">
+            {{ date ? date.getDate() : '' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

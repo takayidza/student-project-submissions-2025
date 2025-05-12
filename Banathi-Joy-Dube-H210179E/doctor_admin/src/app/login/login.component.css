@@ -1,0 +1,173 @@
+/* Add styles for the login container */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #b2d1d3;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Style the heading */
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+/* Style the form labels */
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555555;
+}
+
+/* Style the input fields */
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Style the error message */
+.error-message {
+  color: #ff0000;
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Style the submit button */
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-container button:hover {
+  background: #0056b3;
+}
+
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* Light gray background */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 20px; /* Add space below header before form content */
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center logo and title */
+  margin-bottom: 8px; /* Space between logo/title and subtitle */
+}
+
+.logo {
+  width: 50px; /* Increased logo size */
+  height: 50px;
+  margin-right: 15px; /* Space between logo and title */
+  border-radius: 50%; /* Optional: if you want a circular logo frame */
+}
+
+.login-title {
+  font-size: 24px; /* Larger title */
+  font-weight: bold;
+  color: #333;
+  margin: 0; /* Remove default margin */
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px; /* Space between form fields */
+}
+
+/* Adjust Material Form Field appearance */
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-radius: 8px !important; /* More rounded corners for inputs */
+}
+
+::ng-deep .mat-mdc-form-field:not(.mat-form-field-invalid) .mdc-text-field--outlined .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field:not(.mat-form-field-invalid) .mdc-text-field--outlined .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field:not(.mat-form-field-invalid) .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: #ccc; /* Lighter border for focused fields */
+}
+
+.error-message {
+  color: red; /* Or use Angular Material's theme colors e.g. var(--mat-error-color) */
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.login-button {
+  padding: 12px 0; /* Taller button */
+  font-size: 16px;
+  border-radius: 8px; /* Rounded corners for button */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .login-card {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .login-subtitle {
+    font-size: 14px;
+  }
+
+  .login-button {
+    padding: 10px 0;
+    font-size: 15px;
+  }
+}

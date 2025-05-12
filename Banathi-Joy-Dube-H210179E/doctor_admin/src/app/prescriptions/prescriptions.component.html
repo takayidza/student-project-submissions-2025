@@ -1,0 +1,44 @@
+
+<nav class="dashboard-nav">
+    <div class="dashboard-header" style="text-align: center;">
+      <span class="display-4">Prescriptions</span>
+    <ul class="nav-links " style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; justify-content: center;">
+        <li><a href="/appointments"  style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Appointments</a></li>
+        <li><a href="/dashboard" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Patient profiles</a></li>
+        <li><a href="/reports" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Reports</a></li>
+        <li><a href="/doctor" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Doctor Profile</a></li>
+
+    </ul>
+  </div>
+</nav>
+<div class="dashboard-container">
+  <div class="mt-4">
+    <h2>Prescription Records</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Patient Email</th>
+          <th>Disease</th>
+          <th>Medication</th>
+          <th>Dosage</th>
+          <th>Frequency</th>
+          <th>Duration</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prescription of prescriptions">
+          <td>{{ prescription.id }}</td>
+          <td>{{ prescription.email }}</td>
+          <td>{{ prescription.disease }}</td>
+          <td>{{ prescription.medication }}</td>
+          <td>{{ prescription.dosage }}</td>
+          <td>{{ prescription.frequency }}</td>
+          <td>{{ prescription.duration }}</td>
+          <td>{{ prescription.created_at }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
