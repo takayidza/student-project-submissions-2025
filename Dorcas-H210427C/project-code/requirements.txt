@@ -1,0 +1,33 @@
+# Python Backend Dependencies
+
+# Flask and Extensions
+flask==2.3.3
+flask-sqlalchemy==3.1.1
+flask-migrate==4.0.5
+flask-cors==4.0.0
+
+# Database and ORM
+sqlalchemy==2.0.23
+
+# Face Recognition
+deepface==0.0.79
+opencv-python==4.8.1.78
+tensorflow==2.15.0
+pillow==10.1.0
+
+# Vector Database
+chromadb==0.4.18
+
+# Asynchronous Tasks
+celery==5.3.4
+redis==5.0.1
+
+# Email and Notifications
+python-dotenv==1.0.0
+pytz==2023.3
+
+# Security and Authentication
+bcrypt==4.0.1
+
+# Utilities
+numpy==1.24.3

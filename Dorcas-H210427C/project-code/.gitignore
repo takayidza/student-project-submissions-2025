@@ -1,0 +1,7 @@
+backend/__pycache__/*
+backend/.vscode/*
+backend/blueprints/__pycache__/*
+backend/detected_faces/*
+backend/chroma_db/*
+backend/verified_faces/*
+backend/face_detection_backend/__pycache__/
