@@ -1,0 +1,360 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="page-content">
+    <div class="content-inner pt-0">
+        <div class="container fb">
+            <!-- Search -->
+            <form class="m-b30">
+                <div class="input-group">
+           
+                    
+                </div>
+            </form>
+
+            <!-- Dashboard Area -->
+            <div class="dashboard-area">
+                <!-- Features -->
+                       <!-- Features -->
+                       <div class="features-box">
+                        <div class="row m-b20 g-3">
+                            <div class="col">
+                                <div class="card card-bx card-content" style="background-color:rgb(200, 18, 18);">
+                                    <div class="card-body">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" class="svg-main-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path d="M12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 Z M13,16 L11,16 L11,14 L13,14 L13,16 Z M13,12 L11,12 L11,7 L13,7 L13,12 Z" fill="#fff" />
+                                            </g>
+                                        </svg>
+                                            <div class="card-info">
+                                                <h4 class="title">{{ alerts.count }}</h4>
+                                                <p>Total Alerts</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card card-bx card-content bg-warning">
+                                        <div class="card-body">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M5,11 L19,11 L19,16 C19,16.5522847 18.5522847,17 18,17 L17,17 C16.4477153,17 16,16.5522847 16,16 L8,16 C8,16.5522847 7.55228475,17 7,17 L6,17 C5.44771525,17 5,16.5522847 5,16 L5,11 Z" fill="#fff"/>
+                                                    <path d="M7,16 C7.55228475,16 8,16.4477153 8,17 C8,17.5522847 7.55228475,18 7,18 C6.44771525,18 6,17.5522847 6,17 C6,16.4477153 6.44771525,16 7,16 Z M17,16 C17.5522847,16 18,16.4477153 18,17 C18,17.5522847 17.5522847,18 17,18 C16.4477153,18 16,17.5522847 16,17 C16,16.4477153 16.4477153,16 17,16 Z" fill="#fff"/>
+                                                    <path d="M3,10 L21,10 L21,11 L3,11 L3,10 Z M5,7 L19,7 L19,10 L5,10 L5,7 Z" fill="#fff" opacity="0.3"/>
+                                                </g>
+                                            </svg>
+                                            <div class="card-info">
+                                                <h4 class="title">{{ pending_journeys_count }}</h4>
+                                                <p>Pending Journeys</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card card-bx card-content bg-dark">
+                                        <div class="card-body">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M5,11 L19,11 L19,16 C19,16.5522847 18.5522847,17 18,17 L17,17 C16.4477153,17 16,16.5522847 16,16 L8,16 C8,16.5522847 7.55228475,17 7,17 L6,17 C5.44771525,17 5,16.5522847 5,16 L5,11 Z" fill="#fff"/>
+                                                    <path d="M7,16 C7.55228475,16 8,16.4477153 8,17 C8,17.5522847 7.55228475,18 7,18 C6.44771525,18 6,17.5522847 6,17 C6,16.4477153 6.44771525,16 7,16 Z M17,16 C17.5522847,16 18,16.4477153 18,17 C18,17.5522847 17.5522847,18 17,18 C16.4477153,18 16,17.5522847 16,17 C16,16.4477153 16.4477153,16 17,16 Z" fill="#fff"/>
+                                                    <path d="M3,10 L21,10 L21,11 L3,11 L3,10 Z M5,7 L19,7 L19,10 L5,10 L5,7 Z" fill="#fff" opacity="0.3"/>
+                                                </g>
+                                            </svg>
+                                            <div class="card-info">
+                                                <h4 class="title">{{ started_journeys_count }}</h4>
+                                                <p>In Progress Journeys</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card card-bx card-content bg-success">
+                                        <div class="card-body">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24"/>
+                                                    <path d="M5,11 L19,11 L19,16 C19,16.5522847 18.5522847,17 18,17 L17,17 C16.4477153,17 16,16.5522847 16,16 L8,16 C8,16.5522847 7.55228475,17 7,17 L6,17 C5.44771525,17 5,16.5522847 5,16 L5,11 Z" fill="#fff"/>
+                                                    <path d="M7,16 C7.55228475,16 8,16.4477153 8,17 C8,17.5522847 7.55228475,18 7,18 C6.44771525,18 6,17.5522847 6,17 C6,16.4477153 6.44771525,16 7,16 Z M17,16 C17.5522847,16 18,16.4477153 18,17 C18,17.5522847 17.5522847,18 17,18 C16.4477153,18 16,17.5522847 16,17 C16,16.4477153 16.4477153,16 17,16 Z" fill="#fff"/>
+                                                    <path d="M3,10 L21,10 L21,11 L3,11 L3,10 Z M5,7 L19,7 L19,10 L5,10 L5,7 Z" fill="#fff" opacity="0.3"/>
+                                                </g>
+                                            </svg>
+                                            <div class="card-info">
+                                                <h4 class="title">{{ completed_journeys_count }}</h4>
+                                                <p>Completed Journeys</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Features End -->
+                        <div class="card-body text-danger">
+                            <div id="safety-alerts" class="card-body">
+                                <div class="list item-list recent-jobs-list">
+                                    <ul id="safety-alerts-list">
+                                        <!-- New alerts will be inserted here -->
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="card-body">
+                            <div class="list item-list recent-jobs-list search-header">
+                                <ul>
+                                    {% for journey in started_journeys_list %}
+                                        <li class="list-group-item">
+                                            <div class="row journey {% if journey.status == 'Pending' %}alert-danger{% elif journey.status == 'Start' %}alert-warning{% elif journey.status == 'Arrived' %}alert-success{% endif %} fade show" role="alert">
+                                                <div class="col-6">
+                                                    <strong>User:</strong> {{ journey.user }}<br>
+                                                    <strong>Start:</strong> {{ journey.start }}<br>
+                                                    <strong>Destination:</strong> {{ journey.destination }}<br>
+                                                </div>
+                                                <div class="col-6">
+                                                    <strong>Status:</strong> {{ journey.status }}<br>
+                                                    <strong>Timestamp:</strong> {{ journey.timestamp }}<br>
+                                                                                                                        <!-- Modal Trigger -->
+                                                    <button type="button" class="btn btn-primary btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#statusModal{{ journey.pk }}">
+                                                        Journey Status
+                                                    </button>
+                                                </div>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="statusModal{{ journey.pk }}" tabindex="-1" aria-labelledby="statusModalLabel{{ journey.pk }}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="statusModalLabel{{ journey.pk }}">Journey Status</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                {% if journey.status == "Started" %}
+                                                                    <div class="alert alert-success" role="alert">
+                                                                        Are you sure you want to end this journey?
+                                                                    </div>
+                                                                {% else %}
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        Are you sure you want to start this journey?
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                {% if journey.status == "Started" %}
+                                                                    <a href="{% url 'journey_start' journey.pk %}" class="btn btn-success">End Journey</a>
+                                                                {% else %}
+                                                                    <a href="{% url 'journey_start' journey.pk %}" class="btn btn-warning">Start Journey</a>
+                                                                {% endif %}
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% empty %}
+                                        <li class="list-group-item text-muted">No don't have any journey in progress.</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                <!-- Tabs Navigation -->
+                <ul class="nav nav-tabs" id="visitorTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending Journeys</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" id="closed-tab" data-bs-toggle="tab" href="#closed" role="tab" aria-controls="closed" aria-selected="false">Completed Journeys</a>
+                    </li>
+                </ul>
+
+                <!-- Tabs Content -->
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                        <ul class="list-group">
+                            {% for journey in pending_journeys_list|slice:":5" %}
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="col-6">
+                                        <strong>User:</strong> {{ journey.user }}<br>
+                                        <strong>Start:</strong> {{ journey.start }}<br>
+                                        <strong>Destination:</strong> {{ journey.destination }}<br>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Status:</strong> {{ journey.status }}<br>
+                                        <strong>Timestamp:</strong> {{ journey.timestamp }}<br>
+                                        <div class="d-flex flex-column">
+                                            <a href="{% url 'journey_detail' journey.pk %}" class="btn btn-info btn-sm mb-1" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </div>
+                                        <!-- Modal Trigger -->
+                                        <button type="button" class="btn btn-primary btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#statusModal{{ journey.pk }}">
+                                            Status
+                                        </button>                                                                                          
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="statusModal{{ journey.pk }}" tabindex="-1" aria-labelledby="statusModalLabel{{ journey.pk }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="statusModalLabel{{ journey.pk }}">Journey Status</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% if journey.status == "Started" %}
+                                                        <div class="alert alert-success" role="alert">
+                                                            Are you sure you want to end this journey?
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="alert alert-warning" role="alert">
+                                                            Are you sure you want to start this journey?
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    {% if journey.status == "Started" %}
+                                                        <a href="{% url 'journey_start' journey.pk %}" class="btn btn-success">End Journey</a>
+                                                    {% else %}
+                                                        <a href="{% url 'journey_start' journey.pk %}" class="btn btn-warning">Start Journey</a>
+                                                    {% endif %}
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% empty %}
+                                <li class="list-group-item text-muted">No pending journeys.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="closed" role="tabpanel" aria-labelledby="closed-tab">
+                        <ul class="list-group">
+                            {% for journey in completed_journeys_list|slice:":5" %}
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="col-6">
+                                        <strong>User:</strong> {{ journey.user }}<br>
+                                        <strong>Start:</strong> {{ journey.start }}<br>
+                                        <strong>Destination:</strong> {{ journey.destination }}<br>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Status:</strong> {{ journey.status }}<br>
+                                        <strong>Timestamp:</strong> {{ journey.timestamp }}<br>
+                                        <div class="d-flex flex-column">
+                                            <a href="{% url 'journey_detail' journey.pk %}" class="btn btn-info btn-sm mb-1" title="View">
+                                                View <i class="fas fa-eye"></i>
+                                            </a>
+                                        </div>                                                                                        
+                                    </div>
+                                </li>
+                            {% empty %}
+                                <li class="list-group-item text-muted">No pending journeys.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+
+
+<!-- Charts -->
+<div class="features-box">
+    <div class="row m-b20 g-3">
+        <div class="col">
+            <div class="card card-bx card-content">
+                <div class="card-body">
+                    <div class="card-info">
+                        <div id="map" style="height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leaflet.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<!-- Leaflet.js JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+    var map = L.map('map').setView([-17.8216, 31.0492], 13); // Default center (Harare)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Accident zones data
+    const accidentAreas = { accident_areas_jsonsafe };
+    accidentAreas.forEach(area => {
+        const circleColor = area.accident_prone ? 'red' : 'green';
+        L.circle([area.latitude, area.longitude], {
+            color: circleColor,
+            fillColor: circleColor,
+            fillOpacity: 0.5,
+            radius: 100
+        }).addTo(map).bindPopup(area.description || (area.accident_prone ? "Accident-Prone Area" : "Safe Area"));
+    });
+
+    // Live tracking
+    var userMarker = null;
+    var accuracyCircle = null;
+
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+            function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                var accuracy = position.coords.accuracy;
+
+                if (!userMarker) {
+                    // Create user marker first time
+                    userMarker = L.marker([lat, lng]).addTo(map);
+                    accuracyCircle = L.circle([lat, lng], {
+                        radius: accuracy,
+                        color: 'blue',
+                        fillColor: 'blue',
+                        fillOpacity: 0.1
+                    }).addTo(map);
+                } else {
+                    // Update marker position
+                    userMarker.setLatLng([lat, lng]);
+                    accuracyCircle.setLatLng([lat, lng]);
+                    accuracyCircle.setRadius(accuracy);
+                }
+
+                map.setView([lat, lng], 16); // Zoom to user
+            },
+            function (error) {
+                console.error('Error watching position:', error);
+                alert('Unable to retrieve your location: ' + error.message);
+            },
+            {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: 30000 // 30 seconds timeout
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by your browser.');
+    }
+</script>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

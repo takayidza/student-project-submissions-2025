@@ -1,0 +1,140 @@
+{% load static %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        color: white;
+        transition: left 0.3s ease;
+        padding: 20px;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+    .overlay.active {
+        display: block;
+    }
+</style>
+<div class="sidebar sidebar-bg" id="sidebar">
+        <div class="author-box" style="background: blue; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgb(127, 185, 250);">
+            <div class="dz-media">
+            <div class="rounded-circle author-initials" style="width: 50px; height: 50px; background-color:rgb(0, 0, 0); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;">
+                {{ request.user.username|first|upper }}
+            </div>
+            </div>
+            <div class="dz-info" style="margin-top: 10px;">
+            <span style="color: white;">Good Day</span>
+            <h5 class="name" style="margin: 5px 0 0; font-weight: bold; color: white;">{{ request.user.username }}</h5>
+            <h6 class="name" style="margin: 5px 0 0; font-weight: bold; color: white;">{{ request.user.user_type}}</h6>
+            </div>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="nav-label">Main Menu</li>
+            <li>
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <span class="dz-icon bg-red light">
+                        <i class="fa fa-fw fa-tachometer-alt"></i>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'destination_template' %}">
+                    <span class="dz-icon bg-purple light">
+                        <i class="fa fa-fw fa-location-arrow"></i>
+                    </span>
+                    <span>Destination</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'journey_list' %}">
+                    <span class="dz-icon bg-teal light">
+                        <i class="fa fa-fw fa-road"></i>
+                    </span>
+                    <span>Journey</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'accident_area_history_list' %}">
+                    <span class="dz-icon bg-blue light">
+                        <i class="fa fa-fw fa-map-marker-alt"></i>
+                    </span>
+                    <span>Accident Area History</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'setting_list' %}">
+                    <span class="dz-icon bg-orange light">
+                        <i class="fa fa-fw fa-cog"></i>
+                    </span>
+                    <span>User Settings</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'about_list' %}">
+                    <span class="dz-icon bg-pink light">
+                        <i class="fa fa-fw fa-info-circle"></i>
+                    </span>
+                    <span>About</span>
+                </a>
+            </li>
+            {% if request.user.user_type == 'Admin' %}
+                <li>
+                    <a class="nav-link" href="{% url 'users-index' %}">
+                        <span class="dz-icon bg-green light">
+                            <i class="fa fa-fw fa-user"></i>
+                        </span>
+                        <span>User Management</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        <li class="d-flex justify-content-center">
+            <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+            {% csrf_token %}
+            <button type="submit" class="nav-link text-center" style="background: red; border: none; padding: 10px; cursor: pointer; color: inherit; display: flex; align-items: center; justify-content: center;">
+                <span class="dz-icon bg-danger light" style="margin-right: 8px; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%;">
+                <i class="fa fa-fw fa-sign-out-alt"></i>
+                </span>
+                <span style="font-size: 16px; font-weight: bold;">Logout</span>
+            </button>
+            </form>
+        </li>
+        
+
+        <div class="sidebar-bottom" style="margin-top: auto; text-align: center; padding: 10px; background-color:  skyblue; color: blue; font-size: 14px;">
+            <h6 class="name" style="margin: 0; font-weight: bold;">Accident Detection</h6>
+            <p style="margin: 5px 0 0; font-size: 12px;">App Version 0.1</p>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+    </script>
+
+
+    <style>
+        .sidebar-bg {
+            background: radial-gradient(circle, #ececec);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
