@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'vendor/libs/datatables-bs5/datatables.bootstrap5.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-datatable table-responsive">
+      <table class="datatables-customers table border-top">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Customer</th>
+            <th class="text-nowrap">Customer Id</th>
+            <th>Country</th>
+            <th>Order</th>
+            <th class="text-nowrap">Total Spent</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/app-ecommerce-customer-all.js' %}"></script>
+{% endblock %}
