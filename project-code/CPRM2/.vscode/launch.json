@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: CPRM2 [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\CPRM2.csproj"
+        }
+    ]
+}

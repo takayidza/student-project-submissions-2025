@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CPRM2.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container mt-4">
+    <h2>Products</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model.Where(p => p.IsActive == true))
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" class="card-img-top" alt="@item.ProductName"
+                            style="height: 200px; object-fit: cover;">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <p class="card-text text-muted">@item.Description</p>
+                        <p class="card-text fw-bold">$@item.Price?.ToString("0.00")</p>
+                        <p class="card-text fw-bold"> @item.Quantity left</p>
+
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="input-group" style="width: 130px;">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="updateQuantity(@item.ProductId, -1)">-</button>
+                                <input type="number" class="form-control text-center" id="quantity-@item.ProductId"
+                                    value="1" min="1">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="updateQuantity(@item.ProductId, 1)">+</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100" onclick="addToCart(@item.ProductId)">
+                            <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateQuantity(productId, change) {
+            const input = document.getElementById(`quantity-${productId}`);
+            const newValue = parseInt(input.value) + change;
+            if (newValue >= 1) {
+                input.value = newValue;
+            }
+        }
+
+        function addToCart(productId) {
+            const quantity = parseInt(document.getElementById(`quantity-${productId}`).value);
+
+            $.post('@Url.Action("AddToCart", "Orders")', { productId: productId, quantity: quantity })
+                .done(function (response) {
+                    if (response.success) {
+                        // Update cart count
+                        updateCartCount();
+                        // Show success toast
+                        showToast('Product added to cart!', 'success');
+                    } else {
+                        showToast(response.message || 'Failed to add product to cart', 'danger');
+                    }
+                })
+                .fail(function () {
+                    showToast('An error occurred while adding to cart', 'danger');
+                });
+        }
+
+        function showToast(message, type) {
+            // Ensure there's a toast container in the DOM
+            const container = document.getElementById('toastContainer') || createToastContainer();
+            const toastId = `toast-${Date.now()}`;
+            const toastHtml = `
+                    <div id="${toastId}" class="toast align-items-center text-white bg-${type} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+                      <div class="d-flex">
+                        <div class="toast-body">${message}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                    </div>`;
+            container.insertAdjacentHTML('beforeend', toastHtml);
+
+            const toastEl = document.getElementById(toastId);
+            const bsToast = new bootstrap.Toast(toastEl, { delay: 3000 });
+            bsToast.show();
+
+            toastEl.addEventListener('hidden.bs.toast', () => {
+                toastEl.remove();
+            });
+        }
+
+        function createToastContainer() {
+            const div = document.createElement('div');
+            div.id = 'toastContainer';
+            div.className = 'toast-container position-fixed top-0 start-50 translate-middle-x p-3';
+            document.body.appendChild(div);
+            return div;
+        }
+    </script>
+}

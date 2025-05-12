@@ -1,0 +1,109 @@
+@*@model CPRM2.Controllers.AgentDashboardViewModel
+
+@{
+    ViewData["Title"] = "Agent Dashboard";
+}
+
+<div class="container-fluid">
+    <h2 class="mb-4">Welcome to Your Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Orders</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.RecentOrders)
+                                {
+                                        <tr>
+                                            <td>@order.OrderId</td>
+                                            <td>@order.OrderDate.ToString("g")</td>
+                                            <td>@order.Status</td>
+                                            <td>@order.TotalAmount.ToString("C")</td>
+                                        </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">View All Orders</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Available Products</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var product in Model.AvailableProducts)
+                        {
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100">
+                                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                        {
+                                                <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name">
+                                        }
+                                        <div class="card-body">
+                                            <h6 class="card-title">@product.Name</h6>
+                                            <p class="card-text">@product.Description</p>
+                                            <p class="card-text"><strong>Price: @product.Price.ToString("C")</strong></p>
+                                            <a href="@Url.Action("Details", "Products", new { id = product.ProductId })" class="btn btn-primary btn-sm">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                    <a href="@Url.Action("Index", "Products")" class="btn btn-primary">View All Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Resources</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var resource in Model.RecentResources)
+                        {
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h6 class="card-title">@resource.Title</h6>
+                                            <p class="card-text">@resource.Description</p>
+                                            <p class="card-text"><small class="text-muted">Uploaded: @resource.UploadDate.ToString("g")</small></p>
+                                            <a href="@Url.Action("Download", "Resources", new { id = resource.ResourceId })" class="btn btn-primary btn-sm">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                    <a href="@Url.Action("Index", "Resources")" class="btn btn-primary">View All Resources</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+        <script>
+            // Add any dashboard-specific JavaScript here
+        </script>
+}*@

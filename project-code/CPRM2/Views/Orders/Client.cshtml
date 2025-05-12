@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CPRM2.Models.Order>
+
+@{
+    ViewData["Title"] = "Client";
+}
+
+<a asp-action="DeleteAllOrdersWithNoItems" class="btn btn-danger"
+    onclick="return confirm('Are you sure you want to delete all orders with no items? This action cannot be undone.');">Delete
+    All Orders with no Items</a>
+<a asp-action="DeleteAllOrders" class="btn btn-danger"
+    onclick="return confirm('Are you sure you want to delete all orders? This action cannot be undone.');">Delete All
+    Orders</a>
+
+<p>
+    <hr>
+</p>
+<div class="row">
+    @foreach (var order in Model)
+    {
+        <div class="col-md-3 col-sm-6 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@order.OrderId</h5>
+                    <p class="card-text">@order.OrderDate</p>
+
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>@item.Product.ProductName</span>
+                                <span>@item.Quantity</span>
+                                <span>@item.Product.Price</span>
+                            </li>
+                        }
+                    </ul>
+                    <div>
+                        @if (order.PaymentStatus == "Paid" && order.OrderStatus == "Processing")
+                        {
+                            <a asp-action="Dispatch" asp-route-id="@order.OrderId" class="btn btn-primary">
+                                Dispatch Order
+                            </a>
+                        }
+                        @if (order.PaymentStatus == "Paid" && order.OrderStatus == "Dispatched")
+                        {
+                            <span class="badge bg-success py-2 px-3">Dispatched</span>
+                        }
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

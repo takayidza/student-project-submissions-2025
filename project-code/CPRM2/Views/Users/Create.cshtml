@@ -1,0 +1,174 @@
+﻿@model CPRM2.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form id="createUserForm" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="UserName" class="control-label">Username</label>
+                <input asp-for="UserName" class="form-control" required />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="NationalId" class="control-label">National ID Number</label>
+                <input asp-for="NationalId" class="form-control" required />
+                <span asp-validation-for="NationalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="PhoneNumber" type="tel" class="form-control" required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">National ID Photo</label>
+                <input type="file" id="idPhoto" name="idPhoto" class="form-control" accept="image/*" required />
+                <div id="idPhotoPreview" class="mt-2"></div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Live Photo</label>
+                <div class="d-flex gap-2 mb-2">
+                    <button type="button" id="startCamera" class="btn btn-secondary">Start Camera</button>
+                    <button type="button" id="capturePhoto" class="btn btn-primary" disabled>Capture Photo</button>
+                </div>
+                <video id="camera" class="d-none" width="100%" autoplay></video>
+                <canvas id="photoCanvas" class="d-none"></canvas>
+                <div id="livePhotoPreview" class="mt-2"></div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="submitButton">
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"
+                        id="submitSpinner"></span>
+                    <span id="submitText">Create Account</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            let stream = null;
+            const video = document.getElementById('camera');
+            const canvas = document.getElementById('photoCanvas');
+            const startButton = document.getElementById('startCamera');
+            const captureButton = document.getElementById('capturePhoto');
+            const submitButton = document.getElementById('submitButton');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const submitText = document.getElementById('submitText');
+            let capturedPhoto = null;
+
+            // Handle ID Photo Preview
+            $('#idPhoto').change(function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#idPhotoPreview').html(`<img src="${e.target.result}" class="img-thumbnail" style="max-height: 200px;">`);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Camera handling
+            startButton.addEventListener('click', async () => {
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    video.srcObject = stream;
+                    video.classList.remove('d-none');
+                    captureButton.disabled = false;
+                    startButton.disabled = true;
+                } catch (err) {
+                    console.error('Error accessing camera:', err);
+                    alert('Error accessing camera. Please ensure you have granted camera permissions.');
+                }
+            });
+
+            captureButton.addEventListener('click', () => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                capturedPhoto = canvas.toDataURL('image/jpeg');
+                $('#livePhotoPreview').html(`<img src="${capturedPhoto}" class="img-thumbnail" style="max-height: 200px;">`);
+                video.classList.add('d-none');
+                captureButton.disabled = true;
+                startButton.disabled = false;
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+            });
+
+            // Form submission
+            $('#createUserForm').submit(function (e) {
+                e.preventDefault();
+
+                if (!capturedPhoto) {
+                    alert('Please capture a live photo');
+                    return;
+                }
+
+                // Show spinner and disable button
+                submitSpinner.classList.remove('d-none');
+                submitText.textContent = 'Creating Account...';
+                submitButton.disabled = true;
+
+                const formData = new FormData(this);
+                formData.append('livePhoto', capturedPhoto);
+
+                $.ajax({
+                    url: '@Url.Action("Create")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '@Url.Action("Index")';
+                        } else {
+                            alert(response.message || 'Error creating user');
+                            // Reset button state
+                            submitSpinner.classList.add('d-none');
+                            submitText.textContent = 'Create Account';
+                            submitButton.disabled = false;
+                        }
+                    },
+                    error: function () {
+                        alert('Error creating user');
+                        // Reset button state
+                        submitSpinner.classList.add('d-none');
+                        submitText.textContent = 'Create Account';
+                        submitButton.disabled = false;
+                    }
+                });
+            });
+        });
+    </script>
+}
