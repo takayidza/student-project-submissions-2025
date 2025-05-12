@@ -1,0 +1,103 @@
+@model List<CPRM2.Models.OrderItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container mt-4">
+    <h2>Shopping Cart</h2>
+
+    @if (!Model.Any())
+    {
+            <div class="alert alert-info">
+                Your cart is empty. <a asp-controller="Products" asp-action="Index">Continue shopping</a>
+            </div>
+    }
+    else
+    {
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            @foreach (var item in Model)
+                            {
+                                    <div class="row mb-3 align-items-center">
+                                        <div class="col-md-2">
+                                            @if (item.Product?.ImageUrl != null)
+                                            {
+                                                    <img src="@item.Product.ImageUrl" class="img-fluid rounded" alt="@item.Product.ProductName" />
+                                            }
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h5 class="mb-0">@item.Product?.ProductName</h5>
+                                            <p class="text-muted mb-0">Unit Price: $@item.UnitPrice.Value.ToString("F2")</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.ProductId, @item.Quantity - 1)">-</button>
+                                                <input type="number" class="form-control text-center" value="@item.Quantity" min="1" 
+                                                       onchange="updateQuantity(@item.ProductId, this.value)" />
+                                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.ProductId, @item.Quantity + 1)">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-end">
+                                            <p class="mb-0">$@((item.UnitPrice * item.Quantity).Value.ToString("F2"))</p>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-danger btn-sm" onclick="removeFromCart(@item.ProductId)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order Summary</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <span>$@Model.Sum(i => i.UnitPrice * i.Quantity).Value.ToString("F2")</span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between mb-3">
+                                <strong>Total:</strong>
+                                <strong>$@Model.Sum(i => i.UnitPrice * i.Quantity).Value.ToString("F2")</strong>
+                            </div>
+                            <a asp-action="Checkout" class="btn btn-primary w-100">Proceed to Checkout</a>
+                            <a asp-controller="Products" asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    }
+</div>
+
+@section Scripts {
+        <script>
+            function updateQuantity(productId, quantity) {
+                if (quantity < 1) return;
+            
+                $.post('@Url.Action("UpdateCart")', { productId: productId, quantity: quantity })
+                    .done(function(response) {
+                        if (response.success) {
+                            location.reload();
+                        }
+                    });
+            }
+
+            function removeFromCart(productId) {
+                if (confirm('Are you sure you want to remove this item from your cart?')) {
+                    $.post('@Url.Action("RemoveFromCart")', { productId: productId })
+                        .done(function(response) {
+                            if (response.success) {
+                                location.reload();
+                            }
+                        });
+                }
+            }
+        </script>
+}

@@ -1,0 +1,86 @@
+@model CPRM2.Models.Order
+
+@{
+    ViewData["Title"] = "Checkout";
+    var cartItems = Model.OrderItems;
+}
+
+<div class="container mt-4">
+    <h2>Checkout</h2>
+
+    @if (!cartItems.Any())
+    {
+        <div class="alert alert-warning">
+            Your cart is empty. <a asp-controller="Products" asp-action="Index">Continue shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Items</h5>
+                        @foreach (var item in cartItems)
+                        {
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    @if (item.Product?.ImageUrl != null)
+                                    {
+                                        <img src="@item.Product.ImageUrl" class="img-fluid rounded"
+                                            alt="@item.Product.ProductName" />
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="mb-0">@item.Product?.ProductName</h6>
+                                    <p class="text-muted mb-0">Quantity: @item.Quantity</p>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <p class="mb-0">$@((item.UnitPrice * item.Quantity).Value.ToString("F2"))</p>
+                                </div>
+                            </div>
+                            <hr />
+                        }
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment Method</h5>
+                        <form asp-action="PlaceOrder" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Select Payment Method</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="PaymentMethod" id="paynow"
+                                        value="PayNow" checked>
+                                    <label class="form-check-label" for="paynow">
+                                        PayNow
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Place Order</button>
+                            <a asp-action="Cart" class="btn btn-outline-secondary">Back to Cart</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Summary</h5>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span>$@cartItems.Sum(i => i.UnitPrice * i.Quantity).Value.ToString("F2")</span>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between mb-3">
+                            <strong>Total:</strong>
+                            <strong>$@cartItems.Sum(i => i.UnitPrice * i.Quantity).Value.ToString("F2")</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CPRM2.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h4 fw-semibold">User Management</h1>
+        <a asp-action="Create" class="btn btn-sm btn-primary">
+            <i class="fas fa-plus me-1"></i>New User
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                    <thead class="bg-light text-muted">
+                        <tr>
+                            <th>National ID</th>
+                            <th>Photos</th>
+                            <th>Verification</th>
+                            <th>User Info</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-monospace">@item.NationalId</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        @if (!string.IsNullOrEmpty(item.IdPhotoUrl))
+                                        {
+                                            <img src="@item.IdPhotoUrl" class="rounded border" style="width: 40px; height: 40px; object-fit: cover;" alt="ID" />
+                                        }
+                                        @if (!string.IsNullOrEmpty(item.LivePhotoUrl))
+                                        {
+                                            <img src="@item.LivePhotoUrl" class="rounded border" style="width: 40px; height: 40px; object-fit: cover;" alt="Live" />
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-@(item.IsVerified ? "success" : "secondary")">
+                                        @(item.IsVerified ? "Verified" : "Pending")
+                                    </span>
+                                    @if (item.VerificationDate.HasValue)
+                                    {
+                                        <br /><small class="text-muted">@item.VerificationDate.Value.ToShortDateString()</small>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="fw-semibold">@item.UserName</div>
+                                    <div class="text-muted small">@item.Email</div>
+                                </td>
+                                <td>
+                                    <div>@item.PhoneNumber</div>
+                                    <div class="text-muted small">@(item.PhoneNumberConfirmed ? "Confirmed" : "Unconfirmed")</div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-@(item.LockoutEnabled ? "danger" : "success")">
+                                        @(item.LockoutEnabled ? "Locked" : "Active")
+                                    </span>
+                                    @if (item.TwoFactorEnabled)
+                                    {
+                                        <br /><small class="text-muted">2FA Enabled</small>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                     Edit
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details">
+                                     Info
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete">
+                                     Trash
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

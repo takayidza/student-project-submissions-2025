@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CPRM2.Models.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="container mt-4">
+    <h2>My Orders</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            You haven't placed any orders yet. <a asp-controller="Products" asp-action="Index">Start shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var order in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Order #@order.OrderId</h5>
+                                <span class="badge bg-@(order.OrderStatus == "Completed" ? "success" : 
+                                                            order.OrderStatus == "Pending" ? "warning" :
+                                                            order.OrderStatus == "Cancelled" ? "danger" : "info")">
+                                @order.OrderStatus
+                            </span>
+                        </div>
+                        <p class="text-muted mb-2">Ordered on: @order.OrderDate?.ToString("MMM dd, yyyy HH:mm")</p>
+                        <p class="mb-2">Total Amount: $@order.TotalAmount?.ToString("F2")</p>
+                        <p class="mb-3">Payment Method: @order.PaymentMethod</p>
+
+                            <div class="mb-3">
+                                <h6>Order Items:</h6>
+                                <ul class="list-unstyled">
+                            @foreach (var item in order.OrderItems)
+                                    {
+                                        <li class="d-flex justify-content-between align-items-center mb-2">
+                                            <span>@item.Product?.ProductName x @item.Quantity</span>
+                                            <span>$@((item.UnitPrice * item.Quantity)?.ToString("F2"))</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-primary">View Details</a>
+                                @if (order.OrderStatus == "Pending")
+                                {
+                                    <a asp-action="Cancel" asp-route-id="@order.OrderId" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to cancel this order?')">
+                                        Cancel Order
+                                    </a>
+                                    <a asp-action="RetryPayment" asp-route-id="@order.OrderId" class="btn btn-light border text-primary"
+                                        >
+                                        Retry Payment
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
