@@ -1,0 +1,17 @@
+{
+  "name": "Drugs",
+  "short_name": "Drugs",
+  "description": "Drug Alert System",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/"
+}

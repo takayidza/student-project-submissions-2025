@@ -1,0 +1,161 @@
+@model DrugAlertSystem.Models.DrugHotspotPredictionResultViewModel
+
+@{
+    ViewData["Title"] = "Prediction Result";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class=" mb-5">
+                        <h2 class="display-6">@ViewData["Title"]</h2>
+                        <p class="text-muted">Analysis of reported location data</p>
+                    </div>
+
+                    <div class="card border-0 mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-4">Location Details</h5>
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted" style="width: 40%">Location</td>
+                                            <td>@Model.Input.Location</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">People Loitering</td>
+                                            <td>@(Model.Input.PeopleLoitering ? "Yes" : "No")</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Drug Wrappers Found</td>
+                                            <td>@(Model.Input.DrugWrappersFound ? "Yes" : "No")</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Strong Smell</td>
+                                            <td>@(Model.Input.StrongSmell ? "Yes" : "No")</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Loud Noise or Music</td>
+                                            <td>@(Model.Input.LoudNoiseOrMusic ? "Yes" : "No")</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Shoe Hanging on Wire</td>
+                                            <td>@(Model.Input.ShoeHangingOnWire ? "Yes" : "No")</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">People In and Out</td>
+                                            <td>@(Model.Input.PeopleInAndOut ? "Yes" : "No")</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4">Risk Assessment</h5>
+                    <div class="alert @(Model.Probability < 0.25 ? "alert-success" : 
+                                      Model.Probability < 0.50 ? "alert-primary" :
+                                      Model.Probability < 0.75 ? "alert-warning" :
+                                      "alert-danger") border - 0 rounded - 0">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-2">
+                                    @(Model.Probability < 0.25 ? "Very Low Risk" :
+                                    Model.Probability < 0.50 ? "Low Risk" :
+                                    Model.Probability < 0.75 ? "Moderate Risk" :
+                                    "High Risk")
+                                </h6>
+                                <p class="mb-0 small">
+                                    @(Model.Probability < 0.25 ? "Unlikely to be a drug hotspot" :
+                                    Model.Probability < 0.50 ? "Unlikely to be a drug hotspot" :
+                                    Model.Probability < 0.75 ? "Potential drug hotspot" :
+                                    "Likely drug hotspot")
+                                </p>
+                            </div>
+                            <div class="ms-3 text-end">
+                                <div class="h4 mb-1">@Model.Probability.ToString("P0")</div>
+                                <div class="small text-muted">Risk Score: @Model.Score.ToString("F1")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4">Risk Score Visualization</h5>
+                    <img id="riskChart" width="500" />
+                </div>
+            </div>
+
+
+
+            <div class="text-center">
+                <a asp-action="Predict" class="btn btn-outline-primary">New Analysis</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const score = @Model.Score;
+            const maxScore = 100;
+            const color = score <= 25 ? '28a745' :
+                score <= 50 ? '007bff' :
+                    score <= 75 ? 'ffc107' : 'dc3545';
+            const balance = maxScore - score;
+
+            const chartConfig = {
+                type: 'doughnut',
+                data: {
+                    labels: ['Risk Score'],
+                    datasets: [{
+                        label: 'Score',
+                        data: [Math.round(score), Math.round(balance)],
+
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: maxScore,
+                            title: {
+                                display: true,
+                                text: 'Score'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Risk Assessment'
+                            }
+                        }
+                    }
+                    ,
+                    plugins: {
+                        datalabels: {
+                            display: true,
+                            color: 'white'
+                        },
+                    },
+                }
+            };
+
+            const chartUrl = 'https://quickchart.io/chart?c=' + encodeURIComponent(JSON.stringify(chartConfig));
+            document.getElementById('riskChart').src = chartUrl;
+        });
+    </script>
+}

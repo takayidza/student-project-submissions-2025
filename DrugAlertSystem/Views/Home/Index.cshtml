@@ -1,0 +1,139 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard - Drug Alert System";
+}
+
+
+<!-- Header Section -->
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Drug Alert System</h1>
+    <p class="lead text-muted">Real-time monitoring and management of drug-related incidents</p>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-5">
+    <div class="col-md-3">
+        <div class="card h-100 border">
+            <div class="card-body text-center">
+                <h6 class="text-uppercase text-muted mb-2">Total Reports</h6>
+                <h2 class="mb-0">@Model.TotalReports</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 border">
+            <div class="card-body text-center">
+                <h6 class="text-uppercase text-muted mb-2">Active Cases</h6>
+                <h2 class="mb-0">@Model.ActiveCases</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 border">
+            <div class="card-body text-center">
+                <h6 class="text-uppercase text-muted mb-2">Under Investigation</h6>
+                <h2 class="mb-0">@Model.UnderInvestigation</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 border">
+            <div class="card-body text-center">
+                <h6 class="text-uppercase text-muted mb-2">Resolved Cases</h6>
+                <h2 class="mb-0">@Model.ResolvedCases</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Section -->
+@if (Model.Hotspots > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show mb-4 border" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>Alert:</strong> High drug activity detected in multiple areas. Immediate attention required.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row g-4">
+    <!-- Recent Reports Section -->
+    <div class="col-lg-6">
+        <div class="card h-100 border">
+            <div class="card-header bg-white border-bottom">
+                <h5 class="card-title mb-0">Recent Reports</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Report ID</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Reported</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var report in Model.RecentReports)
+                            {
+                                <tr>
+                                    <td>@report.ReportId</td>
+                                    <td>@report.ReportType</td>
+                                    <td>
+                                        <span
+                                            class="badge @(report.Status == "Pending" ? "bg-warning" : report.Status == "Resolved" ? "bg-success" : "bg-danger")">
+                                            @report.Status
+                                        </span>
+                                    </td>
+                                    <td>@report.ReportedAt</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="col-lg-6">
+        <div class="card h-100 border">
+            <div class="card-header bg-white border-bottom">
+                <h5 class="card-title mb-0">Incident Map</h5>
+            </div>
+            <div class="card-body p-0">
+                <div id="map" style="height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Leaflet.js (OpenStreetMap) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var map = L.map('map').setView([-17.8292, 31.0522], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var incidents = @Html.Raw(Json.Serialize(Model.MapIncidents));
+
+        incidents.forEach(function (incident) {
+            var marker = L.marker([incident.latitude, incident.longitude], {
+                icon: L.icon({
+                    iconUrl: `http://maps.google.com/mapfiles/ms/icons/${incident.color}-dot.png`,
+                    iconSize: [32, 32]
+                })
+            }).addTo(map)
+                .bindPopup(`<strong>${incident.type}</strong>`);
+        });
+    });
+</script>

@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext name="DrugsConn" Microsoft.EntityFrameworkCore.SqlServer -context DrugsDbContext -ContextDir Data  -outputdir Models -DataAnnotations -force 

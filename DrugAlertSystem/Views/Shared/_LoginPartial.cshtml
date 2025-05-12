@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DrugAlertSystem.Areas.Identity.Data
+
+@inject SignInManager<DrugsUser> SignInManager
+@inject UserManager<DrugsUser> UserManager
+
+@{
+    var user = UserManager.GetUserAsync(User).Result;
+}
+
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item bg-success text-white p-1 mx-2 rounded-3">
+            @user.AccessFailedCount credits
+        </li>
+        <li class="nav-item dropdown">
+            
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class='bx bx-user me-1'></i>@UserManager.GetUserName(User)
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                        <i class='bx bx-cog me-2'></i>Settings
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class='bx bx-log-out me-2'></i>Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">
+                <i class='bx bx-log-in me-1'></i>Login
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">
+                <i class='bx bx-user-plus me-1'></i>Register
+            </a>
+        </li>
+    }
+</ul>

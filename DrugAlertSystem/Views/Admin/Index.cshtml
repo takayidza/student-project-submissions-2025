@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DrugAlertSystem.Models.User>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">@ViewData["Title"]</h2>
+            <p class="text-muted mb-0">Manage system users and permissions</p>
+        </div>
+        <a asp-action="Create" class="btn btn-outline-primary">
+            <i class='bx bx-user-plus me-1'></i>Add User
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                            <th>@Html.DisplayNameFor(model => model.EmailConfirmed)</th>
+                            <th>@Html.DisplayNameFor(model => model.TwoFactorEnabled)</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                <td>
+                                    <span class="badge @(item.EmailConfirmed ? "bg-success" : "bg-light text-dark")">
+                                        @(item.EmailConfirmed ? "Verified" : "Pending")
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge @(item.TwoFactorEnabled ? "bg-primary" : "bg-light text-dark")">
+                                        @(item.TwoFactorEnabled ? "2FA On" : "2FA Off")
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class='bx bx-edit-alt'></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">
+                                            <i class='bx bx-detail'></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                            <i class='bx bx-trash'></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

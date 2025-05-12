@@ -1,0 +1,266 @@
+﻿@model DrugAlertSystem.Models.Report
+
+@{
+    ViewData["Title"] = "Report Details";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="container py-4">
+            <div class="alert alert-light border mb-4">
+                <h1 class="h4 mb-1">@ViewData["Title"]</h1>
+                <p class="text-muted mb-0">View details of the reported incident</p>
+            </div>
+
+            <div class="card border">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">Incident Information</h5>
+                        <span class="badge @(Model.Status == "Pending" ? "bg-warning text-dark" :
+                                  Model.Status == "Resolved" ? "bg-success" :
+                                  Model.Status == "Under Investigation" ? "bg-danger" : "bg-secondary")">
+                            @Model.Status
+                        </span>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="border-bottom pb-2">
+                                <small class="text-muted d-block">Report Type</small>
+                                <span>@Html.DisplayFor(model => model.ReportType)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border-bottom pb-2">
+                                <small class="text-muted d-block">Reported On</small>
+                                <span>@Html.DisplayFor(model => model.CreatedAt)</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="border-bottom pb-2">
+                                <small class="text-muted d-block">Description</small>
+                                <span>@Html.DisplayFor(model => model.Description)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border-bottom pb-2">
+                                <small class="text-muted d-block">Reported By</small>
+                                <span>@Html.DisplayFor(model => model.User.Id)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Incident Location</h5>
+                        <div id="map" class="border rounded" style="width: 100%; height: 300px;"></div>
+
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <div class="border-bottom pb-2">
+                                    <small class="text-muted d-block">Latitude</small>
+                                    <span>@Html.DisplayFor(model => model.Latitude)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="border-bottom pb-2">
+                                    <small class="text-muted d-block">Longitude</small>
+                                    <span>@Html.DisplayFor(model => model.Longitude)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">Edit</a>
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        @if (Model.DrugHotspotData.Any())
+        {
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-12">
+                    <div class="card border-0 mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-4">Risk Score Visualization</h5>
+                            <img id="riskChart" width="500" />
+                        </div>
+                    </div>
+                    <div class="card border-0 mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-4">Risk Assessment</h5>
+                            <div class="alert @(Model.DrugHotspotData.FirstOrDefault().Probability < 0.25 ? "alert-success" :
+                                      Model.DrugHotspotData.FirstOrDefault().Probability < 0.50 ? "alert-primary" :
+                                      Model.DrugHotspotData.FirstOrDefault().Probability < 0.75 ? "alert-warning" :
+                                      "alert-danger") border - 0 rounded - 0">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-2">
+                                            @(Model.DrugHotspotData.FirstOrDefault().Probability < 0.25 ? "Very Low Risk" :
+                                    Model.DrugHotspotData.FirstOrDefault().Probability < 0.50 ? "Low Risk" :
+                                    Model.DrugHotspotData.FirstOrDefault().Probability < 0.75 ? "Moderate Risk" :
+                                    "High Risk")
+                                        </h6>
+                                        <p class="mb-0 small">
+                                            @(Model.DrugHotspotData.FirstOrDefault().Probability < 0.25 ? "Unlikely to be a drug hotspot" :
+                                    Model.DrugHotspotData.FirstOrDefault().Probability < 0.50 ? "Unlikely to be a drug hotspot" :
+                                    Model.DrugHotspotData.FirstOrDefault().Probability < 0.75 ? "Potential drug hotspot" :
+                                    "Likely drug hotspot")
+                                        </p>
+                                    </div>
+                                    <div class="ms-3 text-end">
+                                        <div class="h4 mb-1">@Model.DrugHotspotData.FirstOrDefault().Probability?.ToString("P0")</div>
+                                        <div class="small text-muted">Risk Score: @Model.DrugHotspotData.FirstOrDefault().Score?.ToString("F1")</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="text-center">
+                        <a asp-action="Predict" class="btn btn-outline-primary">New Analysis</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class=" mb-5">
+                                <h2 class="display-6">@ViewData["Title"]</h2>
+                                <p class="text-muted">Analysis of reported location data</p>
+                            </div>
+
+                            <div class="card border-0 mb-4">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title mb-4">Location Details</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-muted" style="width: 40%">Location</td>
+                                                    <td>@Model.DrugHotspotData.FirstOrDefault().Location</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">People Loitering</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().PeopleLoitering.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Drug Wrappers Found</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().DrugWrappersFound.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Strong Smell</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().StrongSmell.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Loud Noise or Music</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().LoudNoiseOrMusic.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">Shoe Hanging on Wire</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().ShoeHangingOnWire.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-muted">People In and Out</td>
+                                                    <td>@(Model.DrugHotspotData.FirstOrDefault().PeopleInAndOut.Value ? "Yes" : "No")</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const score = @Model.DrugHotspotData.FirstOrDefault().Score;
+            const maxScore = 100;
+            const color = score <= 25 ? '28a745' :
+                score <= 50 ? '007bff' :
+                    score <= 75 ? 'ffc107' : 'dc3545';
+            const balance = maxScore - score;
+
+            const chartConfig = {
+                type: 'doughnut',
+                data: {
+                    labels: ['Risk Score'],
+                    datasets: [{
+                        label: 'Score',
+                        data: [Math.round(score), Math.round(balance)],
+
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: maxScore,
+                            title: {
+                                display: true,
+                                text: 'Score'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Risk Assessment'
+                            }
+                        }
+                    }
+                    ,
+                    plugins: {
+                        datalabels: {
+                            display: true,
+                            color: 'white'
+                        },
+                    },
+                }
+            };
+
+            const chartUrl = 'https://quickchart.io/chart?c=' + encodeURIComponent(JSON.stringify(chartConfig));
+            document.getElementById('riskChart').src = chartUrl;
+        });
+    </script>
+    <!-- OpenStreetMap (Leaflet.js) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var latitude = @Model.Latitude;
+        var longitude = @Model.Longitude;
+
+        var map = L.map('map').setView([latitude, longitude], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup("<b>@Model.ReportType</b><br>@Model.Description")
+            .openPopup();
+    });
+    </script>
+}
+
+
+
