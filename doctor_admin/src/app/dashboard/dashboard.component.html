@@ -1,0 +1,99 @@
+<nav class="dashboard-nav">
+    <div class="dashboard-header" style="text-align: center;">
+      <span class="display-4">Profiles</span>
+    <ul class="nav-links " style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; justify-content: center;">
+        <li><a href="/appointments"  style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Appointments</a></li>
+        <li><a href="/prescriptions" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Prescriptions</a></li>
+        <li><a href="/reports" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Reports</a></li>
+        <li><a href="/doctor" style="text-decoration: none; color: #333; padding: 8px 16px; border-radius: 4px; background: #b2d1d3; cursor: pointer;">Doctor Profile</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="dashboard-container">
+    
+  <div class="mt-4">
+    <div style="display: inline-block; vertical-align: top; width: 48%;">
+      <h2>Patient Profiles</h2>
+      <table #patientTable border="1" class="table table-striped w-100">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <!-- <th>Email</th> -->
+            <!-- <th>Approved</th> -->
+            <th>Action</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profile of patientProfiles" >
+            <td>{{ profile.id }}</td>
+            <td>{{ profile.full_name }}</td>
+            <td>{{ profile.gender }}</td>
+            <td>{{ profile.age }}</td>
+            <td>{{ profile.contact_information }}</td>
+            <td><button (click)="fetchConversation(profile.email)" class="btn btn-sm btn-info">Diagnosis</button></td>
+            <!-- <td>{{ profile.email }}</td> -->
+            <!-- <td>
+              <div style="text-align: center">
+                <input type="checkbox" [checked]="profile.approved" />
+              </div>
+            </td> -->
+            <td>              
+              <button (click)="togglePrescriptionForm(profile)" class="btn btn-sm btn-success ml-2">Prescribe</button>
+            </td>
+          </tr>
+          <tr *ngIf="selectedProfile">
+            <td colspan="8">
+              <form (submit)="submitPrescription($event)" class="p-3 border rounded bg-light">
+                <div class="form-group">
+                  <label for="disease">Disease:</label>
+                  <input type="text" id="disease" name="disease" class="form-control" placeholder="Enter disease" required />
+                </div>
+               
+                <div class="form-group">
+                  <label for="medication">Medication:</label>
+                  <input type="text" id="medication" name="medication" class="form-control" placeholder="Enter medication" required />
+                </div>
+                
+                <div class="form-group">
+                  <label for="dosage">Dosage:</label>
+                  <input type="text" id="dosage" name="dosage" class="form-control" placeholder="Enter dosage" required />
+                </div>
+                <div class="form-group">
+                  <label for="frequency">Frequency:</label>
+                  <input type="text" id="frequency" name="frequency" class="form-control" placeholder="Enter frequency" required />
+                </div>
+                <div class="form-group">
+                  <label for="duration">Duration:</label>
+                  <input type="text" id="duration" name="duration" class="form-control" placeholder="Enter duration" required />
+                </div>
+                <button type="submit" class="btn btn-primary mt-1">Submit</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="convod" class=" convo" style="display: inline-block; vertical-align: top; width: 48%; margin-left: 2%;">
+      <h3>Conversation</h3>
+      <ol class="">
+        <li *ngFor="let message of conversation" class="chat-message">
+          <div class="user-message text-muted">
+              <!-- <img src="assets/user.png" alt="User" class="user-icon" /> -->
+              <span>{{ message.timestamp | date: 'short' }}</span>
+              <span class="user-name">{{ message.user_name }}</span>
+              <br />
+          <span>{{ message.user_message }}</span>
+          </div>
+          <div class="bot-response text-muted">
+              <remark [markdown]="message.bot_response"></remark>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
