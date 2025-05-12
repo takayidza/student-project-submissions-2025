@@ -1,0 +1,23 @@
+# Virtual environments
+city-parking-env/
+venv/
+.env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+
+# Database
+*.sqlite3
+*.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files
+.env
+.secrets

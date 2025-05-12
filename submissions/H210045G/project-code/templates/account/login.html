@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <title>Online Reputation Sentiment Analysis</title><meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap-responsive.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/maruti-login.css' %}" />
+    </head>
+    <body>
+        <div id="loginbox">            
+            <form id="loginform" class="form-vertical" action="{% url 'login-user' %}" method="POST">
+                {% csrf_token %}
+                <div class="text-center"> 
+                    <h4><img src="{% static 'assets/img/city_logo.jpg' %}" alt="Logo" style="max-width: 150px;" /></h4>
+                </div>
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="text" name="username" placeholder="Username" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="Password" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <span class="pull-left"><a href="{% url 'password_reset_request' %}" class="flip-link btn btn-inverse" id="to-recover">Lost password?</a></span>
+                    <span class="pull-right"><input type="submit" class="btn btn-success" value="Login" /></span>
+                </div>
+            </form>
+        </div>
+        
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>  
+        <script src="{% static 'assets/js/maruti.login.js' %}"></script> 
+    </body>
+
+</html>
+{% comment %} <script>
+    const djangoMessages = [
+        {% for message in messages %}
+            {
+                level: "{{ message.level_tag|escapejs }}",
+                text: "{{ message.message|escapejs }}"
+            }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    djangoMessages.forEach(msg => {
+        // Display with alert (you can customize this)
+        alert(msg.text);
+        
+        // Or dynamically add to the page
+        const alertBox = document.createElement("div");
+        alertBox.className = `alert alert-${msg.level}`;
+        alertBox.innerText = msg.text;
+        document.body.prepend(alertBox);
+    });
+</script> {% endcomment %}

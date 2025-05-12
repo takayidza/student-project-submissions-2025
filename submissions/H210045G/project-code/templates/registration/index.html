@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% load static%}
+
+{% block navigation %}
+<div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="{% url 'dashboard' %}" title="Go to Home" class="tip-bottom">
+            <i class="icon-home"></i> Home
+        </a> 
+        <a href="#" class="current">Users</a> 
+    </div>
+    <div style="display: flex; align-items: center;">
+        <h1 style="margin-right: 20px;">Users</h1>
+        <a href="{% url 'register-user' %}" class="btn btn-success">Register User</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-th"></i></span> 
+                    <h5>Users Table</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                {% comment %} <th>User Type</th> {% endcomment %}
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in object_list %}
+                            <tr class="gradeA">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.first_name }}</td>
+                                <td>{{ user.last_name }}</td>
+                                {% comment %} <td>{{ user.user_type }}</td> {% endcomment %}
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <a href="{% url 'update-user' user.pk %}" class="btn btn-primary btn-mini">Update</a>
+                                    {% comment %} 
+                                    <a href="{% url 'delete-user' user.pk %}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a> 
+                                    {% endcomment %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
