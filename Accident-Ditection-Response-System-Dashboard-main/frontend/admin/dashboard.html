@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Collision Detection System</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="../config.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-item {
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .sidebar-item.active:hover {
+            background-color: #2563eb;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-enter-active,
+        .page-leave-active {
+            transition: opacity 0.3s;
+        }
+
+        .page-enter-from,
+        .page-leave-to {
+            opacity: 0;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.3s;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="min-h-screen flex flex-col md:flex-row bg-gray-50">
+        <!-- Sidebar -->
+        <aside :class="['sidebar bg-white shadow-lg', sidebarCollapsed ? 'w-20' : 'w-64']"
+            class="z-10 flex flex-col h-screen sticky top-0">
+            <!-- Logo Section -->
+            <div class="flex items-center p-4 border-b border-gray-100">
+                <div class="bg-blue-600 p-2 rounded-lg mr-3">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 2a.75.75 0 01.75.75v5.59l1.95-2.1a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0L6.2 7.26a.75.75 0 111.1-1.02l1.95 2.1V2.75A.75.75 0 0110 2z" />
+                        <path
+                            d="M5.273 4.5a1.25 1.25 0 00-1.205.918l-1.523 5.52c-.006.02-.01.041-.015.062H6a1 1 0 01.894.553l.448.894a1 1 0 00.894.553h4.764a1 1 0 00.894-.553l.448-.894A1 1 0 0115 11h3.47a.75.75 0 00.73-.92l-1.523-5.52a1.25 1.25 0 00-1.205-.918h-1.646a.75.75 0 010-1.5h1.646a2.75 2.75 0 012.652 2.019l1.523 5.52c.066.239.099.485.099.732V15a2 2 0 01-2 2H3a2 2 0 01-2-2v-3.73c0-.246.033-.492.099-.73l1.523-5.521A2.75 2.75 0 015.273 3h1.646a.75.75 0 010 1.5H5.273z" />
+                    </svg>
+                </div>
+                <h1 v-if="!sidebarCollapsed" class="text-xl font-bold text-gray-800">Collision System</h1>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="flex-1 overflow-y-auto py-4">
+                <ul class="space-y-2 px-3">
+                    <!-- Dashboard -->
+                    <li>
+                        <a href="#" @click="setActiveTab('dashboard')"
+                            :class="['sidebar-item flex items-center p-3 rounded-xl', activeTab === 'dashboard' ? 'active' : '']">
+                            <i class="fas fa-chart-pie w-6 text-center"></i>
+                            <span v-if="!sidebarCollapsed" class="ml-3">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <!-- IoT Devices -->
+                    <li>
+                        <a href="#" @click="setActiveTab('iot')"
+                            :class="['sidebar-item flex items-center p-3 rounded-xl', activeTab === 'iot' ? 'active' : '']">
+                            <i class="fas fa-microchip w-6 text-center"></i>
+                            <span v-if="!sidebarCollapsed" class="ml-3">IoT Devices</span>
+                        </a>
+                    </li>
+
+                    <!-- Vehicles -->
+                    <li>
+                        <a href="#" @click="setActiveTab('vehicles')"
+                            :class="['sidebar-item flex items-center p-3 rounded-xl', activeTab === 'vehicles' ? 'active' : '']">
+                            <i class="fas fa-car w-6 text-center"></i>
+                            <span v-if="!sidebarCollapsed" class="ml-3">Vehicles</span>
+                        </a>
+                    </li>
+
+                    <!-- Users -->
+                    <li>
+                        <a href="#" @click="setActiveTab('users')"
+                            :class="['sidebar-item flex items-center p-3 rounded-xl', activeTab === 'users' ? 'active' : '']">
+                            <i class="fas fa-users w-6 text-center"></i>
+                            <span v-if="!sidebarCollapsed" class="ml-3">Users</span>
+                        </a>
+                    </li>
+
+                    <!-- Alerts -->
+                    <li>
+                        <a href="#" @click="setActiveTab('alerts')"
+                            :class="['sidebar-item flex items-center p-3 rounded-xl', activeTab === 'alerts' ? 'active' : '']">
+                            <i class="fas fa-bell w-6 text-center"></i>
+                            <span v-if="!sidebarCollapsed" class="ml-3">Alerts</span>
+                            <span v-if="!sidebarCollapsed"
+                                class="ml-auto bg-red-500 text-white px-2 py-1 rounded-full text-xs">5</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- Bottom Section -->
+            <div class="p-4 border-t border-gray-100">
+                <button @click="toggleSidebar"
+                    class="w-full flex items-center justify-center p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+                    <i :class="sidebarCollapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></i>
+                    <span v-if="!sidebarCollapsed" class="ml-2">Collapse</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6">
+            <!-- Header Bar -->
+            <header class="bg-white rounded-xl shadow-sm p-4 mb-6 flex items-center justify-between">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-gray-800">{{ pageTitle }}</h1>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Search Bar -->
+                    <div class="relative hidden md:block">
+                        <input type="text" placeholder="Search..."
+                            class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="relative p-2 text-gray-600 hover:text-blue-600 focus:outline-none">
+                        <i class="fas fa-bell"></i>
+                        <span
+                            class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">5</span>
+                    </button>
+
+                    <!-- User Profile -->
+                    <div class="flex items-center">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b82f6&color=fff" alt="User"
+                            class="w-10 h-10 rounded-full border-2 border-blue-500">
+                        <div class="ml-3 hidden md:block">
+                            <p class="text-sm font-medium text-gray-800">Admin User</p>
+                            <p class="text-xs text-gray-500">admin@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="fade-enter-active">
+                <!-- Dashboard Tab -->
+                <div v-if="activeTab === 'dashboard'">
+                    <!-- Dashboard Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-blue-100">
+                                    <i class="fas fa-microchip text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total IoT Devices</h3>
+                                    <p class="text-2xl font-bold">48</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>12%</span>
+                                <span class="text-gray-400 ml-2">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-green-100">
+                                    <i class="fas fa-car text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total Vehicles</h3>
+                                    <p class="text-2xl font-bold">35</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>8%</span>
+                                <span class="text-gray-400 ml-2">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-red-100">
+                                    <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Active Alerts</h3>
+                                    <p class="text-2xl font-bold">5</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-red-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>3</span>
+                                <span class="text-gray-400 ml-2">from yesterday</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-purple-100">
+                                    <i class="fas fa-shield-alt text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">System Status</h3>
+                                    <p class="text-2xl font-bold">Active</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i
+                                        class="fas fa-check-circle mr-1"></i>All systems normal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity & Quick Actions -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Recent Activity -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-lg font-bold text-gray-800">Recent Activity</h2>
+                                <a href="#" class="text-sm text-blue-600 hover:text-blue-800">View All</a>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div
+                                    class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                                    <div class="rounded-full p-2 bg-blue-100">
+                                        <i class="fas fa-plus text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium">New IoT device registered</p>
+                                        <p class="text-xs text-gray-500">Device ID: IOT-2023-42</p>
+                                        <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                                    <div class="rounded-full p-2 bg-green-100">
+                                        <i class="fas fa-car text-green-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium">Vehicle data updated</p>
+                                        <p class="text-xs text-gray-500">Vehicle ID: VCL-2023-28</p>
+                                        <p class="text-xs text-gray-400 mt-1">5 hours ago</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                                    <div class="rounded-full p-2 bg-red-100">
+                                        <i class="fas fa-exclamation-circle text-red-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium">Alert generated</p>
+                                        <p class="text-xs text-gray-500">Potential collision detected</p>
+                                        <p class="text-xs text-gray-400 mt-1">Yesterday at 18:30</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-all duration-200">
+                                    <div class="rounded-full p-2 bg-yellow-100">
+                                        <i class="fas fa-sync text-yellow-600"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium">System maintenance completed</p>
+                                        <p class="text-xs text-gray-500">All systems updated to v2.3.4</p>
+                                        <p class="text-xs text-gray-400 mt-1">2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="mb-6">
+                                <h2 class="text-lg font-bold text-gray-800">Quick Actions</h2>
+                            </div>
+
+                            <div class="space-y-3">
+                                <button
+                                    class="w-full flex items-center justify-between p-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-all duration-200">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-plus-circle mr-3"></i>
+                                        Register New Device
+                                    </span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <button
+                                    class="w-full flex items-center justify-between p-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-all duration-200">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-car mr-3"></i>
+                                        Add New Vehicle
+                                    </span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <button
+                                    class="w-full flex items-center justify-between p-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-all duration-200">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-file-export mr-3"></i>
+                                        Export Data
+                                    </span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <button
+                                    class="w-full flex items-center justify-between p-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-all duration-200">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-cog mr-3"></i>
+                                        System Settings
+                                    </span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IoT Devices Tab -->
+                <div v-if="activeTab === 'iot'" class="fade-enter-active">
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-blue-100">
+                                    <i class="fas fa-microchip text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total Devices</h3>
+                                    <p class="text-2xl font-bold">{{ devices.length }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>8%</span>
+                                <span class="text-gray-400 ml-2">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-green-100">
+                                    <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Active Devices</h3>
+                                    <p class="text-2xl font-bold">{{ activeDevices }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i class="fas fa-check mr-1"></i>{{
+                                    activeDevicesPercentage }}%</span>
+                                <span class="text-gray-400 ml-2">operational rate</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-yellow-100">
+                                    <i class="fas fa-tools text-yellow-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Maintenance Due</h3>
+                                    <p class="text-2xl font-bold">{{ maintenanceDueCount }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-yellow-500 flex items-center"><i class="fas fa-clock mr-1"></i>Next in
+                                    5 days</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-red-100">
+                                    <i class="fas fa-exclamation-circle text-red-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Disconnected</h3>
+                                    <p class="text-2xl font-bold">{{ devices.length - activeDevices }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-red-500 flex items-center"><i
+                                        class="fas fa-arrow-down mr-1"></i>2</span>
+                                <span class="text-gray-400 ml-2">from yesterday</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Device & Device List -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Add New Device Form -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="mb-6">
+                                <h2 class="text-lg font-bold text-gray-800">Add New Device</h2>
+                                <p class="text-sm text-gray-500">Register a new IoT device to the system</p>
+                            </div>
+
+                            <form @submit.prevent="addNewDevice" class="space-y-4">
+                                <div>
+                                    <label for="device_serial"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Device Serial
+                                        Number</label>
+                                    <input type="text" id="device_serial" v-model="newDevice.device_id"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. IOT-2023-042" required>
+                                </div>
+
+                                <div>
+                                    <label for="vehicle_id"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Associated Vehicle</label>
+                                    <select id="vehicle_id" v-model="newDevice.vehicle_id"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option value="" disabled selected>Select a vehicle</option>
+                                        <option v-for="vehicle in vehicles" :key="vehicle.vehicle_id"
+                                            :value="vehicle.vehicle_id">
+                                            {{ vehicle.vehicle_name }} (ID: {{ vehicle.vehicle_id }})
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="is_active" v-model="newDevice.is_active"
+                                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="is_active" class="ml-2 block text-sm text-gray-700">Set as
+                                        active</label>
+                                </div>
+
+                                <div class="pt-2">
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        <i class="fas fa-plus-circle mr-2"></i>Register Device
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Device List -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-800">IoT Devices</h2>
+                                    <p class="text-sm text-gray-500">Manage your registered devices</p>
+                                </div>
+
+                                <div class="flex space-x-2">
+                                    <div class="relative">
+                                        <input type="text" v-model="deviceSearchQuery" placeholder="Search devices..."
+                                            class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+
+                                    <select v-model="deviceFilter"
+                                        class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="all">All Devices</option>
+                                        <option value="active">Active Only</option>
+                                        <option value="inactive">Inactive Only</option>
+                                        <option value="maintenance">Maintenance Due</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Serial Number
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Vehicle
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Installation Date
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Status
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Last Maintenance
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr v-for="device in filteredDevices" :key="device.association_id"
+                                            class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="font-medium text-gray-900">{{ device.device_serial }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{ getVehicleName(device.vehicle_id)
+                                                    }}</div>
+                                                <div class="text-xs text-gray-500">ID: {{ device.vehicle_id }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{
+                                                    formatDate(device.installation_date) }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span :class="[
+                                                    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full',
+                                                    device.is_active 
+                                                        ? 'bg-green-100 text-green-800' 
+                                                        : 'bg-red-100 text-red-800'
+                                                ]">
+                                                    {{ device.is_active ? 'Active' : 'Inactive' }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div v-if="device.last_maintenance" class="text-sm text-gray-900">
+                                                    {{ formatDate(device.last_maintenance) }}
+                                                </div>
+                                                <div v-else class="text-sm text-gray-500">
+                                                    Not maintained
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <button @click="editDevice(device)"
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button @click="toggleDeviceStatus(device)" :class="[
+                                                    device.is_active 
+                                                        ? 'text-green-600 hover:text-green-900' 
+                                                        : 'text-red-600 hover:text-red-900'
+                                                ]">
+                                                    <i :class="[
+                                                        device.is_active 
+                                                            ? 'fas fa-toggle-on' 
+                                                            : 'fas fa-toggle-off'
+                                                    ]"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Empty State -->
+                                        <tr v-if="filteredDevices.length === 0">
+                                            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+                                                <div class="py-8">
+                                                    <i class="fas fa-search text-gray-300 text-4xl mb-3"></i>
+                                                    <p>No devices found. Try adjusting your search or filters.</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="pt-4 flex items-center justify-between border-t border-gray-200 mt-4">
+                                <div class="text-sm text-gray-500">
+                                    Showing {{ Math.min(1, filteredDevices.length) }}-{{ filteredDevices.length }} of {{
+                                    filteredDevices.length }} results
+                                </div>
+
+                                <div class="flex space-x-2">
+                                    <button
+                                        class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        Previous
+                                    </button>
+                                    <button
+                                        class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div v-if="showEditModal"
+                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 m-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-800">Edit Device</h3>
+                                <button @click="showEditModal = false" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <form @submit.prevent="updateDevice" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Device Serial
+                                        Number</label>
+                                    <input type="text" v-model="editingDevice.device_serial"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        readonly>
+                                    <p class="text-xs text-gray-500 mt-1">Serial number cannot be changed</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Associated
+                                        Vehicle</label>
+                                    <select v-model="editingDevice.vehicle_id"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option v-for="vehicle in vehicles" :key="vehicle.vehicle_id"
+                                            :value="vehicle.vehicle_id">
+                                            {{ vehicle.vehicle_name }} (ID: {{ vehicle.vehicle_id }})
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Installation
+                                        Date</label>
+                                    <input type="date" v-model="editingDevice.installation_date"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="edit_is_active" v-model="editingDevice.is_active"
+                                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="edit_is_active" class="ml-2 block text-sm text-gray-700">Device is
+                                        active</label>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Maintenance</label>
+                                    <input type="date" v-model="editingDevice.last_maintenance"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+
+                                <div class="flex space-x-3 pt-2">
+                                    <button type="button" @click="showEditModal = false"
+                                        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicles Tab -->
+                <div v-if="activeTab === 'vehicles'" class="fade-enter-active">
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-green-100">
+                                    <i class="fas fa-car text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total Vehicles</h3>
+                                    <p class="text-2xl font-bold">{{ vehicles.length }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>8%</span>
+                                <span class="text-gray-400 ml-2">from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-blue-100">
+                                    <i class="fas fa-microchip text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">IoT Connected</h3>
+                                    <p class="text-2xl font-bold">{{ vehiclesWithIot }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-blue-500 flex items-center"><i class="fas fa-check mr-1"></i>{{
+                                    iotConnectionPercentage }}%</span>
+                                <span class="text-gray-400 ml-2">connection rate</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-yellow-100">
+                                    <i class="fas fa-tools text-yellow-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Maintenance Due</h3>
+                                    <p class="text-2xl font-bold">{{ vehicleMaintenanceDue }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-yellow-500 flex items-center"><i class="fas fa-clock mr-1"></i>Next in
+                                    7 days</span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-purple-100">
+                                    <i class="fas fa-chart-line text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Data Points</h3>
+                                    <p class="text-2xl font-bold">152.4K</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-purple-500 flex items-center"><i
+                                        class="fas fa-arrow-up mr-1"></i>24%</span>
+                                <span class="text-gray-400 ml-2">from last week</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Vehicle & Vehicle List -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Add New Vehicle Form -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="mb-6">
+                                <h2 class="text-lg font-bold text-gray-800">Register New Vehicle</h2>
+                                <p class="text-sm text-gray-500">Add a new vehicle to the system</p>
+                            </div>
+
+                            <form @submit.prevent="addNewVehicle" class="space-y-4">
+
+                                <div>
+                                    <label for="license_plate"
+                                        class="block text-sm font-medium text-gray-700 mb-1">License Plate</label>
+                                    <input type="text" id="license_plate" v-model="newVehicle.reg"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. ABC-1234" required>
+                                </div>
+
+                                <div>
+                                    <label for="manufacturer"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Manufacturer</label>
+                                    <input type="text" id="manufacturer" v-model="newVehicle.make"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Toyota" required>
+                                </div>
+
+                                <div>
+                                    <label for="manufacturer"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Model</label>
+                                    <input type="text" id="manufacturer" v-model="newVehicle.model"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Mark x" required>
+                                </div>
+
+                                <div>
+                                    <label for="manufacturer"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                                    <input type="text" id="manufacturer" v-model="newVehicle.colour"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Black" required>
+                                </div>
+
+                                <div>
+                                    <label for="model_year" class="block text-sm font-medium text-gray-700 mb-1">Model
+                                        Year</label>
+                                    <input type="number" id="model_year" v-model="newVehicle.year"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. 2023" required>
+                                </div>
+
+                                <div>
+                                    <label for="registration_date"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Registration Date</label>
+                                    <input type="date" id="registration_date" v-model="newVehicle.registration_date"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="user_id" class="block text-sm font-medium text-gray-700 mb-1">Vehicle Owner</label>
+                                    <select id="user_id" v-model="newVehicle.user_id"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option value="" disabled selected>Select vehicle owner</option>
+                                        <option v-for="user in users" :key="user.user_id" :value="user.user_id">
+                                            {{ user.full_name }} (ID: {{ user.user_id }})
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="pt-2">
+                                    <button type="submit"
+                                        class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        <i class="fas fa-plus-circle mr-2"></i>Register Vehicle
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Vehicle List -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-800">Registered Vehicles</h2>
+                                    <p class="text-sm text-gray-500">Manage your fleet</p>
+                                </div>
+
+                                <div class="flex space-x-2">
+                                    <div class="relative">
+                                        <input type="text" v-model="vehicleSearchQuery" placeholder="Search vehicles..."
+                                            class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+
+                                    <select v-model="vehicleFilter"
+                                        class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="all">All Vehicles</option>
+                                        <option value="active">Active Only</option>
+                                        <option value="inactive">Inactive Only</option>
+                                        <option value="connected">IoT Connected</option>
+                                        <option value="not_connected">Not Connected</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Vehicle
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Info
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Registration
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Status
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                IoT Connection
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr v-for="vehicle in filteredVehicles" :key="vehicle.vehicle_id"
+                                            class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="font-medium text-gray-900">{{ vehicle.registration_number }}</div>
+                                                <div class="text-xs text-gray-500">ID: {{ vehicle.vehicle_id }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{ vehicle.make }}</div>
+                                                <div class="text-xs text-gray-500">Model: {{ vehicle.model }}</div>
+                                                <div class="text-xs text-gray-500">Color: {{ vehicle.color }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{ formatDate(vehicle.added_date) }}</div>
+                                                <div class="text-xs text-gray-500">Owner: {{ getVehicleOwner(vehicle.user_id) }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span :class="[
+                                                    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full',
+                                                    vehicle.is_active 
+                                                        ? 'bg-green-100 text-green-800' 
+                                                        : 'bg-red-100 text-red-800'
+                                                ]">
+                                                    {{ vehicle.is_active ? 'Active' : 'Inactive' }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span :class="[
+                                                    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full',
+                                                    hasIotDevice(vehicle.vehicle_id) 
+                                                        ? 'bg-blue-100 text-blue-800' 
+                                                        : 'bg-gray-100 text-gray-800'
+                                                ]">
+                                                    {{ hasIotDevice(vehicle.vehicle_id) ? 'Connected' : 'Not Connected'
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <button @click="editVehicle(vehicle)"
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button @click="toggleVehicleStatus(vehicle)" :class="[
+                                                    vehicle.is_active 
+                                                        ? 'text-green-600 hover:text-green-900' 
+                                                        : 'text-red-600 hover:text-red-900'
+                                                ]">
+                                                    <i :class="[
+                                                        vehicle.is_active 
+                                                            ? 'fas fa-toggle-on' 
+                                                            : 'fas fa-toggle-off'
+                                                    ]"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Empty State -->
+                                        <tr v-if="filteredVehicles.length === 0">
+                                            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+                                                <div class="py-8">
+                                                    <i class="fas fa-search text-gray-300 text-4xl mb-3"></i>
+                                                    <p>No vehicles found. Try adjusting your search or filters.</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="pt-4 flex items-center justify-between border-t border-gray-200 mt-4">
+                                <div class="text-sm text-gray-500">
+                                    Showing {{ Math.min(1, filteredVehicles.length) }}-{{ filteredVehicles.length }} of
+                                    {{ filteredVehicles.length }} results
+                                </div>
+
+                                <div class="flex space-x-2">
+                                    <button
+                                        class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        Previous
+                                    </button>
+                                    <button
+                                        class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Vehicle Modal -->
+                    <div v-if="showVehicleEditModal"
+                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 m-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-800">Edit Vehicle</h3>
+                                <button @click="showVehicleEditModal = false" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <form @submit.prevent="updateVehicle" class="space-y-4">
+                                <div>
+                                    <label for="edit_license_plate" class="block text-sm font-medium text-gray-700 mb-1">License Plate</label>
+                                    <input type="text" id="edit_license_plate" v-model="editingVehicle.registration_number"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. ABC-1234" required>
+                                </div>
+
+                                <div>
+                                    <label for="edit_manufacturer" class="block text-sm font-medium text-gray-700 mb-1">Manufacturer</label>
+                                    <input type="text" id="edit_manufacturer" v-model="editingVehicle.make"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Toyota" required>
+                                </div>
+
+                                <div>
+                                    <label for="edit_model" class="block text-sm font-medium text-gray-700 mb-1">Model</label>
+                                    <input type="text" id="edit_model" v-model="editingVehicle.model"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Mark x" required>
+                                </div>
+
+                                <div>
+                                    <label for="edit_color" class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                                    <input type="text" id="edit_color" v-model="editingVehicle.color"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. Black" required>
+                                </div>
+
+                                <div>
+                                    <label for="edit_year" class="block text-sm font-medium text-gray-700 mb-1">Model Year</label>
+                                    <input type="number" id="edit_year" v-model="editingVehicle.year"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g. 2023" required>
+                                </div>
+
+                                <div class="flex space-x-3 pt-2">
+                                    <button type="button" @click="showVehicleEditModal = false"
+                                        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Assign IoT Modal -->
+                    <div v-if="showAssignIotModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 m-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-800">Assign IoT Device</h3>
+                                <button @click="showAssignIotModal = false" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-700">
+                                    Assign an IoT device to <span class="font-semibold">{{ assigningVehicle.vehicle_name }}</span>
+                                    (ID: {{ assigningVehicle.vehicle_id }})
+                                </p>
+                            </div>
+
+                            <form @submit.prevent="assignIotDevice" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Select IoT Device</label>
+                                    <select v-model="selectedIotDevice"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option value="" disabled selected>Choose an available device</option>
+                                        <option v-for="device in availableIotDevices" :key="device.device_serial"
+                                            :value="device.device_serial">
+                                            {{ device.device_serial }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Installation Date</label>
+                                    <input type="date" v-model="iotInstallationDate"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div class="flex space-x-3 pt-2">
+                                    <button type="button" @click="showAssignIotModal = false"
+                                        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Assign Device
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Tab -->
+                <div v-if="activeTab === 'users'" class="fade-enter-active">
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-blue-100">
+                                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total Users</h3>
+                                    <!-- <p class="text-2xl font-bold">{{ users.length }}</p> -->
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-blue-500 flex items-center">
+                                    <i class="fas fa-chart-line mr-1"></i>Vehicle owners
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-green-100">
+                                    <i class="fas fa-car text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Vehicles Owned</h3>
+                                    <!-- <p class="text-2xl font-bold">{{ vehicles.length }}</p> -->
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-green-500 flex items-center">
+                                    <i class="fas fa-check mr-1"></i>Registered vehicles
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-purple-100">
+                                    <i class="fas fa-user-plus text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">New Users</h3>
+                                    <p class="text-2xl font-bold">12</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-purple-500 flex items-center">
+                                    <i class="fas fa-calendar mr-1"></i>This month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New User & User List -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Add New User Form -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="mb-6">
+                                <h2 class="text-lg font-bold text-gray-800">Add New User</h2>
+                                <p class="text-sm text-gray-500">Register a new vehicle owner</p>
+                            </div>
+
+                            <form @submit.prevent="addNewUser" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" v-model="newUser.name"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter full name" required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" v-model="newUser.email"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter email address" required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" v-model="newUser.phone"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter phone number" required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                    <input type="text" v-model="newUser.city"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter city" required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                    <input type="text" v-model="newUser.address"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter address" required>
+                                </div>
+
+                                <div class="pt-2">
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        <i class="fas fa-user-plus mr-2"></i>Add User
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- User List -->
+                        <div class="card bg-white p-6 rounded-xl shadow-sm lg:col-span-2">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-800">Registered Users</h2>
+                                    <p class="text-sm text-gray-500">Manage vehicle owners</p>
+                                </div>
+
+                                <div class="flex space-x-2">
+                                    <div class="relative">
+                                        <input type="text" v-model="userSearchQuery" placeholder="Search users..."
+                                            class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                User
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Contact
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Address
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr v-for="user in filteredUserz" :key="user.user_id" class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img :src="'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.full_name)"
+                                                        class="w-8 h-8 rounded-full" :alt="user.full_name">
+                                                    <div class="ml-3">
+                                                        <div class="font-medium text-gray-900">{{ user.full_name }}</div>
+                                                        <div class="text-xs text-gray-500">ID: {{ user.user_id }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">{{ user.email }}</div>
+                                                <div class="text-xs text-gray-500">{{ user.phone_number }}</div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="text-sm text-gray-600">{{ user.city }}</div>
+                                                <div class="text-xs text-gray-500">{{ user.home_address }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <button @click="editUser(user)"
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button @click="deleteUser(user)"
+                                                    class="text-red-600 hover:text-red-900">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit User Modal -->
+                    <div v-if="showUserEditModal"
+                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 m-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-800">Edit User</h3>
+                                <button @click="showUserEditModal = false" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <form @submit.prevent="updateUser" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" v-model="editingUser.full_name"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" v-model="editingUser.email"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" v-model="editingUser.phone_number"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                    <input type="text" v-model="editingUser.city"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                    <input type="text" v-model="editingUser.home_address"
+                                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                </div>
+
+                                <div class="flex space-x-3 pt-2">
+                                    <button type="button" @click="showUserEditModal = false"
+                                        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div v-if="activeTab === 'alerts'" class="fade-enter-active">
+                    <!-- Statistics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-red-100">
+                                    <i class="fas fa-bell text-red-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4"></div>
+                                    <h3 class="text-gray-500 text-sm">Unread Alerts</h3>
+                                    <p class="text-2xl font-bold">{{ unreadNotifications }}</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-red-500 flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-1"></i>Requires attention
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-yellow-100">
+                                    <i class="fas fa-exclamation-triangle text-yellow-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">High Priority</h3>
+                                    <p class="text-2xl font-bold">
+                                        <!-- {{ notifications.filter(n => n.severity === 'high').length }} -->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-yellow-500 flex items-center">
+                                    <i class="fas fa-clock mr-1"></i>Immediate action needed
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center">
+                                <div class="rounded-full p-3 bg-blue-100">
+                                    <i class="fas fa-check-circle text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-gray-500 text-sm">Total Alerts</h3>
+                                    <!-- <p class="text-2xl font-bold">{{ notifications.length }}</p> -->
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="text-blue-500 flex items-center">
+                                    <i class="fas fa-history mr-1"></i>All time
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications List -->
+                    <div class="card bg-white p-6 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h2 class="text-lg font-bold text-gray-800">Notifications</h2>
+                                <p class="text-sm text-gray-500">Manage system alerts and notifications</p>
+                            </div>
+
+                            <div class="flex space-x-2">
+                                <div class="relative">
+                                    <input type="text" v-model="notificationSearchQuery"
+                                        placeholder="Search notifications..."
+                                        class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-400"></i>
+                                    </div>
+                                </div>
+
+                                <select v-model="notificationFilter"
+                                    class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="all">All Notifications</option>
+                                    <option value="unread">Unread Only</option>
+                                    <option value="high">High Priority</option>
+                                    <option value="medium">Medium Priority</option>
+                                    <option value="low">Low Priority</option>
+                                </select>
+
+                                <button @click="markAllAsRead"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                    <i class="fas fa-check-double mr-2"></i>Mark All Read
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div v-for="notification in filteredNotifications" :key="notification.id" :class="['p-4 rounded-lg border transition-all duration-200 hover:shadow-md', 
+                    notification.status === 'unread' ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                ]">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-start space-x-3">
+                                        <div :class="[
+                            'rounded-full p-2',
+                            {
+                                'bg-red-100': notification.severity === 'high',
+                                'bg-yellow-100': notification.severity === 'medium',
+                                'bg-blue-100': notification.severity === 'low'
+                            }
+                        ]">
+                                            <i :class="[
+                                'text-lg',
+                                {
+                                    'fas fa-exclamation-circle text-red-600': notification.severity === 'high',
+                                    'fas fa-exclamation-triangle text-yellow-600': notification.severity === 'medium',
+                                    'fas fa-info-circle text-blue-600': notification.severity === 'low'
+                                }
+                            ]"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">{{ notification.message }}</p>
+                                            <div class="mt-1 flex items-center space-x-2 text-sm text-gray-500">
+                                                <span v-if="notification.vehicle_id">
+                                                    <i class="fas fa-car mr-1"></i>
+                                                    {{ getVehicleName(notification.vehicle_id) }}
+                                                </span>
+                                                <span>
+                                                    <i class="fas fa-clock mr-1"></i>
+                                                    {{ formatDate(notification.timestamp) }}
+                                                </span>
+                                                <span :class="[
+                                    'px-2 rounded-full text-xs font-semibold',
+                                    {
+                                        'bg-red-100 text-red-800': notification.severity === 'high',
+                                        'bg-yellow-100 text-yellow-800': notification.severity === 'medium',
+                                        'bg-blue-100 text-blue-800': notification.severity === 'low'
+                                    }
+                                ]">
+                                                    {{ notification.severity.charAt(0).toUpperCase() +
+                                                    notification.severity.slice(1) }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button @click="viewNotificationDetails(notification)"
+                                            class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button v-if="notification.status === 'unread'"
+                                            @click="markAsRead(notification)"
+                                            class="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors duration-200">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button @click="deleteNotification(notification)"
+                                            class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Empty State -->
+                            <div v-if="filteredNotifications.length === 0" class="text-center py-12">
+                                <i class="fas fa-bell-slash text-gray-300 text-4xl mb-3"></i>
+                                <p class="text-gray-500">No notifications found</p>
+                                <p class="text-sm text-gray-400">Try adjusting your search or filters</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Details Modal -->
+                    <div v-if="showNotificationModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 m-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-gray-800">Notification Details</h3>
+                                <button @click="showNotificationModal = false" class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-4" v-if="selectedNotification">
+                                <div :class="[
+                    'p-4 rounded-lg',
+                    {
+                        'bg-red-50': selectedNotification.severity === 'high',
+                        'bg-yellow-50': selectedNotification.severity === 'medium',
+                        'bg-blue-50': selectedNotification.severity === 'low'
+                    }
+                ]">
+                                    <p class="font-medium text-gray-900">{{ selectedNotification.message }}</p>
+                                    <div class="mt-2 space-y-2 text-sm">
+                                        <p v-if="selectedNotification.vehicle_id" class="text-gray-600">
+                                            <i class="fas fa-car mr-2"></i>
+                                            Vehicle: {{ getVehicleName(selectedNotification.vehicle_id) }}
+                                        </p>
+                                        <p class="text-gray-600">
+                                            <i class="fas fa-clock mr-2"></i>
+                                            Time: {{ formatDate(selectedNotification.timestamp) }}
+                                        </p>
+                                        <p class="text-gray-600">
+                                            <i class="fas fa-exclamation-circle mr-2"></i>
+                                            Priority: {{ selectedNotification.severity.charAt(0).toUpperCase() +
+                                            selectedNotification.severity.slice(1) }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="pt-4 flex justify-end space-x-3">
+                                    <button @click="showNotificationModal = false"
+                                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-200">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collision Detection Dashboard</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../config.js"></script>
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(0.5); opacity: 0.5; }
+            50% { transform: scale(3); opacity: 0.45; }
+            100% { transform: scale(0.5); opacity: 0.5; }
+        }
+        .marker-icon {
+            position: relative;
+        }
+        .marker-icon .pulse-ring {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            top: -15px;
+            left: -15px;
+            animation: pulse 1s infinite;
+        }
+        .marker-icon .icon {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: -10px;
+            left: -10px;
+            z-index: 1;
+        }
+        .map-container {
+            height: calc(100vh - 4rem);
+            width: 100%;
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+        .leaflet-popup-content {
+            margin: 0;
+            padding: 0.5rem;
+        }
+        .stats-bar {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding-bottom: 5px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3B82F6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Modern button styles */
+        .modern-button {
+            transition: all 0.2s ease;
+            transform: translateY(0);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .modern-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .modern-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Confirmation modal styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .modal-container {
+            max-width: 400px;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="app" class="h-screen">
+        <!-- Top Stats Bar -->
+        <div class="stats-bar fixed top-0 left-0 right-0 z-10 px-20 py-1 shadow">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold text-gray-800">Vehicle Collision Dashboard</h1>
+                
+                <!-- Controls -->
+                <div class="flex items-center space-x-6">
+                    <!-- Map Toggle -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-gray-600">Map</span>
+                        <label class="switch">
+                            <input type="checkbox" v-model="useSatellite">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="text-sm text-gray-600">Satellite</span>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="flex space-x-4">
+                        <div class="text-center">
+                            <p class="text-lg text-gray-500">Incidents</p>
+                            <p class="font-semibold">{{ totalIncidents }}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg text-gray-500">Active</p>
+                            <p class="font-semibold">{{ activeVehicles }}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg text-gray-500">Avg Severity</p>
+                            <p class="font-semibold">{{ averageSeverity }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Details Button -->
+                    <button @click="toggleDetails" 
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm flex items-center hover:bg-blue-700 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="pt-16">
+            <div id="map" class="map-container"></div>
+        </div>
+        
+        <!-- Modal Overlay -->
+        <div v-show="showDetails" class="fixed inset-0 bg-black bg-opacity-50 z-[1000]">
+            <div class="fixed inset-x-0 bottom-0 bg-white rounded-t-xl shadow-xl max-h-[70vh] overflow-y-auto"
+                 @click.stop>
+                <div class="sticky top-0 bg-white px-6 py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-semibold">Recent Incidents</h2>
+                        <button @click="toggleDetails" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr v-for="incident in incidents" :key="incident.id" class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ incident.timestamp }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ incident.vehicleId }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ incident.location }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span :class="getSeverityClass(incident.score)" 
+                                          class="px-2 py-1 text-xs font-semibold rounded-full">
+                                        {{ incident.severity }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Confirmation Modal -->
+        <div v-if="showConfirmModal" class="modal-overlay fixed inset-0 flex items-center justify-center active z-[2000]">
+            <div class="modal-container bg-white p-6 mx-4">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900">Confirm Attendance</h3>
+                    <button @click="cancelAttend" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-2">Are you sure you want to attend to this incident?</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-600"><strong>Vehicle:</strong> {{ selectedIncident.vehicleId }}</p>
+                        <p class="text-sm text-gray-600"><strong>Time:</strong> {{ selectedIncident.timestamp }}</p>
+                        <p class="text-sm text-gray-600"><strong>Severity:</strong> {{ selectedIncident.severity }}</p>
+                        <p class="text-sm text-gray-600"><strong>Location:</strong> {{ selectedIncident.location }}</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <button @click="cancelAttend" 
+                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
+                        Cancel
+                    </button>
+                    <button @click="confirmAttend" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

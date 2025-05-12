@@ -1,0 +1,8 @@
+{
+    "reg": "ABC123",
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2010,
+    "colour": "Red",
+    "user_id": 1
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Service Registration - Collision Detection Dashboard</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gradient-overlay {
+            background-image: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(59, 130, 246, 0.7));
+        }
+
+        .form-card {
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            transform: translateY(-2px);
+        }
+
+        .logo-pulse {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="min-h-screen flex">
+        <!-- Left Sidebar / Banner -->
+        <div class="hidden lg:flex lg:w-1/3 gradient-overlay items-center justify-center relative overflow-hidden">
+            <div class="relative z-10 px-8 py-12 text-white text-center">
+                <div class="logo-pulse bg-white p-4 rounded-full inline-block mb-6">
+                    <svg class="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 2a.75.75 0 01.75.75v5.59l1.95-2.1a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0L6.2 7.26a.75.75 0 111.1-1.02l1.95 2.1V2.75A.75.75 0 0110 2z" />
+                        <path
+                            d="M5.273 4.5a1.25 1.25 0 00-1.205.918l-1.523 5.52c-.006.02-.01.041-.015.062H6a1 1 0 01.894.553l.448.894a1 1 0 00.894.553h4.764a1 1 0 00.894-.553l.448-.894A1 1 0 0115 11h3.47a.75.75 0 00.73-.92l-1.523-5.52a1.25 1.25 0 00-1.205-.918h-1.646a.75.75 0 010-1.5h1.646a2.75 2.75 0 012.652 2.019l1.523 5.52c.066.239.099.485.099.732V15a2 2 0 01-2 2H3a2 2 0 01-2-2v-3.73c0-.246.033-.492.099-.73l1.523-5.521A2.75 2.75 0 015.273 3h1.646a.75.75 0 010 1.5H5.273z" />
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold mb-4">Vehicle Collision Dashboard</h1>
+                <p class="text-lg mb-8 opacity-90">Register your emergency service to provide rapid response during
+                    critical situations.</p>
+
+                <div class="space-y-6 mt-16">
+                    <div class="flex items-center">
+                        <div class="bg-blue-400 bg-opacity-30 rounded-full p-2 mr-4">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-left">Real-time incident monitoring</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-blue-400 bg-opacity-30 rounded-full p-2 mr-4">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-left">Immediate notification system</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-blue-400 bg-opacity-30 rounded-full p-2 mr-4">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-left">Automated resource allocation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative elements -->
+            <div class="absolute bottom-0 left-0 right-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="text-white opacity-10">
+                    <path fill="currentColor" fill-opacity="1"
+                        d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Main Content / Form -->
+        <div class="w-full lg:w-2/3 p-6 md:p-12 flex items-center justify-center">
+            <div class="form-card w-full max-w-4xl rounded-2xl p-6 md:p-10">
+                <!-- Mobile Header (visible only on small screens) -->
+                <div class="flex items-center justify-center mb-8 lg:hidden">
+                    <div class="logo-pulse bg-blue-600 p-3 rounded-full mr-3">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a.75.75 0 01.75.75v5.59l1.95-2.1a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0L6.2 7.26a.75.75 0 111.1-1.02l1.95 2.1V2.75A.75.75 0 0110 2z" />
+                            <path
+                                d="M5.273 4.5a1.25 1.25 0 00-1.205.918l-1.523 5.52c-.006.02-.01.041-.015.062H6a1 1 0 01.894.553l.448.894a1 1 0 00.894.553h4.764a1 1 0 00.894-.553l.448-.894A1 1 0 0115 11h3.47a.75.75 0 00.73-.92l-1.523-5.52a1.25 1.25 0 00-1.205-.918h-1.646a.75.75 0 010-1.5h1.646a2.75 2.75 0 012.652 2.019l1.523 5.52c.066.239.099.485.099.732V15a2 2 0 01-2 2H3a2 2 0 01-2-2v-3.73c0-.246.033-.492.099-.73l1.523-5.521A2.75 2.75 0 015.273 3h1.646a.75.75 0 010 1.5H5.273z" />
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-800">Vehicle Collision Dashboard</h1>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Register Emergency Service</h2>
+                    <p class="text-gray-500">Complete the form below to register your emergency service in our system.
+                    </p>
+                </div>
+
+                <form @submit.prevent="handleRegistration">
+                    <div class="grid-container">
+                        <!-- Service Type Input -->
+                        <div class="mb-6">
+                            <label for="serviceType" class="block text-sm font-medium text-gray-700 mb-2">Service
+                                Type</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <select v-model="regForm.serviceType" id="serviceType" required
+                                    class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200">
+                                    <option value="">Select service type</option>
+                                    <option value="ambulance">Ambulance</option>
+                                    <option value="fire">Fire Department</option>
+                                    <option value="police">Police</option>
+                                    <option value="roadside">Roadside Assistance</option>
+                                    <option value="medical">Medical Response</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Service Name Input -->
+                        <div class="mb-6">
+                            <label for="serviceName" class="block text-sm font-medium text-gray-700 mb-2">Service
+                                Provider Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                </div>
+                                <input v-model="regForm.serviceName" id="serviceName" type="text" required
+                                    class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                    placeholder="Enter service provider name">
+                            </div>
+                        </div>
+
+                        <!-- Incident Type Input -->
+                        <div class="mb-6">
+                            <label for="incidentType" class="block text-sm font-medium text-gray-700 mb-2">Associated
+                                Incident Type</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </div>
+                                <select v-model="regForm.incidentType" id="incidentType" required
+                                    class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200">
+                                    <option value="">Select incident type</option>
+                                    <option value="collision">Collision</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="medical">Medical Emergency</option>
+                                    <option value="roadside">Roadside Assistance</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- City Input -->
+                        <div class="mb-6">
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <input v-model="regForm.city" id="city" type="text" required
+                                    class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                    placeholder="Enter city">
+                            </div>
+                        </div>
+
+                        <!-- Province Input -->
+                        <div class="mb-6">
+                            <label for="province" class="block text-sm font-medium text-gray-700 mb-2">Province</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                                    </svg>
+                                </div>
+                                <input v-model="regForm.province" id="province" type="text" required
+                                    class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                    placeholder="Enter province">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Replace the email input section -->
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                </svg>
+                            </div>
+                            <input v-model="regForm.email" id="email" type="email" required
+                                class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                placeholder="Enter email address">
+                        </div>
+                    </div>
+
+
+                    <!-- Address Input (full width) -->
+                    <div class="mb-6">
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </div>
+                            <input v-model="regForm.address" id="address" type="text" required
+                                class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                placeholder="Enter complete address">
+                        </div>
+                    </div>
+
+                    <!-- Contact Number Input -->
+                    <div class="mb-6">
+                        <label for="contactNumber" class="block text-sm font-medium text-gray-700 mb-2">Contact
+                            Number</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <input v-model="regForm.contactNumber" id="contactNumber" type="tel" required
+                                class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                placeholder="Enter contact number">
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <input v-model="regForm.password" id="password" :type="showPassword ? 'text' : 'password'"
+                                required
+                                class="form-input pl-12 w-full border-0 bg-gray-50 rounded-xl py-4 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
+                                placeholder="Enter password">
+                            <button type="button" @click="togglePassword"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path v-if="showPassword" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path v-if="showPassword" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Form Actions -->
+                    <div class="flex flex-col md:flex-row gap-4 mt-8">
+                        <button type="submit"
+                            class="flex-1 bg-blue-600 text-white font-semibold py-4 px-6 rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+                            Register Service
+                        </button>
+                        <button type="button"
+                            @click="backToLogin"
+                            class="flex-1 bg-gray-100 text-gray-700 font-semibold py-4 px-6 rounded-xl shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-all duration-200">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/reg.js"></script>
+</body>
+
+</html>

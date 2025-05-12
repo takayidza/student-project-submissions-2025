@@ -1,0 +1,2 @@
+{"gps": {"latitude": 0.0, "longitude": 0.0, "altitude": 0.0, "speed": 0.0, "satellites": 0, "hdop": 9999, "time": "2000-00-00T00:00:00Z"}, "accelerometer": {"x": 10.97, "y": 43.13, "z":
+ -4.24}, "gyroscope": {"x": 2.21, "y": -0.61, "z": -4.65}, "vehicle_id": 1, "device_id": 1, "timestamp": 40987, "severity": {"score": 7.0, "level": "Severe"}}
