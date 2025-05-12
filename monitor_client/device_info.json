@@ -1,0 +1,494 @@
+{
+  "hostname": "DESKTOP-0OJ41K6",
+  "ip_address": "172.20.10.5",
+  "mac_address": "c4:c6:e6:29:ba:a8",
+  "os_info": {
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.26100",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel"
+  },
+  "serial_number": "PF4WJJLG",
+  "installed_software": [
+    {
+      "name": "7-Zip 19.00 (x64)",
+      "version": "19.00",
+      "publisher": "Igor Pavlov"
+    },
+    {
+      "name": "Anaconda3 2024.10-1 (Python 3.12.7 64-bit)",
+      "version": "2024.10-1",
+      "publisher": "Anaconda, Inc."
+    },
+    {
+      "name": "Mozilla Firefox (x64 en-US)",
+      "version": "138.0.1",
+      "publisher": "Mozilla"
+    },
+    {
+      "name": "Mozilla Maintenance Service",
+      "version": "81.0",
+      "publisher": "Mozilla"
+    },
+    {
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "name": "Microsoft 365 Apps for enterprise - en-us",
+      "version": "16.0.18730.20122",
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "version": "17.4-1",
+      "publisher": "PostgreSQL Global Development Group",
+      "name": "PostgreSQL 17",
+      "install_date": "2025-03-07"
+    },
+    {
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "name": "WinRAR 5.90 (64-bit)",
+      "version": "5.90.0",
+      "publisher": "win.rar GmbH"
+    },
+    {
+      "version": "8.0.30-0",
+      "publisher": "Apache Friends",
+      "name": "XAMPP",
+      "install_date": "2025-03-06"
+    },
+    {
+      "name": "Zotero",
+      "version": "7.0.9",
+      "publisher": "Corporation for Digital Scholarship"
+    },
+    {
+      "version": "14.36.32532",
+      "install_date": "2024-10-13",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532"
+    },
+    {
+      "version": "5.0.14.1",
+      "install_date": "2025-05-06",
+      "publisher": "Poradowski.com",
+      "name": "Redis on Windows"
+    },
+    {
+      "name": "Free Download Manager",
+      "version": "6.25.0.6016",
+      "publisher": "Softdeluxe",
+      "install_date": "2024-12-28"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Development Libraries (64-bit)"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Core Interpreter (64-bit)"
+    },
+    {
+      "version": "2.4.13.0",
+      "install_date": "2025-04-11",
+      "publisher": "Microsoft Corporation",
+      "name": "Windows Subsystem for Linux"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Documentation (64-bit)"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Shell"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Standard Library (64-bit)"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Tcl/Tk Support (64-bit)"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 pip Bootstrap (64-bit)"
+    },
+    {
+      "version": "12.13.4.4",
+      "install_date": "2025-01-24",
+      "publisher": "Apple Inc.",
+      "name": "iTunes"
+    },
+    {
+      "version": "17.5.2",
+      "install_date": "2024-10-13",
+      "publisher": "VMware, Inc.",
+      "name": "VMware Workstation"
+    },
+    {
+      "version": "136.0.7103.93",
+      "install_date": "2020-09-30",
+      "publisher": "Google LLC",
+      "name": "Google Chrome"
+    },
+    {
+      "version": "3.1.0.1",
+      "install_date": "2025-01-24",
+      "publisher": "Apple Inc.",
+      "name": "Bonjour"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Add to Path (64-bit)"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Test Suite (64-bit)"
+    },
+    {
+      "version": "8.94.0.0",
+      "install_date": "2024-10-11",
+      "publisher": "Microsoft Corporation",
+      "name": "Update for Windows 10 for x64-based Systems (KB5001716)"
+    },
+    {
+      "version": "3.12.9150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python 3.12.9 Executables (64-bit)"
+    },
+    {
+      "version": "16.0.18730.20122",
+      "install_date": "2025-05-03",
+      "publisher": "Microsoft Corporation",
+      "name": "Office 16 Click-to-Run Licensing Component"
+    },
+    {
+      "version": "16.0.18623.20156",
+      "install_date": "2025-04-07",
+      "publisher": "Microsoft Corporation",
+      "name": "Office 16 Click-to-Run Extensibility Component"
+    },
+    {
+      "version": "16.0.12527.20988",
+      "install_date": "2020-09-30",
+      "publisher": "Microsoft Corporation",
+      "name": "Office 16 Click-to-Run Localization Component"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Server 8.0"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Router 8.0"
+    },
+    {
+      "version": "1.25.06502",
+      "install_date": "2025-04-25",
+      "publisher": "Microsoft",
+      "name": "Microsoft Teams Meeting Add-in for Microsoft Office"
+    },
+    {
+      "version": "22.13.1",
+      "install_date": "2025-02-11",
+      "publisher": "Node.js Foundation",
+      "name": "Node.js"
+    },
+    {
+      "version": "18.0.0.33",
+      "install_date": "2025-01-24",
+      "publisher": "Apple Inc.",
+      "name": "Apple Mobile Device Support"
+    },
+    {
+      "version": "5.72.0.0",
+      "install_date": "2024-10-17",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Update Health Tools"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Workbench 8.0 CE"
+    },
+    {
+      "version": "14.36.32532",
+      "install_date": "2024-10-13",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532"
+    },
+    {
+      "version": "0.83.0.0",
+      "install_date": "2025-03-21",
+      "publisher": "Simon Tatham",
+      "name": "PuTTY release 0.83 (64-bit)"
+    },
+    {
+      "version": "7.0.9.0493",
+      "install_date": "2024-10-14",
+      "publisher": "Fortinet Technologies Inc",
+      "name": "FortiClient VPN"
+    },
+    {
+      "name": "Bandicam",
+      "version": "8.1.0.2516",
+      "publisher": "Bandicam.com"
+    },
+    {
+      "name": "Bandicam MPEG-1 Decoder",
+      "publisher": "Bandicam.com"
+    },
+    {
+      "name": "BusinessObjects 5.1.8",
+      "version": "5.1.8",
+      "publisher": "Business Objects"
+    },
+    {
+      "name": "Internet Download Manager",
+      "version": "6.42.23",
+      "publisher": "Tonec Inc."
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "136.0.3240.64",
+      "publisher": "Microsoft Corporation",
+      "install_date": "2025-05-12"
+    },
+    {
+      "version": "1.3.195.57"
+    },
+    {
+      "name": "Microsoft Edge WebView2 Runtime",
+      "publisher": "Microsoft Corporation",
+      "version": "136.0.3240.64",
+      "install_date": "2025-05-12"
+    },
+    {
+      "name": "Nmap 7.95",
+      "version": "7.95",
+      "publisher": "Nmap Project"
+    },
+    {
+      "name": "Npcap",
+      "version": "1.79",
+      "publisher": "Nmap Project"
+    },
+    {
+      "name": "PyCharm 2024.3",
+      "version": "243.21565.199",
+      "publisher": "JetBrains s.r.o."
+    },
+    {
+      "name": "Thonny 4.1.6",
+      "version": "4.1.6",
+      "publisher": "Aivar Annamaa",
+      "install_date": "2024-10-15"
+    },
+    {
+      "name": "VLC media player",
+      "version": "3.0.21",
+      "publisher": "VideoLAN"
+    },
+    {
+      "name": "SHAREit",
+      "version": "5.1.0.7",
+      "publisher": "SmartMedia4U Technology Pte.Ltd",
+      "install_date": "2024-10-14"
+    },
+    {
+      "version": "12.0.21005",
+      "install_date": "2025-04-11",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.21005"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Examples and Samples"
+    },
+    {
+      "version": "1.6.14.0",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Installer"
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.36.32532",
+      "version": "14.36.32532.0",
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "version": "1.3.35.441",
+      "install_date": "2024-10-11",
+      "publisher": "Google LLC",
+      "name": "Google Update Helper"
+    },
+    {
+      "version": "1.3.0.21759",
+      "install_date": "2020-09-30",
+      "publisher": "Microsoft Corporation",
+      "name": "Teams Machine-Wide Installer"
+    },
+    {
+      "version": "14.36.32532",
+      "install_date": "2024-10-13",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532"
+    },
+    {
+      "version": "8.0.42",
+      "install_date": "2025-05-02",
+      "publisher": "Oracle Corporation",
+      "name": "MySQL Documents"
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532",
+      "version": "14.36.32532.0",
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "version": "9.0.30729.6161",
+      "install_date": "2025-04-11",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161"
+    },
+    {
+      "version": "1.8.0",
+      "install_date": "2025-04-23",
+      "publisher": "Adobe Systems Incorporated",
+      "name": "Adobe Refresh Manager"
+    },
+    {
+      "version": "25.001.20474",
+      "install_date": "2025-05-05",
+      "publisher": "Adobe Systems Incorporated",
+      "name": "Adobe Acrobat Reader"
+    },
+    {
+      "version": "2.7.0.3",
+      "install_date": "2025-01-24",
+      "publisher": "Apple Inc.",
+      "name": "Apple Software Update"
+    },
+    {
+      "version": "14.36.32532",
+      "install_date": "2024-10-13",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532"
+    },
+    {
+      "version": "3.13.2150.0",
+      "install_date": "2025-02-11",
+      "publisher": "Python Software Foundation",
+      "name": "Python Launcher"
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.21005",
+      "version": "12.0.21005.1",
+      "publisher": "Microsoft Corporation"
+    },
+    {
+      "version": "12.0.21005",
+      "install_date": "2025-04-11",
+      "publisher": "Microsoft Corporation",
+      "name": "Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.21005"
+    }
+  ],
+  "system_manufacturer": "LENOVO",
+  "system_model": "21HJS7L800",
+  "performance_metrics": {
+    "timestamp": "2025-05-12T21:00:48.485102",
+    "cpu": {
+      "overall_usage": 45.93333333333333,
+      "per_core_usage": [
+        41.8,
+        57.5,
+        49.3,
+        40.0,
+        58.8,
+        52.3,
+        53.8,
+        66.2,
+        47.8,
+        37.3,
+        30.8,
+        15.6
+      ],
+      "core_count": 12,
+      "frequency": 1390.0,
+      "model": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel"
+    },
+    "memory": {
+      "total": 33999958016,
+      "available": 12619476992,
+      "used": 21380481024,
+      "free": 12619476992,
+      "percent": 62.9,
+      "swap_total": 12348030976,
+      "swap_used": 127365120,
+      "swap_free": 12220665856,
+      "swap_percent": 1.0
+    },
+    "disks": [
+      {
+        "device": "C:\\",
+        "mountpoint": "C:\\",
+        "fstype": "NTFS",
+        "total": 1020983767040,
+        "used": 505216094208,
+        "free": 515767672832,
+        "percent": 49.5
+      }
+    ],
+    "network": {
+      "bytes_sent": 10390849,
+      "bytes_recv": 105173680,
+      "packets_sent": 54447,
+      "packets_recv": 92598,
+      "errin": 0,
+      "errout": 0,
+      "dropin": 0,
+      "dropout": 0
+    },
+    "system": {
+      "uptime": 1746714206.5927255,
+      "battery": {
+        "percent": 79,
+        "power_plugged": false,
+        "secsleft": 10327
+      }
+    }
+  },
+  "timestamp": "2025-05-12T21:00:50.592725"
+}

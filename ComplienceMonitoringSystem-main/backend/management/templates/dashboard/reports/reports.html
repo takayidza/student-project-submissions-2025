@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar with report selection -->
+        <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky pt-3">
+                <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Report Types</span>
+                </h4>
+                <ul class="nav flex-column">
+                    {% for report in report_types %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if selected_report == report.id %}active{% endif %}" 
+                           href="?report={{ report.id }}&time_range={{ time_range }}">
+                            {{ report.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Time Range</span>
+                </h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {% if time_range == '24h' %}active{% endif %}" 
+                           href="?report={{ selected_report }}&time_range=24h">
+                            Last 24 Hours
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if time_range == '7d' %}active{% endif %}" 
+                           href="?report={{ selected_report }}&time_range=7d">
+                            Last 7 Days
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if time_range == '30d' %}active{% endif %}" 
+                           href="?report={{ selected_report }}&time_range=30d">
+                            Last 30 Days
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if time_range == '90d' %}active{% endif %}" 
+                           href="?report={{ selected_report }}&time_range=90d">
+                            Last 90 Days
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">{{ report_title }}</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export PDF</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export CSV</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Report-specific content -->
+            {% if selected_report == 'compliance_summary' %}
+                {% include "reports/partials/compliance_summary.html" %}
+            {% elif selected_report == 'device_status' %}
+                {% include "reports/partials/device_status.html" %}
+            {% elif selected_report == 'software_inventory' %}
+                {% include "reports/partials/software_inventory.html" %}
+            {% elif selected_report == 'blocked_software' %}
+                {% include "reports/partials/blocked_software.html" %}
+            {% elif selected_report == 'policy_violations' %}
+                {% include "reports/partials/policy_violations.html" %}
+            {% elif selected_report == 'anomalies' %}
+                {% include "reports/partials/anomalies.html" %}
+            {% elif selected_report == 'scan_activity' %}
+                {% include "reports/partials/scan_activity.html" %}
+            {% elif selected_report == 'notification_summary' %}
+                {% include "reports/partials/notification_summary.html" %}
+            {% elif selected_report == 'os_distribution' %}
+                {% include "reports/partials/os_distribution.html" %}
+            {% endif %}
+        </main>
+    </div>
+</div>
+{% endblock %}

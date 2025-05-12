@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Policies - Device Compliance Management{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3">Policies</h1>
+        <p class="text-muted">Manage compliance policies for your organization</p>
+    </div>
+    <div>
+        <a href="{% url 'policy_create' %}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Create New Policy
+        </a>
+    </div>
+</div>
+
+<!-- Policies Table -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for policy in policies %}
+                    <tr>
+                        <td>{{ policy.name }}</td>
+                        <td>{{ policy.category }}</td>
+                        <td>
+                            {% if policy.active %}
+                            <span class="badge bg-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ policy.created_at|date:"M d, Y" }}</td>
+                        <td>{{ policy.updated_at|date:"M d, Y" }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'policy_detail' policy.pk %}" class="btn btn-sm btn-outline-primary">View</a>
+                                <a href="{% url 'policy_update' policy.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                <a href="{% url 'policy_delete' policy.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No policies found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

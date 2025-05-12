@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mt-4">Compliance Report</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    Non-Compliant Devices ({{ non_compliant_devices.count }})
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Hostname</th>
+                                <th>IP Address</th>
+                                <th>OS</th>
+                                <th>Status</th>
+                                <th>Last Scan</th>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for device in non_compliant_devices %}
+                            <tr>
+                                <td><a href="{% url 'device_report' device.id %}">{{ device.hostname }}</a></td>
+                                <td>{{ device.ip_address }}</td>
+                                <td>{{ device.os }}</td>
+                                <td>
+                                    <span class="badge bg-{% if device.status == 'compliant' %}success{% elif device.status == 'warning' %}warning{% else %}danger{% endif %}">
+                                        {{ device.get_status_display }}
+                                    </span>
+                                </td>
+                                <td>{{ device.last_scan }}</td>
+                                <td>{{ device.user.username|default:"Unassigned" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">All devices are compliant!</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-ban me-1"></i>
+                    Blocked Software Installations ({{ blocked_software.count }})
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Software</th>
+                                <th>Version</th>
+                                <th>Publisher</th>
+                                <th>Device</th>
+                                <th>User</th>
+                                <th>Install Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for software in blocked_software %}
+                            <tr>
+                                <td>{{ software.name }}</td>
+                                <td>{{ software.version }}</td>
+                                <td>{{ software.publisher }}</td>
+                                <td><a href="{% url 'device_report' software.device.id %}">{{ software.device.hostname }}</a></td>
+                                <td>{{ software.device.user.username|default:"Unassigned" }}</td>
+                                <td>{{ software.install_date }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">No blocked software found!</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

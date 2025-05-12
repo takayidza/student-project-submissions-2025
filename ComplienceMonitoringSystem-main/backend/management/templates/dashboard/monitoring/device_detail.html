@@ -1,0 +1,632 @@
+{% extends 'base.html' %}
+
+{% block title %}Live Monitoring - {{ device.hostname }}{% endblock %}
+
+{% block extra_head %}
+<style>
+    .metric-card {
+        transition: all 0.3s ease;
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .alert-flash {
+        animation: flash 2s infinite;
+    }
+    @keyframes flash {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    .process-row {
+        transition: background-color 0.3s;
+    }
+    .process-row:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <!-- Breadcrumb Navigation -->
+    <div class="mb-4 mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-3 rounded-3 shadow-sm">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_list' %}" class="text-decoration-none"><i class="bi bi-pc-display me-1"></i>Devices</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_detail' device.pk %}" class="text-decoration-none"><i class="bi bi-info-circle me-1"></i>{{ device.hostname }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-speedometer2 me-1"></i>Live Monitoring</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Live Monitoring</h1>
+            <p class="text-muted mb-0">Real-time metrics for {{ device.hostname }}</p>
+        </div>
+        <div class="btn-group" role="group">
+            <button class="btn btn-outline-secondary" id="refresh-btn">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+            <button class="btn btn-primary" id="start-monitoring">
+                <i class="bi bi-play-circle"></i> Start Monitoring
+            </button>
+            <button class="btn btn-danger d-none" id="stop-monitoring">
+                <i class="bi bi-stop-circle"></i> Stop Monitoring
+            </button>
+        </div>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="connection-status" class="alert alert-info d-flex align-items-center">
+        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+        <span>Connecting to device...</span>
+    </div>
+
+    <!-- Real-time Metrics Dashboard -->
+    <div class="row mb-4">
+        <!-- CPU Usage -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card metric-card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0"><i class="bi bi-cpu text-primary me-2"></i>CPU Usage</h6>
+                    <span class="badge bg-primary">Live</span>
+                </div>
+                <div class="card-body text-center">
+                    <h2 id="cpu-usage" class="display-4">--%</h2>
+                    <div class="progress mt-2" style="height: 8px;">
+                        <div id="cpu-progress" class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted mt-2" id="cpu-cores">Loading cores...</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Usage -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card metric-card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0"><i class="bi bi-memory text-info me-2"></i>Memory Usage</h6>
+                    <span class="badge bg-info">Live</span>
+                </div>
+                <div class="card-body text-center">
+                    <h2 id="memory-usage" class="display-4">--%</h2>
+                    <div class="progress mt-2" style="height: 8px;">
+                        <div id="memory-progress" class="progress-bar bg-info" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted mt-2" id="memory-stats">Loading memory stats...</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disk Usage -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card metric-card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0"><i class="bi bi-hdd text-success me-2"></i>Disk Usage</h6>
+                    <span class="badge bg-success">Live</span>
+                </div>
+                <div class="card-body text-center">
+                    <h2 id="disk-usage" class="display-4">--%</h2>
+                    <div class="progress mt-2" style="height: 8px;">
+                        <div id="disk-progress" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted mt-2" id="disk-stats">Loading disk stats...</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Activity -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card metric-card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0"><i class="bi bi-wifi text-warning me-2"></i>Network</h6>
+                    <span class="badge bg-warning">Live</span>
+                </div>
+                <div class="card-body text-center">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h6 class="mb-1"><i class="bi bi-arrow-down text-danger"></i> Download</h6>
+                            <h4 id="network-down">-- KB/s</h4>
+                        </div>
+                        <div>
+                            <h6 class="mb-1"><i class="bi bi-arrow-up text-success"></i> Upload</h6>
+                            <h4 id="network-up">-- KB/s</h4>
+                        </div>
+                    </div>
+                    <small class="text-muted mt-2" id="network-ip">IP: {{ device.ip_address }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts Section -->
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0"><i class="bi bi-exclamation-triangle text-danger me-2"></i>Active Alerts</h5>
+            <span class="badge bg-danger" id="alert-count">0</span>
+        </div>
+        <div class="card-body p-0">
+            <div id="alerts-container">
+                <!-- Alerts will be dynamically inserted here -->
+                <div class="text-center py-4 text-muted" id="no-alerts">
+                    <i class="bi bi-check-circle fs-4"></i>
+                    <p class="mt-2 mb-0">No active alerts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Running Processes -->
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0"><i class="bi bi-list-task text-primary me-2"></i>Running Processes</h5>
+            <div class="input-group" style="width: 250px;">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" placeholder="Filter processes..." id="process-filter">
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>PID</th>
+                            <th>Name</th>
+                            <th>CPU</th>
+                            <th>Memory</th>
+                            <th>Status</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="processes-table">
+                        <!-- Processes will be dynamically inserted here -->
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                                Loading processes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Charts -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom">
+            <h5 class="card-title mb-0"><i class="bi bi-graph-up text-info me-2"></i>Performance History</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="cpu-chart" height="250"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="memory-chart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Process Details Modal -->
+<div class="modal fade" id="processModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="processModalTitle">Process Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="process-modal-body">
+                <div class="text-center py-4">
+                    <div class="spinner-border" role="status"></div>
+                    <p class="mt-2">Loading process details...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="kill-process-btn">
+                    <i class="bi bi-x-octagon"></i> Kill Process
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    const deviceId = {{ device.pk }};
+    let monitoringInterval;
+    let cpuChart, memoryChart;
+    let currentProcessId = null;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    // DOM Elements
+    const connectionStatus = document.getElementById('connection-status');
+    const startBtn = document.getElementById('start-monitoring');
+    const stopBtn = document.getElementById('stop-monitoring');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const processFilter = document.getElementById('process-filter');
+
+    // Initialize Charts
+    function initializeCharts() {
+        const cpuCtx = document.getElementById('cpu-chart').getContext('2d');
+        const memoryCtx = document.getElementById('memory-chart').getContext('2d');
+
+        cpuChart = new Chart(cpuCtx, {
+            type: 'line',
+            data: {
+                labels: Array(30).fill(''),
+                datasets: [{
+                    label: 'CPU Usage %',
+                    data: Array(30).fill(0),
+                    borderColor: 'rgba(13, 110, 253, 1)',
+                    backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        memoryChart = new Chart(memoryCtx, {
+            type: 'line',
+            data: {
+                labels: Array(30).fill(''),
+                datasets: [{
+                    label: 'Memory Usage %',
+                    data: Array(30).fill(0),
+                    borderColor: 'rgba(23, 162, 184, 1)',
+                    backgroundColor: 'rgba(23, 162, 184, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    }
+
+    // Fetch device metrics
+    function fetchDeviceMetrics() {
+        fetch(`/api/devices/${deviceId}/monitoring/`, {
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            updateMetrics(data);
+            connectionStatus.innerHTML = `<i class="bi bi-check-circle me-2"></i>Connected - Last updated: ${new Date().toLocaleTimeString()}`;
+            connectionStatus.className = 'alert alert-success';
+        })
+        .catch(error => {
+            console.error('Error fetching metrics:', error);
+            connectionStatus.innerHTML = `<i class="bi bi-exclamation-triangle me-2"></i>Connection error: ${error.message}`;
+            connectionStatus.className = 'alert alert-danger alert-flash';
+        });
+    }
+
+    // Update metrics on the page
+    function updateMetrics(data) {
+        // CPU
+        document.getElementById('cpu-usage').textContent = `${data.cpu.usage}%`;
+        document.getElementById('cpu-progress').style.width = `${data.cpu.usage}%`;
+        document.getElementById('cpu-cores').textContent = `${data.cpu.cores} cores | ${data.cpu.model}`;
+        
+        // Memory
+        document.getElementById('memory-usage').textContent = `${data.memory.percent}%`;
+        document.getElementById('memory-progress').style.width = `${data.memory.percent}%`;
+        document.getElementById('memory-stats').textContent = 
+            `${formatBytes(data.memory.used)} / ${formatBytes(data.memory.total)}`;
+        
+        // Disk
+        document.getElementById('disk-usage').textContent = `${data.disk.percent}%`;
+        document.getElementById('disk-progress').style.width = `${data.disk.percent}%`;
+        document.getElementById('disk-stats').textContent = 
+            `${formatBytes(data.disk.used)} / ${formatBytes(data.disk.total)}`;
+        
+        // Network
+        document.getElementById('network-down').textContent = `${formatBytes(data.network.down)}/s`;
+        document.getElementById('network-up').textContent = `${formatBytes(data.network.up)}/s`;
+        
+        // Update charts
+        updateChart(cpuChart, data.cpu.usage);
+        updateChart(memoryChart, data.memory.percent);
+        
+        // Update processes
+        updateProcessTable(data.processes);
+        
+        // Update alerts
+        updateAlerts(data.alerts);
+    }
+
+    // Helper function to format bytes
+    function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    // Update chart data
+    function updateChart(chart, newValue) {
+        chart.data.labels.push('');
+        chart.data.labels.shift();
+        chart.data.datasets[0].data.push(newValue);
+        chart.data.datasets[0].data.shift();
+        chart.update();
+    }
+
+    // Update process table
+    function updateProcessTable(processes) {
+        const tableBody = document.getElementById('processes-table');
+        tableBody.innerHTML = '';
+        
+        processes.forEach(process => {
+            const row = document.createElement('tr');
+            row.className = 'process-row';
+            row.innerHTML = `
+                <td>${process.pid}</td>
+                <td>${process.name}</td>
+                <td>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: ${process.cpu}%"></div>
+                    </div>
+                    <small>${process.cpu.toFixed(1)}%</small>
+                </td>
+                <td>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: ${process.memory}%"></div>
+                    </div>
+                    <small>${formatBytes(process.memory_bytes)}</small>
+                </td>
+                <td>
+                    <span class="badge ${process.status === 'running' ? 'bg-success' : 'bg-warning'}">
+                        ${process.status}
+                    </span>
+                </td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-primary view-process" data-pid="${process.pid}">
+                        <i class="bi bi-info-circle"></i> Details
+                    </button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+        
+        // Add event listeners to view buttons
+        document.querySelectorAll('.view-process').forEach(btn => {
+            btn.addEventListener('click', function() {
+                showProcessDetails(this.dataset.pid);
+            });
+        });
+    }
+
+    // Show process details modal
+    function showProcessDetails(pid) {
+        currentProcessId = pid;
+        const modalTitle = document.getElementById('processModalTitle');
+        const modalBody = document.getElementById('process-modal-body');
+        
+        modalTitle.textContent = `Process Details (PID: ${pid})`;
+        modalBody.innerHTML = `
+            <div class="text-center py-4">
+                <div class="spinner-border" role="status"></div>
+                <p class="mt-2">Loading process details...</p>
+            </div>
+        `;
+        
+        // Fetch process details
+        fetch(`/api/devices/${deviceId}/process/${pid}/`, {
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            modalBody.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>PID:</strong> ${data.pid}</p>
+                        <p><strong>Status:</strong> <span class="badge ${data.status === 'running' ? 'bg-success' : 'bg-warning'}">${data.status}</span></p>
+                        <p><strong>Started:</strong> ${new Date(data.start_time).toLocaleString()}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>CPU Usage:</strong> ${data.cpu}%</p>
+                        <p><strong>Memory Usage:</strong> ${formatBytes(data.memory_bytes)} (${data.memory}%)</p>
+                        <p><strong>User:</strong> ${data.user}</p>
+                        <p><strong>Command:</strong> <code>${data.command}</code></p>
+                    </div>
+                </div>
+            `;
+        })
+        .catch(error => {
+            modalBody.innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle"></i> Failed to load process details: ${error.message}
+                </div>
+            `;
+        });
+        
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('processModal'));
+        modal.show();
+    }
+
+    // Update alerts
+    function updateAlerts(alerts) {
+        const alertsContainer = document.getElementById('alerts-container');
+        const alertCount = document.getElementById('alert-count');
+        
+        if (alerts.length === 0) {
+            alertsContainer.innerHTML = `
+                <div class="text-center py-4 text-muted" id="no-alerts">
+                    <i class="bi bi-check-circle fs-4"></i>
+                    <p class="mt-2 mb-0">No active alerts</p>
+                </div>
+            `;
+            alertCount.textContent = '0';
+            return;
+        }
+        
+        alertCount.textContent = alerts.length;
+        alertsContainer.innerHTML = '';
+        
+        alerts.forEach(alert => {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${alert.severity} rounded-0 border-0 border-bottom`;
+            alertDiv.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong><i class="bi ${getAlertIcon(alert.severity)} me-2"></i>${alert.title}</strong>
+                        <div class="small">${alert.message}</div>
+                    </div>
+                    <small>${new Date(alert.timestamp).toLocaleTimeString()}</small>
+                </div>
+            `;
+            alertsContainer.appendChild(alertDiv);
+        });
+    }
+
+    // Get appropriate icon for alert severity
+    function getAlertIcon(severity) {
+        switch(severity) {
+            case 'critical': return 'bi-exclamation-octagon-fill';
+            case 'warning': return 'bi-exclamation-triangle-fill';
+            case 'info': return 'bi-info-circle-fill';
+            default: return 'bi-info-circle-fill';
+        }
+    }
+
+    // Start monitoring
+    function startMonitoring() {
+        fetchDeviceMetrics(); // Initial fetch
+        monitoringInterval = setInterval(fetchDeviceMetrics, 2000); // Update every 5 seconds
+        startBtn.classList.add('d-none');
+        stopBtn.classList.remove('d-none');
+    }
+
+    // Stop monitoring
+    function stopMonitoring() {
+        clearInterval(monitoringInterval);
+        startBtn.classList.remove('d-none');
+        stopBtn.classList.add('d-none');
+        connectionStatus.innerHTML = '<i class="bi bi-pause-circle me-2"></i>Monitoring paused';
+        connectionStatus.className = 'alert alert-warning';
+    }
+
+    // Kill process
+    document.getElementById('kill-process-btn')?.addEventListener('click', function() {
+        if (!currentProcessId) return;
+        
+        const btn = this;
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Killing...';
+        
+        fetch(`/api/devices/${deviceId}/process/${currentProcessId}/kill/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showStatusAlert(`Process ${currentProcessId} killed successfully`, 'success');
+                bootstrap.Modal.getInstance(document.getElementById('processModal')).hide();
+                fetchDeviceMetrics(); // Refresh data
+            } else {
+                showStatusAlert(`Failed to kill process: ${data.error}`, 'danger');
+            }
+        })
+        .catch(error => {
+            showStatusAlert(`Error killing process: ${error.message}`, 'danger');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        });
+    });
+
+    // Filter processes
+    processFilter.addEventListener('input', function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#processes-table tr');
+        
+        rows.forEach(row => {
+            const name = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            row.style.display = name.includes(filter) ? '' : 'none';
+        });
+    });
+
+    // Event listeners
+    startBtn.addEventListener('click', startMonitoring);
+    stopBtn.addEventListener('click', stopMonitoring);
+    refreshBtn.addEventListener('click', fetchDeviceMetrics);
+
+    // Initialize
+    initializeCharts();
+    startMonitoring(); // Auto-start monitoring
+});
+
+// Helper function to show status alerts
+function showStatusAlert(message, type) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    
+    // Create a container if it doesn't exist
+    let alertContainer = document.getElementById('status-alerts-container');
+    if (!alertContainer) {
+        alertContainer = document.createElement('div');
+        alertContainer.id = 'status-alerts-container';
+        alertContainer.className = 'position-fixed bottom-0 end-0 p-3';
+        alertContainer.style.zIndex = '1100';
+        document.body.appendChild(alertContainer);
+    }
+    
+    alertContainer.appendChild(alertDiv);
+    
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        alertDiv.classList.remove('show');
+        setTimeout(() => alertDiv.remove(), 150);
+    }, 5000);
+}
+</script>
+{% endblock %}

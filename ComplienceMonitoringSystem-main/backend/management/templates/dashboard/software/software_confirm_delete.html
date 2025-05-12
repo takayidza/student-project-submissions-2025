@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Software - Device Compliance Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <!-- Breadcrumb Navigation -->
+    <div class="mb-4 mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-3 rounded-3 shadow-sm">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_list' %}" class="text-decoration-none"><i class="bi bi-pc-display me-1"></i>Devices</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_detail' software.device.pk %}" class="text-decoration-none"><i class="bi bi-info-circle me-1"></i>{{ software.device.hostname }}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'software_detail' software.pk %}" class="text-decoration-none"><i class="bi bi-box me-1"></i>{{ software.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-trash3 me-1"></i>Delete</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Delete Software Record</h1>
+            <p class="text-muted mb-0">Confirm deletion of {{ software.name }} from {{ software.device.hostname }}</p>
+        </div>
+    </div>
+
+    <!-- Confirmation Card -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <div class="alert alert-danger bg-opacity-10">
+                <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Warning!</h5>
+                <hr>
+                <p class="mb-0">You are about to delete the software record for <strong>{{ software.name }} {{ software.version }}</strong> installed on <strong>{{ software.device.hostname }}</strong>. This action cannot be undone.</p>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'software_detail' software.pk %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash3 me-1"></i> Confirm Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

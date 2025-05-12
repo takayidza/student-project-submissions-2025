@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Software - Device Compliance Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <!-- Breadcrumb Navigation -->
+    <div class="mb-4 mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-3 rounded-3 shadow-sm">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_list' %}" class="text-decoration-none"><i class="bi bi-pc-display me-1"></i>Devices</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'device_detail' object.device.pk %}" class="text-decoration-none"><i class="bi bi-info-circle me-1"></i>{{ object.device.hostname }}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'software_detail' object.pk %}" class="text-decoration-none"><i class="bi bi-box me-1"></i>{{ object.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-pencil-square me-1"></i>Update</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Update Software Information</h1>
+            <p class="text-muted mb-0">Edit details for {{ object.name }} on {{ object.device.hostname }}</p>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">Software Name</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.name.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.version.id_for_label }}" class="form-label">Version</label>
+                            {{ form.version }}
+                            {% if form.version.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.version.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.publisher.id_for_label }}" class="form-label">Publisher</label>
+                            {{ form.publisher }}
+                            {% if form.publisher.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.publisher.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.status.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.install_location.id_for_label }}" class="form-label">Install Location</label>
+                            {{ form.install_location }}
+                            {% if form.install_location.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.install_location.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.registry_key.id_for_label }}" class="form-label">Registry Key</label>
+                            {{ form.registry_key }}
+                            {% if form.registry_key.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.registry_key.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ form.description.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'software_detail' object.pk %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

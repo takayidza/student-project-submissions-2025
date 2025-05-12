@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Device - Device Compliance Management{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'device_list' %}">Devices</a></li>
+            <li class="breadcrumb-item active">Delete Device</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">Confirm Device Deletion</h5>
+            </div>
+            <div class="card-body">
+                <p class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i> 
+                    Are you sure you want to delete this device? This action cannot be undone.
+                </p>
+                
+                <dl class="row mb-4">
+                    <dt class="col-sm-4">User:</dt>
+                    <dd class="col-sm-8">{{ device.user.username }}</dd>
+                    
+                    <dt class="col-sm-4">Department:</dt>
+                    <dd class="col-sm-8">{{ device.department }}</dd>
+                    
+                    <dt class="col-sm-4">OS:</dt>
+                    <dd class="col-sm-8">{{ device.os }}</dd>
+                    
+                    <dt class="col-sm-4">Device Type:</dt>
+                    <dd class="col-sm-8">{{ device.device_type|title }}</dd>
+                </dl>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'device_detail' device.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-danger">Delete Device</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

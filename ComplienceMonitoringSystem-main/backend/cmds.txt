@@ -1,0 +1,47 @@
+Initial Setup:
+
+bash
+python manage.py train_model
+Regular Scanning:
+
+bash
+# Scan all devices
+python manage.py scan_devices
+
+# Scan specific device
+python manage.py scan_devices --device-id 1
+
+# Scan high-risk only
+python manage.py scan_devices --high-risk-only
+Model Maintenance:
+
+bash
+# Retrain model
+python manage.py retrain_model
+Reporting:
+
+bash
+# Show report
+python manage.py compliance_report --days 30
+
+# Export to CSV
+python manage.py compliance_report --days 30 --export report.csv
+Cleanup:
+
+bash
+# Normal cleanup
+python manage.py cleanup_reports --days 180
+
+# Dry run
+python manage.py cleanup_reports --days 180 --dry-run
+Backup:
+
+bash
+python manage.py backup_data --destination /mnt/backups
+These commands provide a complete operational interface for your compliance system with:
+
+Proper error handling
+
+Progress feedback
+
+Configurable options

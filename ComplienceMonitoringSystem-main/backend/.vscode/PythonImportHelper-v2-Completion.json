@@ -1,0 +1,987 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "Permission",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairSerializer",
+        "importPath": "rest_framework_simplejwt.serializers",
+        "description": "rest_framework_simplejwt.serializers",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "Count",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "backend.asgi",
+        "description": "backend.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "backend.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-e(mrwn#-1u)q)zrp%m^crcws*2ef(9q+vy@0snelcxvpi8r2$('\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-e(mrwn#-1u)q)zrp%m^crcws*2ef(9q+vy@0snelcxvpi8r2$('\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'management',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'management',\n]\nAUTH_USER_MODEL = 'management.User'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "AUTH_USER_MODEL = 'management.User'\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'corsheaders.middleware.CorsMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'corsheaders.middleware.CorsMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "ROOT_URLCONF = 'backend.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [BASE_DIR / \"templates\"],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [BASE_DIR / \"templates\"],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "backend.settings",
+        "description": "backend.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "backend.urls",
+        "description": "backend.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('management.urls')),  # Include the URLs from the management app\n]",
+        "detail": "backend.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "backend.wsgi",
+        "description": "backend.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "backend.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "management.migrations.0001_initial",
+        "description": "management.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Policy',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "management.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "UserAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class UserAdmin(admin.ModelAdmin):\n    list_display = ('username', 'email', 'role', 'is_active', 'date_joined')\n    search_fields = ('username', 'email')\n    list_filter = ('role', 'is_active')\n    ordering = ('username',)\n# Register User model with custom admin\nadmin.site.register(User, UserAdmin)\n# Device Admin\nclass DeviceAdmin(admin.ModelAdmin):\n    list_display = ('user', 'department', 'os', 'last_scan', 'status', 'device_type')",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "DeviceAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class DeviceAdmin(admin.ModelAdmin):\n    list_display = ('user', 'department', 'os', 'last_scan', 'status', 'device_type')\n    search_fields = ('user__username', 'department', 'os')\n    list_filter = ('os', 'status')\n    ordering = ('user',)\n# Register Device model with custom admin\nadmin.site.register(Device, DeviceAdmin)\n# Installed Software Admin\nclass InstalledSoftwareAdmin(admin.ModelAdmin):\n    list_display = ('device', 'name', 'version', 'install_date', 'status')",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "InstalledSoftwareAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class InstalledSoftwareAdmin(admin.ModelAdmin):\n    list_display = ('device', 'name', 'version', 'install_date', 'status')\n    search_fields = ('device__user__username', 'name')\n    list_filter = ('status',)\n    ordering = ('device',)\n# Register Installed Software model with custom admin\nadmin.site.register(InstalledSoftware, InstalledSoftwareAdmin)\n# Notification Admin\nclass NotificationAdmin(admin.ModelAdmin):\n    list_display = ('user', 'device', 'notification_type', 'message', 'timestamp', 'read', 'policy')",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class NotificationAdmin(admin.ModelAdmin):\n    list_display = ('user', 'device', 'notification_type', 'message', 'timestamp', 'read', 'policy')\n    search_fields = ('user__username', 'device__user__username', 'notification_type', 'message')\n    list_filter = ('notification_type', 'read', 'timestamp')\n    ordering = ('-timestamp',)\n# Register Notification model with custom admin\nadmin.site.register(Notification, NotificationAdmin)\n# Activity Report Admin\nclass ActivityReportAdmin(admin.ModelAdmin):\n    list_display = ('device', 'scan_time', 'scan_status', 'compliance_status', 'actions_taken', 'scan_report')",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityReportAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class ActivityReportAdmin(admin.ModelAdmin):\n    list_display = ('device', 'scan_time', 'scan_status', 'compliance_status', 'actions_taken', 'scan_report')\n    search_fields = ('device__user__username', 'device__department')\n    list_filter = ('scan_status', 'compliance_status')\n    ordering = ('-scan_time',)\n# Register ActivityReport model with custom admin\nadmin.site.register(ActivityReport, ActivityReportAdmin)\n# Policy Admin\nclass PolicyAdmin(admin.ModelAdmin):\n    list_display = ('name',)",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class PolicyAdmin(admin.ModelAdmin):\n    list_display = ('name',)\n    search_fields = ('name',)\n    ordering = ('name',)\n# Register Policy model with custom admin\nadmin.site.register(Policy, PolicyAdmin)\n# PolicyCriteria Admin\nclass PolicyCriteriaAdmin(admin.ModelAdmin):\n    list_display = ('policy', 'criteria_type', 'condition', 'value', 'description')\n    search_fields = ('policy__name', 'criteria_type', 'condition', 'value')",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyCriteriaAdmin",
+        "kind": 6,
+        "importPath": "management.admin",
+        "description": "management.admin",
+        "peekOfCode": "class PolicyCriteriaAdmin(admin.ModelAdmin):\n    list_display = ('policy', 'criteria_type', 'condition', 'value', 'description')\n    search_fields = ('policy__name', 'criteria_type', 'condition', 'value')\n    list_filter = ('criteria_type',)\n    ordering = ('policy',)\n# Register PolicyCriteria model with custom admin\nadmin.site.register(PolicyCriteria, PolicyCriteriaAdmin)",
+        "detail": "management.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ManagementConfig",
+        "kind": 6,
+        "importPath": "management.apps",
+        "description": "management.apps",
+        "peekOfCode": "class ManagementConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'management'",
+        "detail": "management.apps",
+        "documentation": {}
+    },
+    {
+        "label": "LoginForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class LoginForm(forms.Form):\n    username = forms.CharField(\n        max_length=150,\n        widget=forms.TextInput(attrs={\n            'class': 'form-control bg-light border-start-0', \n            'placeholder': 'Enter your username'\n        })\n    )\n    password = forms.CharField(\n        widget=forms.PasswordInput(attrs={",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "DeviceForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class DeviceForm(forms.ModelForm):\n    class Meta:\n        model = Device\n        fields = ['user', 'department', 'os', 'device_type', 'status', 'actions']\n        widgets = {\n            'department': forms.TextInput(attrs={'class': 'form-control'}),\n            'os': forms.Select(attrs={'class': 'form-select'}),\n            'device_type': forms.Select(attrs={'class': 'form-select'}),\n            'status': forms.Select(attrs={'class': 'form-select'}),\n            'actions': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class PolicyForm(forms.ModelForm):\n    class Meta:\n        model = Policy\n        fields = ['name', 'category', 'description', 'active']\n        widgets = {\n            'name': forms.TextInput(attrs={'class': 'form-control'}),\n            'category': forms.TextInput(attrs={'class': 'form-control'}),\n            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),\n            'active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),\n        }",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyCriteriaForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class PolicyCriteriaForm(forms.ModelForm):\n    class Meta:\n        model = PolicyCriteria\n        fields = ['criteria_type', 'condition', 'value', 'description']\n        widgets = {\n            'criteria_type': forms.TextInput(attrs={'class': 'form-control'}),\n            'condition': forms.TextInput(attrs={'class': 'form-control'}),\n            'value': forms.TextInput(attrs={'class': 'form-control'}),\n            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),\n        }",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationFilterForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class NotificationFilterForm(forms.Form):\n    STATUS_CHOICES = [\n        ('', 'All'),\n        ('read', 'Read'),\n        ('unread', 'Unread'),\n    ]\n    TYPE_CHOICES = [\n        ('', 'All Types'),\n        ('warning', 'Warning'),\n        ('non-compliant', 'Non-Compliant'),",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "DeviceFilterForm",
+        "kind": 6,
+        "importPath": "management.forms",
+        "description": "management.forms",
+        "peekOfCode": "class DeviceFilterForm(forms.Form):\n    STATUS_CHOICES = [\n        ('', 'All Status'),\n        ('compliant', 'Compliant'),\n        ('non-compliant', 'Non-Compliant'),\n        ('warning', 'Warning'),\n    ]\n    OS_CHOICES = [\n        ('', 'All OS'),\n        ('Windows', 'Windows'),",
+        "detail": "management.forms",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class User(AbstractUser):\n    ROLE_CHOICES = [\n        ('Admin', 'Admin'),\n        ('User', 'User'),\n    ]\n    role = models.CharField(max_length=5, choices=ROLE_CHOICES, default='Admin')\n    # Override related_name for groups and user_permissions to avoid clashes\n    groups = models.ManyToManyField(\n        Group,\n        related_name='custom_user_set',  # Change this to avoid clashes",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "Device",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class Device(models.Model):\n    OS_CHOICES = [\n        ('Windows', 'Windows'),\n        ('Linux', 'Linux'),\n        ('macOS', 'macOS'),\n    ]\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    department = models.CharField(max_length=100)\n    os = models.CharField(max_length=50, choices=OS_CHOICES)\n    last_scan = models.DateTimeField(auto_now=True)",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "InstalledSoftware",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class InstalledSoftware(models.Model):\n    device = models.ForeignKey(Device, on_delete=models.CASCADE)\n    name = models.CharField(max_length=200)\n    version = models.CharField(max_length=50)\n    publisher = models.CharField(max_length=100)\n    install_date = models.DateTimeField(auto_now_add=True)\n    status = models.CharField(max_length=50)\n    def __str__(self):\n        return f\"{self.name} - {self.version} (On {self.device})\"\nclass Policy(models.Model):",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "Policy",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class Policy(models.Model):\n    name = models.CharField(max_length=100)\n    category = models.CharField(max_length=100)\n    description = models.TextField()\n    active = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True)  # Automatically set when created\n    updated_at = models.DateTimeField(auto_now=True)  # Automatically updated\n    def __str__(self):\n        return self.name\nclass PolicyCriteria(models.Model):",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyCriteria",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class PolicyCriteria(models.Model):\n    policy = models.ForeignKey(Policy, on_delete=models.CASCADE, related_name='criteria')\n    criteria_type = models.CharField(max_length=255)\n    condition = models.CharField(max_length=255)\n    value = models.CharField(max_length=255)\n    description = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return f\"Criteria for {self.policy.name}\"",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "Notification",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class Notification(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    device = models.ForeignKey(Device, on_delete=models.CASCADE)  # Device reference\n    notification_type = models.CharField(max_length=20, choices=[('warning', 'Warning'), ('non-compliant', 'Non-Compliant'), ('compliant', 'Compliant')], default='non-compliant')  # Notification type\n    message = models.TextField()  # The notification message\n    timestamp = models.DateTimeField()  # When the notification was created\n    read = models.BooleanField(default=False)  # Whether the notification is read or not\n    policy = models.ForeignKey(Policy, on_delete=models.CASCADE)  # Policy reference\n    def __str__(self):\n        return f\"Notification for {self.user.username} at {self.timestamp}\"",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityReport",
+        "kind": 6,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "class ActivityReport(models.Model):\n    COMPLIANCE_CHOICES = [\n        ('compliant', 'Compliant'),\n        ('non-compliant', 'Non-Compliant'),\n        ('warning', 'Warning'),\n    ]\n    device = models.ForeignKey(Device, on_delete=models.CASCADE)\n    scan_time = models.DateTimeField(auto_now_add=True)  # Time when the scan was performed\n    scan_status = models.CharField(\n        max_length=50,",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "STATUS_CHOICES",
+        "kind": 5,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "STATUS_CHOICES = [\n        ('warning', 'Warning'),\n        ('non-compliant', 'Non-Compliant'),\n        ('compliant', 'Compliant'),\n    ]\nDEVICE_TYPE_CHOICES = [\n        ('desktop', 'Desktop'),\n        ('laptop', 'Laptop'),\n        ('mobile', 'Mobile'),\n        ('server', 'Server'),",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "DEVICE_TYPE_CHOICES",
+        "kind": 5,
+        "importPath": "management.models",
+        "description": "management.models",
+        "peekOfCode": "DEVICE_TYPE_CHOICES = [\n        ('desktop', 'Desktop'),\n        ('laptop', 'Laptop'),\n        ('mobile', 'Mobile'),\n        ('server', 'Server'),\n    ]\n# Custom User model with roles (Admin/User)\nclass User(AbstractUser):\n    ROLE_CHOICES = [\n        ('Admin', 'Admin'),",
+        "detail": "management.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomTokenObtainPairSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        # Get the username and password from the request\n        username = attrs.get(\"username\")\n        password = attrs.get(\"password\")\n        # Authenticate the user using Django's built-in authentication system\n        user = authenticate(username=username, password=password)\n        print(user,user)\n        if user is None or not user.is_active:\n            # Raise an error if the user is inactive or credentials are invalid",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "DeviceGetSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class DeviceGetSerializer(serializers.ModelSerializer):\n    # Optionally, you can also add the related user's username to make the user readable\n    user = serializers.StringRelatedField()\n    class Meta:\n        model = Device\n        fields = '__all__'  # This will include all fields from the Device model\n# Serializer for POST operations (to handle data creation)\nclass DevicePostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Device",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "DevicePostSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class DevicePostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Device\n        fields = ['user', 'department', 'os', 'status', 'actions', 'device_type']  # Specify which fields are allowed for POST\n    # Optional: You can also add validation for fields if necessary\n    def validate_status(self, value):\n        # Ensure status is one of the predefined choices\n        if value not in dict(Device.STATUS_CHOICES).keys():\n            raise serializers.ValidationError(\"Invalid status\")\n        return value",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class NotificationSerializer(serializers.ModelSerializer):\n    # To serialize related fields\n    user = serializers.StringRelatedField()  # Display the username\n    notification_type = serializers.ChoiceField(choices=STATUS_CHOICES)  # Notification type\n    policy_name = serializers.CharField(source='policy.name')  # Policy name field\n    class Meta:\n        model = Notification\n        fields = ['user', 'device', 'notification_type', 'message', 'timestamp', 'read', 'policy', 'policy_name']\n        read_only_fields = ['timestamp']\nclass NotificationPostSerializer(serializers.ModelSerializer):",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationPostSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class NotificationPostSerializer(serializers.ModelSerializer):\n    # For creating new notifications, no need for read-only fields\n    class Meta:\n        model = Notification\n        fields = ['user', 'device', 'notification_type', 'message', 'timestamp', 'read', 'policy']\n    def create(self, validated_data):\n        # In case of any specific processing before creating an instance (if needed)\n        notification = Notification.objects.create(**validated_data)\n        return notification\n# Serializer for POST operations (to handle data creation)",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyPostSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class PolicyPostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Policy\n        fields = ['name', 'category', 'description', 'active']  # Specify which fields are allowed for POST\n    def validate_active(self, value):\n        # Ensure the active field is a boolean\n        if not isinstance(value, bool):\n            raise serializers.ValidationError(\"Active field must be a boolean value.\")\n        return value\n# Serializer for GET operations (to display the data)",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyCriteriaGetSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class PolicyCriteriaGetSerializer(serializers.ModelSerializer):\n    # Optional: You can also display the related policy name for easier readability\n    policy_name = serializers.CharField(source='policy.name')\n    class Meta:\n        model = PolicyCriteria\n        fields = ['policy', 'criteria_type', 'condition', 'value', 'description', 'policy_name']\n# Serializer for POST operations (to handle data creation)\nclass PolicyCriteriaPostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = PolicyCriteria",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyCriteriaPostSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class PolicyCriteriaPostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = PolicyCriteria\n        fields = ['policy', 'criteria_type', 'condition', 'value', 'description']\n# Serializer for GET operations (to display the data)\nclass PolicyGetSerializer(serializers.ModelSerializer):\n    criteria = PolicyCriteriaPostSerializer(many=True, read_only=True)  # Assuming a ForeignKey or ManyToMany\n    class Meta:\n        model = Policy\n        fields = '__all__'",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "PolicyGetSerializer",
+        "kind": 6,
+        "importPath": "management.serializers",
+        "description": "management.serializers",
+        "peekOfCode": "class PolicyGetSerializer(serializers.ModelSerializer):\n    criteria = PolicyCriteriaPostSerializer(many=True, read_only=True)  # Assuming a ForeignKey or ManyToMany\n    class Meta:\n        model = Policy\n        fields = '__all__'",
+        "detail": "management.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "management.urls",
+        "description": "management.urls",
+        "peekOfCode": "urlpatterns = [\n    # Authentication\n    path('login/', views.login_view, name='login'),\n    path('logout/', views.logout_view, name='logout'),\n    # Dashboard\n    path('', views.dashboard, name='dashboard'),  # Main dashboard as homepage\n    path('dashboard/', views.dashboard, name='dashboard'),  # Alternative path\n    # Devices\n    path('devices/', views.device_list, name='device_list'),\n    path('devices/add/', views.device_create, name='device_create'),",
+        "detail": "management.urls",
+        "documentation": {}
+    },
+    {
+        "label": "login_view",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def login_view(request):\n    if request.method == 'POST':\n        form = LoginForm(request.POST)\n        if form.is_valid():\n            username = form.cleaned_data.get('username')\n            password = form.cleaned_data.get('password')\n            user = authenticate(username=username, password=password)\n            if user is not None:\n                login(request, user)\n                return redirect('dashboard')",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_view",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def logout_view(request):\n    logout(request)\n    return redirect('login')\n# Dashboard View\n@login_required\ndef dashboard(request):\n    # Get statistics for dashboard\n    total_devices = Device.objects.count()\n    compliant_devices = Device.objects.filter(status='compliant').count()\n    non_compliant_devices = Device.objects.filter(status='non-compliant').count()",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def dashboard(request):\n    # Get statistics for dashboard\n    total_devices = Device.objects.count()\n    compliant_devices = Device.objects.filter(status='compliant').count()\n    non_compliant_devices = Device.objects.filter(status='non-compliant').count()\n    warning_devices = Device.objects.filter(status='warning').count()\n    # Get device distribution by type\n    device_types = Device.objects.values('device_type').annotate(count=Count('device_type'))\n    # Get device distribution by OS\n    os_distribution = Device.objects.values('os').annotate(count=Count('os'))",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "device_list",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def device_list(request):\n    # For Admin users, show all devices\n    if request.user.role == 'Admin':\n        devices = Device.objects.all()\n    # For regular users, show only their devices\n    else:\n        devices = Device.objects.filter(user=request.user)\n    return render(request, 'dashboard/device/device_list.html', {'devices': devices})\n@login_required\ndef device_detail(request, pk):",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "device_detail",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def device_detail(request, pk):\n    device = get_object_or_404(Device, pk=pk)\n    # Check if user has permission to view this device\n    if request.user.role != 'Admin' and device.user != request.user:\n        messages.error(request, \"You don't have permission to view this device.\")\n        return redirect('device_list')\n    # Get installed software for this device\n    installed_software = InstalledSoftware.objects.filter(device=device)\n    # Get activity reports for this device\n    activity_reports = ActivityReport.objects.filter(device=device).order_by('-scan_time')",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "device_create",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def device_create(request):\n    if request.method == 'POST':\n        form = DeviceForm(request.POST)\n        if form.is_valid():\n            # Create new device but don't save yet\n            device = form.save(commit=False)\n            # Set the user based on form input (admins) or current user (regular users)\n            if request.user.role == 'Admin' and 'user' in form.cleaned_data:\n                device.user = form.cleaned_data['user']\n            else:",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "device_update",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def device_update(request, pk):\n    device = get_object_or_404(Device, pk=pk)\n    # Check if user has permission to edit this device\n    if request.user.role != 'Admin' and device.user != request.user:\n        messages.error(request, \"You don't have permission to edit this device.\")\n        return redirect('device_list')\n    if request.method == 'POST':\n        # For admins, allow changing all fields including user\n        if request.user.role == 'Admin':\n            form = DeviceForm(request.POST, instance=device)",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "device_delete",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def device_delete(request, pk):\n    device = get_object_or_404(Device, pk=pk)\n    # Check if user has permission to delete this device\n    if request.user.role != 'Admin' and device.user != request.user:\n        messages.error(request, \"You don't have permission to delete this device.\")\n        return redirect('device_list')\n    if request.method == 'POST':\n        device.delete()\n        messages.success(request, \"Device deleted successfully.\")\n        return redirect('device_list')",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "notification_list",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def notification_list(request):\n    # For Admin users, show all notifications\n    if request.user.role == 'Admin':\n        notifications = Notification.objects.all().order_by('-timestamp')\n    # For regular users, show only their notifications\n    else:\n        notifications = Notification.objects.filter(user=request.user).order_by('-timestamp')\n    return render(request, 'dashboard/notification/notification_list.html', {'notifications': notifications})\n@login_required\ndef notification_detail(request, pk):",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "notification_detail",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def notification_detail(request, pk):\n    notification = get_object_or_404(Notification, pk=pk)\n    # Check if user has permission to view this notification\n    if request.user.role != 'Admin' and notification.user != request.user:\n        messages.error(request, \"You don't have permission to view this notification.\")\n        return redirect('notification_list')\n    # Mark as read when viewed\n    if not notification.read:\n        notification.read = True\n        notification.save()",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "notification_mark_read",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def notification_mark_read(request, pk):\n    notification = get_object_or_404(Notification, pk=pk)\n    # Check if user has permission\n    if request.user.role != 'Admin' and notification.user != request.user:\n        messages.error(request, \"You don't have permission to update this notification.\")\n        return redirect('notification_list')\n    notification.read = True\n    notification.save()\n    # Return to referring page or notification list\n    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('notification_list')))",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_list",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_list(request):\n    # Only admins can view policies\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to view policies.\")\n        return redirect('dashboard')\n    policies = Policy.objects.all()\n    return render(request, 'dashboard/policy/policy_list.html', {'policies': policies})\n@login_required\ndef policy_detail(request, pk):\n    # Only admins can view policy details",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_detail",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_detail(request, pk):\n    # Only admins can view policy details\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to view policy details.\")\n        return redirect('dashboard')\n    policy = get_object_or_404(Policy, pk=pk)\n    criteria = PolicyCriteria.objects.filter(policy=policy)\n    return render(request, 'dashboard/policy/policy_detail.html', {\n        'policy': policy,\n        'criteria': criteria",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_create",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_create(request):\n    # Only admins can create policies\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to create policies.\")\n        return redirect('dashboard')\n    if request.method == 'POST':\n        form = PolicyForm(request.POST)\n        if form.is_valid():\n            policy = form.save()\n            messages.success(request, \"Policy created successfully.\")",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_update",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_update(request, pk):\n    # Only admins can update policies\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to update policies.\")\n        return redirect('dashboard')\n    policy = get_object_or_404(Policy, pk=pk)\n    if request.method == 'POST':\n        form = PolicyForm(request.POST, instance=policy)\n        if form.is_valid():\n            form.save()",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_delete",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_delete(request, pk):\n    # Only admins can delete policies\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to delete policies.\")\n        return redirect('dashboard')\n    policy = get_object_or_404(Policy, pk=pk)\n    if request.method == 'POST':\n        policy.delete()\n        messages.success(request, \"Policy deleted successfully.\")\n        return redirect('policy_list')",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_criteria_create",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_criteria_create(request, policy_id):\n    # Only admins can create policy criteria\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to create policy criteria.\")\n        return redirect('dashboard')\n    policy = get_object_or_404(Policy, pk=policy_id)\n    if request.method == 'POST':\n        form = PolicyCriteriaForm(request.POST)\n        if form.is_valid():\n            criteria = form.save(commit=False)",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_criteria_update",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_criteria_update(request, pk):\n    # Only admins can update policy criteria\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to update policy criteria.\")\n        return redirect('dashboard')\n    criteria = get_object_or_404(PolicyCriteria, pk=pk)\n    policy = criteria.policy\n    if request.method == 'POST':\n        form = PolicyCriteriaForm(request.POST, instance=criteria)\n        if form.is_valid():",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "policy_criteria_delete",
+        "kind": 2,
+        "importPath": "management.views",
+        "description": "management.views",
+        "peekOfCode": "def policy_criteria_delete(request, pk):\n    # Only admins can delete policy criteria\n    if request.user.role != 'Admin':\n        messages.error(request, \"You don't have permission to delete policy criteria.\")\n        return redirect('dashboard')\n    criteria = get_object_or_404(PolicyCriteria, pk=pk)\n    policy = criteria.policy\n    if request.method == 'POST':\n        criteria.delete()\n        messages.success(request, \"Policy criteria deleted successfully.\")",
+        "detail": "management.views",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]

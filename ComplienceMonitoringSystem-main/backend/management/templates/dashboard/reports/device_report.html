@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Monitoring Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #4e73df;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --warning: #f6c23e;
+            --danger: #e74a3b;
+            --secondary: #858796;
+            --light: #f8f9fc;
+            --dark: #5a5c69;
+        }
+        
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #224abe 100%);
+            color: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+        }
+        
+        .card-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: #f8f9fc;
+            font-weight: 600;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 100%;
+            min-height: 300px;
+        }
+        
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35em 0.65em;
+        }
+        
+        .resource-meter {
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-thin {
+            height: 8px;
+        }
+        
+        .data-table {
+            font-size: 0.85rem;
+        }
+        
+        .data-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Header -->
+    <header class="dashboard-header py-4 mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0"><i class="fas fa-laptop-medical me-2"></i> Device Monitoring Dashboard</h1>
+                    <p class="mb-0">Real-time insights for DEV-{{ device.id }} - {{ device.hostname }}</p>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="timeRangeDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-calendar-alt me-1"></i> Last 7 Days
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item active" href="#">Last 7 Days</a></li>
+                        <li><a class="dropdown-item" href="#">Last 24 Hours</a></li>
+                        <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Custom Range</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Summary Cards Row -->
+        <div class="row mb-4">
+            <!-- Compliance Status Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-start-{% if device.status == 'compliant' %}success{% elif device.status == 'warning' %}warning{% else %}danger{% endif %} shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col me-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                    Compliance Status</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <span class="status-badge bg-{% if device.status == 'compliant' %}success{% elif device.status == 'warning' %}warning{% else %}danger{% endif %}">
+                                        {{ device.get_status_display }}
+                                    </span>
+                                </div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span>Last scan: {{ device.last_scan|date:"M d, Y H:i" }}</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-shield-alt fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CPU Usage Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-start-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col me-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    CPU Usage</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ device.cpu_usage }}%</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-{% if device.cpu_usage > 85 %}danger{% elif device.cpu_usage > 70 %}warning{% else %}info{% endif %}" 
+                                                 role="progressbar" style="width: {{ device.cpu_usage }}%" 
+                                                 aria-valuenow="{{ device.cpu_usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span class="text-{% if device.cpu_usage > 85 %}danger{% elif device.cpu_usage > 70 %}warning{% else %}success{% endif %} mr-1">
+                                        <i class="fas fa-arrow-{% if device.cpu_trend == 'up' %}up{% else %}down{% endif %}"></i>
+                                        {{ device.cpu_change }}%
+                                    </span>
+                                    <span>vs last scan</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-microchip fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Usage Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-start-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col me-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Memory Usage</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ device.memory_usage }}%</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-{% if device.memory_usage > 85 %}danger{% elif device.memory_usage > 70 %}warning{% else %}warning{% endif %}" 
+                                                 role="progressbar" style="width: {{ device.memory_usage }}%" 
+                                                 aria-valuenow="{{ device.memory_usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span class="text-{% if device.memory_trend == 'up' %}danger{% else %}success{% endif %} mr-1">
+                                        <i class="fas fa-arrow-{% if device.memory_trend == 'up' %}up{% else %}down{% endif %}"></i>
+                                        {{ device.memory_change }}%
+                                    </span>
+                                    <span>vs last scan</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-memory fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installed Software Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-start-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col me-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Installed Software</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ software_list.count }}</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span class="text-danger mr-1">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        {{ blocked_software_count }} blocked
+                                    </span>
+                                    <span class="text-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        {{ restricted_software_count }} restricted
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <!-- Resource Usage Bar Chart -->
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Resource Usage Overview</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
+                                <a class="dropdown-item" href="#">Refresh Data</a>
+                                <a class="dropdown-item" href="#">Export as PNG</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="resourceUsageChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Status Pie Chart -->
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Compliance Status</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="compliancePieChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small">
+                            <span class="me-3">
+                                <i class="fas fa-circle text-success"></i> Compliant
+                            </span>
+                            <span class="me-3">
+                                <i class="fas fa-circle text-warning"></i> Warning
+                            </span>
+                            <span>
+                                <i class="fas fa-circle text-danger"></i> Non-Compliant
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trend Charts Row -->
+        <div class="row mb-4">
+            <!-- CPU Trend Chart -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">CPU Usage Trend</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
+                                <a class="dropdown-item" href="#" onclick="updateCpuTrend('24h')">Last 24 Hours</a>
+                                <a class="dropdown-item" href="#" onclick="updateCpuTrend('7d')">Last 7 Days</a>
+                                <a class="dropdown-item" href="#" onclick="updateCpuTrend('30d')">Last 30 Days</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="cpuTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Trend Chart -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Memory Usage Trend</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
+                                <a class="dropdown-item" href="#" onclick="updateMemoryTrend('24h')">Last 24 Hours</a>
+                                <a class="dropdown-item" href="#" onclick="updateMemoryTrend('7d')">Last 7 Days</a>
+                                <a class="dropdown-item" href="#" onclick="updateMemoryTrend('30d')">Last 30 Days</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="memoryTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Tables Row -->
+        <div class="row">
+            <!-- Installed Software Table -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Installed Software</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
+                                <a class="dropdown-item" href="#">Scan Now</a>
+                                <a class="dropdown-item" href="#">Export List</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">View All</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table data-table table-hover" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Version</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for software in software_list|slice:":5" %}
+                                    <tr>
+                                        <td>{{ software.name }}</td>
+                                        <td>{{ software.version }}</td>
+                                        <td>
+                                            <span class="status-badge bg-{% if software.status == 'approved' %}success{% elif software.status == 'restricted' %}warning{% else %}danger{% endif %}">
+                                                {{ software.get_status_display }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Details</button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-end mt-3">
+                            <a href="#" class="btn btn-sm btn-primary">View All Software</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Table -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Recent Activity</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
+                                <a class="dropdown-item" href="#">Refresh</a>
+                                <a class="dropdown-item" href="#">Export</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">View All</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table data-table table-hover" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for report in compliance_history|slice:":5" %}
+                                    <tr>
+                                        <td>{{ report.scan_time|date:"M d, H:i" }}</td>
+                                        <td>
+                                            <span class="status-badge bg-{% if report.scan_status == 'compliant' %}success{% elif report.scan_status == 'warning' %}warning{% else %}danger{% endif %}">
+                                                {{ report.get_scan_status_display }}
+                                            </span>
+                                        </td>
+                                        <td>{{ report.actions_taken|truncatechars:30 }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-end mt-3">
+                            <a href="#" class="btn btn-sm btn-primary">View All Activity</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white mt-5">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Device Monitoring System {% now "Y" %}</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Scripts -->
+    <script>
+        // Resource Usage Bar Chart
+        const resourceCtx = document.getElementById('resourceUsageChart').getContext('2d');
+        const resourceChart = new Chart(resourceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['CPU', 'Memory', 'Disk', 'Network Down', 'Network Up'],
+                datasets: [{
+                    label: 'Current Usage',
+                    data: [{{ device.cpu_usage }}, {{ device.memory_usage }}, {{ device.disk_usage }}, 
+                           {{ device.network_download_speed }}, {{ device.network_upload_speed }}],
+                    backgroundColor: [
+                        'rgba(78, 115, 223, 0.7)',
+                        'rgba(54, 185, 204, 0.7)',
+                        'rgba(246, 194, 62, 0.7)',
+                        'rgba(231, 74, 59, 0.7)',
+                        'rgba(28, 200, 138, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(78, 115, 223, 1)',
+                        'rgba(54, 185, 204, 1)',
+                        'rgba(246, 194, 62, 1)',
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(28, 200, 138, 1)'
+                    ],
+                    borderWidth: 1
+                }, {
+                    label: 'Recommended Max',
+                    data: [85, 85, 90, 100, 100],
+                    backgroundColor: 'rgba(169, 169, 169, 0.2)',
+                    borderColor: 'rgba(169, 169, 169, 1)',
+                    borderWidth: 1,
+                    type: 'line',
+                    pointRadius: 0,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            color: '#858796'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#858796'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) label += ': ';
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 11
+                            },
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        // Compliance Pie Chart
+        const compliancePieCtx = document.getElementById('compliancePieChart').getContext('2d');
+        const compliancePieChart = new Chart(compliancePieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Compliant", "Warning", "Non-Compliant"],
+                datasets: [{
+                    data: [65, 15, 20],
+                    backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b'],
+                    hoverBackgroundColor: ['#17a673', '#dda20a', '#be2617'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        },
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                cutout: '80%',
+            }
+        });
+
+        // CPU Trend Chart
+        const cpuTrendCtx = document.getElementById('cpuTrendChart').getContext('2d');
+        const cpuTrendChart = new Chart(cpuTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                datasets: [{
+                    label: "CPU Usage",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(78, 115, 223, 0.05)",
+                    borderColor: "rgba(78, 115, 223, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [65, 59, 80, 81, 56, 55]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'CPU: ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            color: '#858796'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#858796'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Memory Trend Chart
+        const memoryTrendCtx = document.getElementById('memoryTrendChart').getContext('2d');
+        const memoryTrendChart = new Chart(memoryTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                datasets: [{
+                    label: "Memory Usage",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(246, 194, 62, 0.05)",
+                    borderColor: "rgba(246, 194, 62, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(246, 194, 62, 1)",
+                    pointBorderColor: "rgba(246, 194, 62, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(246, 194, 62, 1)",
+                    pointHoverBorderColor: "rgba(246, 194, 62, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [45, 60, 55, 75, 82, 78]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Memory: ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            color: '#858796'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#858796'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Update chart data functions
+        function updateCpuTrend(range) {
+            // In a real app, you would fetch this data from your API
+            let labels, data;
+            
+            if (range === '24h') {
+                labels = ["12AM", "3AM", "6AM", "9AM", "12PM", "3PM", "6PM", "9PM"];
+                data = [45, 60, 55, 75, 82, 78, 65, 50];
+            } else if (range === '7d') {
+                labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+                data = [65, 59, 80, 81, 56, 55, 40];
+            } else { // 30d
+                labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
+                data = [65, 59, 80, 75];
+            }
+            
+            cpuTrendChart.data.labels = labels;
+            cpuTrendChart.data.datasets[0].data = data;
+            cpuTrendChart.update();
+        }
+
+        function updateMemoryTrend(range) {
+            // In a real app, you would fetch this data from your API
+            let labels, data;
+            
+            if (range === '24h') {
+                labels = ["12AM", "3AM", "6AM", "9AM", "12PM", "3PM", "6PM", "9PM"];
+                data = [35, 45, 40, 55, 60, 58, 50, 45];
+            } else if (range === '7d') {
+                labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+                data = [45, 60, 55, 75, 82, 78, 65];
+            } else { // 30d
+                labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
+                data = [55, 65, 70, 60];
+            }
+            
+            memoryTrendChart.data.labels = labels;
+            memoryTrendChart.data.datasets[0].data = data;
+            memoryTrendChart.update();
+        }
+    </script>
+</body>
+</html>

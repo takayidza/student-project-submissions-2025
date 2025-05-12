@@ -1,0 +1,79 @@
+<!-- Sidebar -->
+<div class="sidebar border-end bg-light">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link {% if request.path == '/dashboard/' or request.path == '/' %}active{% endif %}" href="{% url 'dashboard' %}">
+                    <i class="bi bi-speedometer2 me-2"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/devices/' in request.path %}active{% endif %}" href="{% url 'device_list' %}">
+                    <i class="bi bi-laptop me-2"></i>
+                    Devices
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/monitoring/' in request.path %}active{% endif %}" href="{% url 'monitoring' %}">
+                    <i class="bi bi-activity me-2"></i>
+                    Live Monitoring
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/notifications/' in request.path %}active{% endif %}" href="{% url 'notification_list' %}">
+                    <i class="bi bi-bell me-2"></i>
+                    Notifications
+                </a>
+            </li>
+            {% if user.role == 'Admin' %}
+            <li class="nav-item">
+                <a class="nav-link {% if '/policies/' in request.path %}active{% endif %}" href="{% url 'policy_list' %}">
+                    <i class="bi bi-shield-check me-2"></i>
+                    Policies
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/blocked-software/' in request.path %}active{% endif %}" href="{% url 'blocked_software_list' %}">
+                    <i class="bi bi-x-octagon me-2"></i>
+                    Blocked Software
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/reports/' in request.path %}active{% endif %}" href="#">
+                    <i class="bi bi-file-bar-graph me-2"></i>
+                    Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if '/users/' in request.path %}active{% endif %}" href="#">
+                    <i class="bi bi-people me-2"></i>
+                    Users
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+            
+        {% if user.role == 'Admin' %}
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Administration</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link {% if '/settings/' in request.path %}active{% endif %}" href="#">
+                    <i class="bi bi-gear me-2"></i>
+                    Settings
+                </a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link {% if '/logs/' in request.path %}active{% endif %}" href="#">
+                    <i class="bi bi-journal-text me-2"></i>
+                    Logs
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+</div>
+<!-- End of Sidebar -->

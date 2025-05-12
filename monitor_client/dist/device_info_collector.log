@@ -1,0 +1,133 @@
+2025-05-09 11:34:23,380 - INFO - Initializing DeviceInfoCollector
+2025-05-09 11:34:23,484 - INFO - Getting serial number for OS: windows
+2025-05-09 11:34:23,652 - INFO - Getting installed software for OS: windows
+2025-05-09 11:34:23,652 - INFO - Getting Windows installed software
+2025-05-09 11:34:24,353 - INFO - Found 74 installed Windows applications
+2025-05-09 11:34:24,353 - INFO - Getting system info for OS: windows
+2025-05-09 11:34:24,707 - INFO - Getting system info for OS: windows
+2025-05-09 11:34:26,421 - INFO - Device information collected successfully
+2025-05-09 11:34:38,424 - INFO - Starting device information collection
+2025-05-09 11:34:38,437 - INFO - Successfully converted device info to JSON
+2025-05-09 11:34:38,439 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:34:38,441 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:34:38,620 - INFO - Received: {"type": "connection_established", "device_id": "bcbb0945-c1cc-44ed-976f-c55de3c092ef", "message": "WebSocket connection established"}
+2025-05-09 11:34:38,621 - INFO - Device info sent successfully
+2025-05-09 11:34:43,438 - INFO - Starting device information collection
+2025-05-09 11:34:43,439 - INFO - Successfully converted device info to JSON
+2025-05-09 11:34:43,439 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:34:43,440 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:34:47,430 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:34:47,435 - INFO - Received: {"type": "connection_established", "device_id": "5806e92d-6d29-492f-bd3b-7980a446080f", "message": "WebSocket connection established"}
+2025-05-09 11:34:47,435 - INFO - Device info sent successfully
+2025-05-09 11:34:48,453 - INFO - Starting device information collection
+2025-05-09 11:34:48,455 - INFO - Successfully converted device info to JSON
+2025-05-09 11:34:48,457 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:34:48,458 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:34:53,005 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:34:53,456 - INFO - Starting device information collection
+2025-05-09 11:34:53,458 - INFO - Successfully converted device info to JSON
+2025-05-09 11:34:53,460 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:34:53,462 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:34:58,011 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:34:58,467 - INFO - Starting device information collection
+2025-05-09 11:34:58,470 - INFO - Successfully converted device info to JSON
+2025-05-09 11:34:58,472 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:34:58,473 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:02,890 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:35:02,898 - INFO - Received: {"type": "connection_established", "device_id": "b7e096c0-b5b3-448a-aaa6-e402cb896a4e", "message": "WebSocket connection established"}
+2025-05-09 11:35:02,899 - INFO - Device info sent successfully
+2025-05-09 11:35:03,478 - INFO - Starting device information collection
+2025-05-09 11:35:03,479 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:03,482 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:03,488 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:08,024 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:08,494 - INFO - Starting device information collection
+2025-05-09 11:35:08,495 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:08,496 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:08,498 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:13,015 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:13,509 - INFO - Starting device information collection
+2025-05-09 11:35:13,511 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:13,514 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:13,517 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:14,893 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:35:14,901 - INFO - Received: {"type": "connection_established", "device_id": "aeb36e80-0732-44bf-a8b2-55cc7884a78a", "message": "WebSocket connection established"}
+2025-05-09 11:35:14,902 - INFO - Device info sent successfully
+2025-05-09 11:35:18,514 - INFO - Starting device information collection
+2025-05-09 11:35:18,516 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:18,524 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:18,536 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:23,013 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:23,531 - INFO - Starting device information collection
+2025-05-09 11:35:23,533 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:23,536 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:23,539 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:25,170 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:35:25,179 - INFO - Received: {"type": "connection_established", "device_id": "92c4192b-b9cc-4997-a4e6-7f7d8eaa0389", "message": "WebSocket connection established"}
+2025-05-09 11:35:25,180 - INFO - Device info sent successfully
+2025-05-09 11:35:28,546 - INFO - Starting device information collection
+2025-05-09 11:35:28,549 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:28,553 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:28,556 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:33,011 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:33,560 - INFO - Starting device information collection
+2025-05-09 11:35:33,566 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:33,574 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:33,584 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:38,007 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:38,580 - INFO - Starting device information collection
+2025-05-09 11:35:38,581 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:38,582 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:38,584 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:43,012 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:43,582 - INFO - Starting device information collection
+2025-05-09 11:35:43,585 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:43,586 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:43,589 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:43,768 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:35:43,783 - INFO - Received: {"type": "connection_established", "device_id": "03ee4095-398f-4cdf-afff-da7a152b0253", "message": "WebSocket connection established"}
+2025-05-09 11:35:43,784 - INFO - Device info sent successfully
+2025-05-09 11:35:48,591 - INFO - Starting device information collection
+2025-05-09 11:35:48,593 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:48,595 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:48,597 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:53,006 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:53,599 - INFO - Starting device information collection
+2025-05-09 11:35:53,601 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:53,604 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:53,605 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:35:58,011 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:35:58,604 - INFO - Starting device information collection
+2025-05-09 11:35:58,606 - INFO - Successfully converted device info to JSON
+2025-05-09 11:35:58,608 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:35:58,610 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:02,150 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:36:02,173 - INFO - Received: {"type": "connection_established", "device_id": "974b8619-c21f-4cb5-989f-5152924e20e8", "message": "WebSocket connection established"}
+2025-05-09 11:36:02,175 - INFO - Device info sent successfully
+2025-05-09 11:36:03,617 - INFO - Starting device information collection
+2025-05-09 11:36:03,618 - INFO - Successfully converted device info to JSON
+2025-05-09 11:36:03,620 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:36:03,623 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:08,004 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:36:08,633 - INFO - Starting device information collection
+2025-05-09 11:36:08,640 - INFO - Successfully converted device info to JSON
+2025-05-09 11:36:08,646 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:36:08,657 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:13,118 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:36:13,643 - INFO - Starting device information collection
+2025-05-09 11:36:13,645 - INFO - Successfully converted device info to JSON
+2025-05-09 11:36:13,648 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:36:13,651 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:18,016 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
+2025-05-09 11:36:18,659 - INFO - Starting device information collection
+2025-05-09 11:36:18,660 - INFO - Successfully converted device info to JSON
+2025-05-09 11:36:18,662 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:36:18,664 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:20,222 - INFO - Received acknowledgement: {"type": "acknowledge", "message": "Device information received"}
+2025-05-09 11:36:20,233 - INFO - Received: {"type": "connection_established", "device_id": "4b2b87a3-3a14-4e67-9699-5976327ee24e", "message": "WebSocket connection established"}
+2025-05-09 11:36:20,234 - INFO - Device info sent successfully
+2025-05-09 11:36:23,662 - INFO - Starting device information collection
+2025-05-09 11:36:23,664 - INFO - Successfully converted device info to JSON
+2025-05-09 11:36:23,666 - INFO - Device information has been saved to 'device_info.json'
+2025-05-09 11:36:23,669 - INFO - Attempting to connect to WebSocket at ws://192.168.244.1:8000/ws/device-tracker/
+2025-05-09 11:36:28,014 - ERROR - Error in WebSocket communication: did not receive a valid HTTP response
