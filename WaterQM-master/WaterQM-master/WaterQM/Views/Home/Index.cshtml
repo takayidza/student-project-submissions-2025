@@ -1,0 +1,137 @@
+﻿@model DashboardViewModel
+
+<h2>Water Quality Dashboard</h2>
+
+<div class="row">
+    <!-- Total Sensors -->
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Total Sensors</h5>
+                <p class="card-text display-4">@Model.TotalSensors</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Average Reading -->
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Avg. Sensor Reading</h5>
+                <p class="card-text display-4">@Model.AverageReading</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Alerts -->
+    <div class="col-md-4">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <h5 class="card-title">Active Alerts</h5>
+                <p class="card-text display-4">@Model.Alerts.Count</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- Latest Readings Table -->
+<h4>Latest Sensor Readings</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sensor ID</th>
+            <th>Parameter</th>
+            <th>Reading</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reading in Model.LatestReadings)
+        {
+            <tr>
+                <td>@reading.SensorId</td>
+                <td>@reading.Parameter.ParameterName</td>
+                <td>@reading.ReadingValue</td>
+                <td>@reading.ReadingTime.ToString("hh:mm tt")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Alerts Table -->
+@if (Model.Alerts.Any())
+{
+    <h4 class="text-danger">Critical Sensor Alerts</h4>
+    <table class="table table-bordered table-danger">
+        <thead>
+            <tr>
+                <th>Sensor ID</th>
+                <th>Parameter</th>
+                <th>Reading</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var alert in Model.Alerts)
+            {
+                <tr>
+                    <td>@alert.SensorId</td>
+                    <td>@alert.Parameter.ParameterName</td>
+                    <td>@alert.ReadingValue</td>
+                    <td>@alert.ReadingTime.ToString("hh:mm tt")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Real-Time Chart -->
+<h4>Live Sensor Data</h4>
+<canvas id="sensorChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function fetchChartData() {
+        $.get('/Home/Index', function (data) {
+            let labels = [];
+            let values = [];
+
+            $(data).find('tbody tr').each(function () {
+                labels.push($(this).find("td:nth-child(4)").text());
+                values.push(parseFloat($(this).find("td:nth-child(3)").text()));
+            });
+
+            try {
+                updateChart(labels, values);
+            } catch (e) {
+
+            }
+           
+        });
+    }
+
+    
+    function updateChart(labels, values) {
+        let ctx = document.getElementById('sensorChart').getContext('2d');
+        if (window.sensorChart) {
+         //   window.sensorChart.destroy();
+        }
+        window.sensorChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Sensor Readings',
+                    data: values,
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            }
+        });
+    }
+
+    setInterval(fetchChartData, 1000);
+</script>

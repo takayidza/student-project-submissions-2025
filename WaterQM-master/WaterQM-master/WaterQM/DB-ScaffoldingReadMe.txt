@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext name="AppConn" Microsoft.EntityFrameworkCore.SqlServer -context AppDbContext -ContextDir Data  -outputdir Models -DataAnnotations -force 

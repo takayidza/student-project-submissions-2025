@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WaterQM | Pindah's Next-Level Water Monitoring</title>
+
+    <meta name="description" content="WaterQM by Pindah – The most advanced water quality monitoring system. Real-time data, AI-driven insights, and instant alerts to safeguard water resources.">
+    <meta name="keywords" content="Water Quality Monitoring, Smart Water Systems, AI Water Analysis, Environmental Protection, Pindah Technologies, Water Sensors, Water Data Analytics">
+    <meta name="author" content="Pindah Private Limited">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="WaterQM - AI-Powered Water Monitoring by Pindah">
+    <meta property="og:description" content="Monitor pH, turbidity, and dissolved oxygen in real-time with WaterQM, built by Pindah – the undisputed leader in smart tech solutions.">
+    <meta property="og:image" content="https://pindah.org/assets/waterqm-banner.jpg">
+    <meta property="og:url" content="https://pindah.org/water-qaulity-management-system/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WaterQM - Pindah's AI-Driven Water Monitoring System">
+    <meta name="twitter:description" content="WaterQM by Pindah ensures clean water with real-time monitoring and AI-powered alerts.">
+    <meta name="twitter:image" content="https://pindah.org/assets/waterqm-banner.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WaterQM.styles.css" asp-append-version="true" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pindah.org/waterqm">
+
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "SoftwareApplication",
+      "name": "WaterQM",
+      "description": "WaterQM is a next-generation water quality monitoring system by Pindah, utilizing AI, IoT sensors, and real-time data analytics.",
+      "applicationCategory": "Environmental Monitoring",
+      "operatingSystem": "Web-based",
+      "author": {
+        "@@type": "Organization",
+        "name": "Pindah Private Limited",
+        "url": "https://pindah.org"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WaterQM</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Locations" asp-action="Index">Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Notifications" asp-action="Index">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sensors" asp-action="Index">Sensors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="SensorReadings" asp-action="Index">Readings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Alerts" asp-action="Index">Alerts</a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1 text-end">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - WaterQM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
