@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\tatendachirume\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\tatendachirume\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\tatendachirume\\Downloads\\Proj\\New folder\\final\\greenzems\\page1Dr.Ai - Copy (2) - Copy BP test\\android\\app\\.cxx\\Debug\\1c81w6t5\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\tatendachirume\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\tatendachirume\\Downloads\\Proj\\New folder\\final\\greenzems\\page1Dr.Ai - Copy (2) - Copy BP test\\android\\app\\.cxx\\Debug\\1c81w6t5\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

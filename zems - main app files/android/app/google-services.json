@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "77881797703",
+    "project_id": "emed-9a35f",
+    "storage_bucket": "emed-9a35f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77881797703:android:bfbf6e331617a47f719562",
+        "android_client_info": {
+          "package_name": "com.zems.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsNIk1-Sc1qqdHyAxKRrH_amPvW9Arnys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

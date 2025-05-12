@@ -1,0 +1,2 @@
+C:/Users/tatendachirume/Downloads/Proj/New folder/final/page1Dr.Ai/android/app/.cxx/Debug/571d5b56/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/tatendachirume/Downloads/Proj/New folder/final/page1Dr.Ai/android/app/.cxx/Debug/571d5b56/x86_64/CMakeFiles/rebuild_cache.dir

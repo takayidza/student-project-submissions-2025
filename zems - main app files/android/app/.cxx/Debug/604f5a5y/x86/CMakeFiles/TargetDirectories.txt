@@ -1,0 +1,2 @@
+C:/Users/tatendachirume/Downloads/Proj/ff1/pagebuttonok - Copy (2)/android/app/.cxx/Debug/604f5a5y/x86/CMakeFiles/edit_cache.dir
+C:/Users/tatendachirume/Downloads/Proj/ff1/pagebuttonok - Copy (2)/android/app/.cxx/Debug/604f5a5y/x86/CMakeFiles/rebuild_cache.dir
