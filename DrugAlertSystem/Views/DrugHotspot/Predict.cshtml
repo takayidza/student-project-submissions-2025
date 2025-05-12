@@ -1,0 +1,77 @@
+@model DrugAlertSystem.Models.DrugHotspotPredictionViewModel
+
+@{
+    ViewData["Title"] = "Drug Hotspot Prediction";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Predict" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <input type="hidden" asp-for="ReportId" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="PeopleLoitering" class="form-check-input" />
+                        <label asp-for="PeopleLoitering" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="DrugWrappersFound" class="form-check-input" />
+                        <label asp-for="DrugWrappersFound" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="StrongSmell" class="form-check-input" />
+                        <label asp-for="StrongSmell" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="LoudNoiseOrMusic" class="form-check-input" />
+                        <label asp-for="LoudNoiseOrMusic" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="ShoeHangingOnWire" class="form-check-input" />
+                        <label asp-for="ShoeHangingOnWire" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="PeopleInAndOut" class="form-check-input" />
+                        <label asp-for="PeopleInAndOut" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Predict" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

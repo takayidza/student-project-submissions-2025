@@ -1,0 +1,215 @@
+﻿@model DrugAlertSystem.Models.Report
+
+@{
+    ViewData["Title"] = "Report an Incident";
+    var userId = ViewData["UserId"] as string;
+
+}
+@userId
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+                    <p class="text-center text-secondary mb-4">Help authorities track and stop illegal drug activities
+                        by reporting suspicious incidents.</p>
+
+                    <form asp-action="Create" class="needs-validation" novalidate>
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                        <!-- Hidden User ID -->
+                        <div class="form-group" hidden>
+                            <label asp-for="UserId" class="control-label"></label>
+                            <input asp-for="UserId" class="form-control" value="@userId" />
+                            <input asp-for="Status" class="form-control" value="Pending" />
+                        </div>
+
+                        <!-- Report Type -->
+                        <div class="mb-4">
+                            <label asp-for="ReportType" class="form-label fw-semibold">Report Type</label>
+                            <select asp-for="ReportType" class="form-select" required>
+                                <option value="">Select an incident type</option>
+                                <option value="Drug Abuse">Drug Abuse</option>
+                                <option value="Drug Selling">Drug Selling</option>
+                                <option value="Drug Smuggling">Drug Smuggling</option>
+                                <option value="Suspicious Activity">Suspicious Activity</option>
+                            </select>
+                            <span asp-validation-for="ReportType" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-semibold">Description & Location</label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                placeholder="Provide detailed information about the incident and location..."
+                                required></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Location Data -->
+                        <div class="bg-light p-3 rounded mb-4 border">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label asp-for="Latitude" class="form-label fw-semibold">Latitude</label>
+                                    <input asp-for="Latitude" class="form-control" id="latitude" readonly />
+                                    <span asp-validation-for="Latitude" class="text-danger small"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Longitude" class="form-label fw-semibold">Longitude</label>
+                                    <input asp-for="Longitude" class="form-control" id="longitude" readonly />
+                                    <span asp-validation-for="Longitude" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio Recording -->
+                        <div class="bg-light p-3 rounded mb-4 border">
+                            <label class="form-label fw-semibold">Audio Recording</label>
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <button type="button" id="recordButton" class="btn btn-danger">
+                                    <i class='bx bx-microphone'></i> Start Recording
+                                </button>
+                                <button type="button" id="stopButton" class="btn btn-secondary" disabled>
+                                    <i class='bx bx-stop-circle'></i> Stop Recording
+                                </button>
+                                <button type="button" id="playButton" class="btn btn-primary" disabled>
+                                    <i class='bx bx-play-circle'></i> Play Recording
+                                </button>
+                            </div>
+                            <div id="recordingStatus" class="text-muted small"></div>
+                            <audio id="audioPlayer" class="w-100 mt-2" controls style="display: none;"></audio>
+                            <input type="hidden" id="audioUrl" name="AudioUrl" />
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Report</button>
+                            <a asp-action="Index" class="btn btn-link text-decoration-none">Back to Reports</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function getLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        document.getElementById("latitude").value = position.coords.latitude;
+                        document.getElementById("longitude").value = position.coords.longitude;
+                    },
+                    function (error) {
+                        alert("Location access denied or unavailable. Please enable GPS and try again.");
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Audio recording functionality
+        let mediaRecorder;
+        let audioChunks = [];
+        let audioBlob;
+        let audioUrl;
+        let isRecording = false;
+        let recordingStartTime;
+
+        const recordButton = document.getElementById('recordButton');
+        const stopButton = document.getElementById('stopButton');
+        const playButton = document.getElementById('playButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const recordingStatus = document.getElementById('recordingStatus');
+        const audioUrlInput = document.getElementById('audioUrl');
+
+        recordButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.addEventListener('dataavailable', event => {
+                    audioChunks.push(event.data);
+                });
+
+                mediaRecorder.addEventListener('stop', async () => {
+                    audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    audioUrl = URL.createObjectURL(audioBlob);
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.style.display = 'block';
+                    playButton.disabled = false;
+
+                    // Create FormData and upload the audio file
+                    const formData = new FormData();
+                    formData.append('audioFile', audioBlob, `recording_${Date.now()}.wav`);
+
+                    try {
+                        const response = await fetch('/Reports/UploadAudio', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            audioUrlInput.value = result.fileUrl;
+                        } else {
+                            throw new Error('Upload failed');
+                        }
+                    } catch (error) {
+                        console.error('Error uploading audio:', error);
+                        alert('Failed to upload audio recording. Please try again.');
+                    }
+                });
+
+                mediaRecorder.start();
+                isRecording = true;
+                recordingStartTime = Date.now();
+                updateRecordingStatus();
+
+                recordButton.disabled = true;
+                stopButton.disabled = false;
+                playButton.disabled = true;
+            } catch (err) {
+                console.error('Error accessing microphone:', err);
+                alert('Error accessing microphone. Please ensure you have granted microphone permissions.');
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            isRecording = false;
+            recordingStatus.textContent = 'Recording stopped';
+
+            recordButton.disabled = false;
+            stopButton.disabled = true;
+        });
+
+        playButton.addEventListener('click', () => {
+            audioPlayer.play();
+        });
+
+        function updateRecordingStatus() {
+            if (isRecording) {
+                const duration = Math.floor((Date.now() - recordingStartTime) / 1000);
+                recordingStatus.textContent = `Recording... ${duration}s`;
+                setTimeout(updateRecordingStatus, 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', getLocation);
+    </script>
+}

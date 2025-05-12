@@ -1,0 +1,80 @@
+﻿@model DrugAlertSystem.Models.Report
+
+@{
+    ViewData["Title"] = "View Report";
+    bool canEditStatus = User.IsInRole("LawEnforcement"); // Check if user is in LawEnforcement role
+}
+
+ 
+<div class="container mt-4">
+    <h1 class="text-center text-danger">@ViewData["Title"]</h1>
+    <p class="text-center text-muted">This report is read-only except for status updates.</p>
+
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group mb-3">
+                    <label class="form-label">User ID</label>
+                    <input asp-for="UserId" class="form-control"  />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Report Type</label>
+                    <input asp-for="ReportType" class="form-control" readonly />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" readonly></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Location</label>
+                    <div class="input-group">
+                        <span class="input-group-text">Lat</span>
+                        <input asp-for="Latitude" class="form-control" readonly />
+                        <span class="input-group-text">Lng</span>
+                        <input asp-for="Longitude" class="form-control" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Status" class="form-label">Status</label>
+                    @if (canEditStatus)
+                    {
+                        <select asp-for="Status" class="form-control">
+                            <option value="Pending">Pending</option>
+                            <option value="Under Investigation">Under Investigation</option>
+                            <option value="Resolved">Resolved</option>
+                            <option value="Dismissed">Dismissed</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <input asp-for="Status" class="form-control" readonly />
+                    }
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Reported At</label>
+                    <input asp-for="CreatedAt" class="form-control" readonly />
+                </div>
+
+                <div class="text-center">
+                    @if (canEditStatus)
+                    {
+                        <button type="submit" class="btn btn-primary">Update Status</button>
+                    }
+                    <a asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
