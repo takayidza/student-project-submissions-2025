@@ -1,0 +1,51 @@
+{% load static%}
+
+<!--top-Header-menu-->
+<div style="height: 60px;">
+  <div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav"> 
+      <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">User{{request.user }}</span></a></li>
+      <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Language: ({{request.user.language }})</span></a></li>
+      <li class=""><a title="" href="{% url 'logout-user' %}"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    </ul>
+  </div>
+  <br>
+  <div id="user-language">
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'user-language' request.user.pk %}" method="post">
+        {% csrf_token %}
+        <select id="language-select" name="language" class="tip-left" title="Select Language">
+          <!-- Options will be populated by JavaScript -->
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% endif %}
+  </div>
+
+  <li class="text-center">
+    <a >
+      <img src="{% static 'assets/img/my_logo.png' %}" alt="System Logo" style="height: 80px;">
+    </a>
+  </li>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const languages = [
+      { code: 'en', name: 'English' },
+      { code: 'es', name: 'Spanish' },
+      { code: 'fr', name: 'French' },
+      { code: 'de', name: 'German' },
+      { code: 'zh', name: 'Chinese' },
+      { code: 'sn', name: 'Shona' }
+    ];
+
+    const languageSelect = document.getElementById('language-select');
+    languages.forEach(language => {
+      const option = document.createElement('option');
+      option.value = language.code;
+      option.textContent = language.name;
+      languageSelect.appendChild(option);
+    });
+  });
+</script>
+<!--close-top-Header-menu-->

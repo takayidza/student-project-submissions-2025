@@ -1,0 +1,185 @@
+{% extends 'layouts/base.html' %}
+{% load static%}
+
+{% block navigation %}
+
+{% endblock%}
+
+{% block content%}
+<div class="container-fluid">
+    <div class="quick-actions_homepage">
+ <ul class="quick-actions">
+    <li class="active"><a href="{% url 'dashboard' %}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="{% url 'social_media_post_list' %}"><i class="icon icon-signal"></i> <span>Social Media Posts</span></a> </li>
+    <li> <a href="{% url 'social_media_comment_list' %}"><i class="icon icon-inbox"></i> <span>Social Media Comments</span></a> </li>
+    <li><a href="{% url 'users-index' %}"><i class="icon icon-user"></i> <span>Users</span></a></li>
+    <li><a href="{% url 'export_report' %}"><i class="icon icon-book"></i> <span>Reports</span></a></li>
+     </ul>
+</div>
+
+ <div class="row-fluid">
+   <div class="widget-box">
+     <div class="widget-title"><span class="icon"><i class="icon-tasks"></i></span>
+       <h5>Sentiment Analytics</h5>
+     </div>
+     <div class="widget-content">
+       <div class="row-fluid">
+         <div class="span8">
+           <div> <canvas id="sentimentChart" width="100%" height="40"></canvas></div>
+         </div>
+         <div class="span4">
+           <ul class="stat-boxes2">
+             <li>
+               <div class="left peity_bar_neutral"><span><span style="display: none;">{{total_posts}}</span>
+                 <canvas width="50" height="24"></canvas>
+                 </span></div>
+               <div class="right"> <strong>{{total_posts}}</strong> Posts </div>
+             </li>
+             <li>
+               <div class="left peity_line_neutral"><span><span style="display: none;">{{ total_alerts }}</span>
+                 <canvas width="50" height="24"></canvas>
+                 </span></div>
+               <div class="right"> <strong>{{ total_alerts }}</strong> Alerts </div>
+             </li>
+             <li>
+               <div class="left peity_bar_good"><span><span style="display: none;">{{total_positive}}</span>
+                 <canvas width="50" height="24"></canvas>
+                 </span></div>
+               <div class="right"> <strong>{{total_positive}}</strong> Positive Sentiments</div>
+             </li>
+             <li>
+               <div class="left peity_line_bad"><span><span style="display: none;">{{total_negative}}</span>
+                 <canvas width="50" height="24"></canvas>
+                 </span></div>
+               <div class="right"> <strong>{{total_negative}}</strong> Negative Sentiments</div>
+             </li>
+           </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <hr>
+ <div class="row-fluid">
+   <div class="span6">
+     <div class="widget-box">
+       <div class="widget-title"><span class="icon"><i class="icon-file"></i></span>
+         <h5>Latest Posts</h5>
+       </div>
+       <div class="widget-content nopadding">
+         <ul class="recent-posts">
+        {% for post in all_posts %}
+        <li>
+            <div class="user-thumb">
+                {% if post.image %}
+                    <img width="40" height="40" alt="User" src="{{ post.image.url }}">
+                {% else %}
+                    <img width="40" height="40" alt="Post Image" src="{% static 'img/default-avatar.jpg' %}">
+                {% endif %}
+            </div>
+            <div class="article-post">
+                <span class="user-info">{% if post.user %} By: {{ post.user.username}} {% endif %}/ Date: {{ post.created_time|date:"d M Y" }} / Time: {{ post.created_time|time:"h:i A" }} </span>
+                <p><a href="#">{{ post.message }}</a></p>
+            </div>
+        </li>
+        {% endfor %}
+<br>
+           <a href="{% url 'social_media_post_list' %}" class="btn btn-warning btn-mini text-center">View All</a>
+         </ul>
+       </div>
+     </div>
+   </div>
+   <div class="span6">
+     <div class="widget-box">
+       <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
+         <h5>News Alerts</h5>
+       </div>
+       <div class="widget-content nopadding updates">
+        {% for alert in all_alerts %}
+        <div class="new-update clearfix">
+            <i class="{% if alert.level == 'critical' %}icon-warning-sign{% elif alert.level == 'warning' %}icon-exclamation-sign{% else %}icon-info-sign{% endif %}"></i>
+            <div class="update-done">
+                <a title="" href="#"><strong>{{ alert.message }}</strong></a>
+                <span>Triggered by: {{ alert.user.username  }}</span>
+            </div>
+            <div class="update-date">
+                <span class="update-day">{{ alert.triggered_at|date:"d" }}</span>{{ alert.triggered_at|date:"M" }}
+            </div>
+        </div>
+        {% endfor %}
+
+       </div>
+     </div>
+   </div>
+ </div>
+ <hr>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = {{ chart_labels|safe }};
+    const sentimentData = {{ sentiment_data|safe }};
+
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Positive',
+                data: sentimentData.positive,
+                borderColor: 'green',
+                backgroundColor: 'rgba(0, 128, 0, 0.1)',
+                tension: 0.4,
+                fill: false,
+            },
+            {
+                label: 'Neutral',
+                data: sentimentData.neutral,
+                borderColor: 'gray',
+                backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                tension: 0.4,
+                fill: false,
+            },
+            {
+                label: 'Negative',
+                data: sentimentData.negative,
+                borderColor: 'red',
+                backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                tension: 0.4,
+                fill: false,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Sentiment Analysis Trends for This Month'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+
+    new Chart(document.getElementById('sentimentChart'), config);
+</script>
+
+{% endblock %}

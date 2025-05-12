@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block navigation %}
+<div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="{% url 'dashboard' %}" title="Go to Home" class="tip-bottom">
+            <i class="icon-home"></i> Home
+        </a> 
+        <a href="#" class="current">Export Report</a> 
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-user"></i></span> 
+                    <h5>Report Filter</h5>
+                </div>
+                <div class="widget-content">
+                    <form action="{% url 'export_report' %}" method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            {{ form|crispy }}
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Export Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

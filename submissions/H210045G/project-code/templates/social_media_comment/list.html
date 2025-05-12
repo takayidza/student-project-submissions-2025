@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %}
+{% load static%}
+
+{% block navigation %}
+<div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="{% url 'dashboard' %}" title="Go to Home" class="tip-bottom">
+            <i class="icon-home"></i> Home
+        </a> 
+        <a href="#" class="current">Social Media Comments</a> 
+    </div>
+    <div style="display: flex; align-items: center;">
+        <h1 style="margin-right: 20px;">Social Media Comments</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-th"></i></span> 
+                    <h5>Social Media Comments Table</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Post</th>
+                                <th>Text</th>
+                                <th>Translated Text</th>
+                                <th>Sentiment</th>
+                                <th>Confident Score</th>
+                                <th>Created Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for comment in comments %}
+                            <tr class="gradeA">
+                                <td>{{ comment.user.username }}</td>
+                                <td>{{ comment.post }}</td>
+                                <td>{{ comment.text }}</td>
+                                <td>{{ comment.translated_text }}</td>
+                                <td>{{ comment.sentiment.sentiment }}</td>
+                                <td>{{ comment.sentiment.confidence_score|floatformat:5 }}</td>
+                                <td>{{ comment.created_time }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% load static %}
+
+<div id="sidebar"><a href="{% url 'dashboard' %}" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a><ul>
+    <li class="active"><a href="{% url 'dashboard' %}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="{% url 'social_media_post_list' %}"><i class="icon icon-signal"></i> <span>Social Media Posts</span></a> </li>
+    <li> <a href="{% url 'social_media_comment_list' %}"><i class="icon icon-inbox"></i> <span>Social Media Comments</span></a> </li>
+    <li><a href="{% url 'users-index' %}"><i class="icon icon-th"></i> <span>Users</span></a></li>
+  </ul>
+</div>
