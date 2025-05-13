@@ -1,5 +1,5 @@
 # Video Explanation
 
-If you cannot upload your video directly, please paste a link to your video below:
-
-Video link: [Your video link here]
+please watch the video using link below.
+Video link: 
+https://drive.google.com/file/d/1LxC3FZSJa4W45Lvvr1vFgRCHupMT-W_f/view?usp=drive_link
