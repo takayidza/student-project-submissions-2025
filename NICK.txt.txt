@@ -1,0 +1,273 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h>
+
+
+const char* ssid = "Itel p36";          // Your Wi-Fi SSID
+const char* password = "Nick@001";    // Your Wi-Fi password
+const char* serverName = "http://172.20.10.2/iot/iot.php";  // PHP script URL
+
+WiFiClient wifiClient;
+
+  // Create a WiFiClient object to use in the HTTPClient
+
+const int mPin = D3; 
+const int fPin = D4;
+const int lPin = D5;
+const int lcdPin = D8;
+
+   // Pin for controlling the LED (D3)
+
+// Global variable to store the last state of the LED (initially off)
+String lastState = "0";
+String fanState = "0";
+String ledState = "0"; 
+String lcdState = "0"; 
+
+// Default to "off" state
+
+const int analogPin = A0;  // Pin to which the ACS712 is connected
+float voltage, current;
+
+float sensitivity = 0.185; // Sensitivity for ACS712 5A version (in volts per amp)
+
+
+void setup() {
+
+  
+
+
+  pinMode(mPin, OUTPUT);
+  digitalWrite(mPin, LOW);  
+  
+ pinMode(fPin, OUTPUT);
+  digitalWrite(fPin, LOW); 
+
+  pinMode(lPin, OUTPUT);
+  digitalWrite(lPin, LOW); 
+
+   pinMode(lcdPin, OUTPUT);
+  digitalWrite(lcdPin, LOW); 
+
+  Serial.begin(9600);
+  WiFi.begin(ssid, password);
+
+  // Wait for connection
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print(".");
+  }
+  Serial.println("\nConnected to WiFi");
+}
+
+void loop() {
+  // Send data every 10 seconds
+  delay(1000);
+  getDataFromServer();
+
+float bulb = 0;
+float lcd = 0;
+float pump = 0;
+float fan = 0;
+
+
+   int sensorValue = analogRead(analogPin);
+  
+ 
+  current = sensitivity * sensorValue;
+   
+    if (digitalRead(lPin) == HIGH) {
+       bulb = current;
+   
+  }
+  if (digitalRead(lcdPin) == LOW) {
+      lcd = current * 10.23;
+   
+  }
+  if (digitalRead(mPin) == LOW) {
+    
+    pump = current  * 20.74;
+  }
+   if (digitalRead(fPin) == LOW) {
+     fan = current * 15.11;
+    
+   }
+
+
+    
+    
+     
+  
+ 
+
+  delay(500);  // Update every half second
+    
+    sendData(bulb,lcd,pump,fan,521);
+
+  
+ 
+  delay(3000);
+ 
+}
+
+
+void sendData(float led, float lcd,float pump,float fan,float water_level) {
+  HTTPClient http;
+
+  // Create the full URL with the data
+ String url = String(serverName) + "?led=" + led + "&lcd=" + lcd + "&pump=" + pump +"&fan=" + fan +"&water_level=" + water_level;  // Example values, replace with your sensor data
+
+  // Start HTTP connection using WiFiClient
+  http.begin(wifiClient, url);
+
+  // Send GET request
+  int httpResponseCode = http.GET();
+
+  // Check response
+  if (httpResponseCode == 200) {
+    Serial.println("Data sent successfully");
+  } else {
+    Serial.println("Error sending data");
+  }
+
+  // Close the connection
+  http.end();
+}
+
+
+
+void getDataFromServer() {
+  WiFiClient client;
+  String response = "";
+  unsigned long startTime = millis();  // To handle timeout
+
+  // Attempt to connect to the server with IP and port 80
+  if (client.connect("192.168.1.131", 80)) {  // Use the local IP address and port 80 for HTTP
+    // Send the HTTP GET request
+    client.println("GET /energy/toggle.php HTTP/1.1");
+    client.println("Host: 192.168.1.131");
+    client.println("Connection: close");
+    client.println();
+
+    // Wait for the response from the server but shorten the timeout to make it quicker
+    while (client.connected() && (millis() - startTime) < 5000 ) {  // -second timeout for faster response
+      if (client.available()) {
+        char c = client.read();
+        response += c;
+      }
+    }
+
+    // If no data was received or the response is empty, stop and return
+    if (response.length() == 0) {
+      Serial.println("Failed to receive any response.");
+      client.stop();
+      return;
+    }
+
+    // Find the start of the body (after the headers) by looking for an empty line
+    int bodyStartIndex = response.indexOf("\r\n\r\n");
+    if (bodyStartIndex == -1) {
+      Serial.println("Error: No body in the response.");
+      client.stop();
+      return;
+    }
+
+    String body = response.substring(bodyStartIndex + 4);  // Extract the body part
+
+    // Parse the body directly (assuming it's a simple JSON array)
+    StaticJsonDocument<512> doc;
+    DeserializationError error = deserializeJson(doc, body);
+
+    if (error) {
+      Serial.print("Failed to parse JSON: ");
+      Serial.println(error.f_str());
+      client.stop();
+      return;
+    }
+
+    // Assuming the response is an array of JSON objects
+    JsonArray array = doc.as<JsonArray>();
+    if (array.size() == 0) {
+      Serial.println("No data in the JSON array.");
+      client.stop();
+      return;
+    }
+
+    // Iterate through the JSON array and handle the LED state
+    for (JsonObject obj : array) {
+      String gadget = obj["gadget"].as<String>();
+      String state = obj["state"].as<String>();
+
+      // Print out the values for debugging
+      Serial.println(gadget);
+      Serial.print("State: ");
+      Serial.println(state);
+
+      // Check if gadget is "led"
+      if (gadget == "pump") {
+        // Turn on the LED if state is "1" and it hasn't been turned on yet
+        if (state == "1" && lastState != "1") {
+          digitalWrite(mPin, HIGH);  // Turn on the LED
+          Serial.println("LED turned ON");
+          lastState = "1";  // Update the last state to "1"
+        }
+        // Turn off the LED if state is "0" and it hasn't been turned off yet
+        else if (state == "0" && lastState != "0") {
+          digitalWrite(mPin, LOW);  // Turn off the LED
+          Serial.println("LED turned OFF");
+          lastState = "0";  // Update the last state to "0"
+        }
+      } if (gadget == "fan") {
+        // Turn on the LED if state is "1" and it hasn't been turned on yet
+        if (state == "1" && fanState != "1") {
+          digitalWrite(fPin, HIGH);  // Turn on the LED
+          Serial.println("LED turned ON");
+          fanState = "1";  // Update the last state to "1"
+        }
+        // Turn off the LED if state is "0" and it hasn't been turned off yet
+        else if (state == "0" && fanState != "0") {
+          digitalWrite(fPin, LOW);  // Turn off the LED
+          Serial.println("LED turned OFF");
+          fanState = "0";  // Update the last state to "0"
+        }
+      }
+      if (gadget == "led") {
+        // Turn on the LED if state is "1" and it hasn't been turned on yet
+        if (state == "1" && ledState != "1") {
+          digitalWrite(lPin, HIGH);  // Turn on the LED
+          Serial.println("LED turned ON");
+          ledState = "1";  // Update the last state to "1"
+        }
+        // Turn off the LED if state is "0" and it hasn't been turned off yet
+        else if (state == "0" && ledState != "0") {
+          digitalWrite(lPin, LOW);  // Turn off the LED
+          Serial.println("LED turned OFF");
+          ledState = "0";  // Update the last state to "0"
+        }
+      }
+
+       if (gadget == "lcd") {
+    // Turn on the LCD backlight if state is "1" and it hasn't been turned on yet
+    if (state == "1" && lcdState != "1") {
+        digitalWrite(lcdPin, HIGH);  // Turn on the LED
+        Serial.println("lcd turned ON");
+        lcdState = "1";  // Update the last state to "1"
+    }
+    // Turn off the LCD backlight if state is "0" and it hasn't been turned off yet
+    else if (state == "0" && lcdState != "0") {
+        digitalWrite(lcdPin, LOW); 
+        Serial.println("lcd turned OFF");
+        lcdState = "0";  // Update the last state to "0"
+    }
+}
+
+
+
+    }
+  } else {
+    Serial.println("Failed to connect to the server.");
+  }
+
+  // Close the connection
+  client.stop();
+}
